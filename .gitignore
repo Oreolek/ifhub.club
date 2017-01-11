@@ -1,8 +1,6 @@
-/application/config/config.local.php
-/application/config/config.testing.php
-/application/config/config.production.php
-/application/logs/*
-/application/plugins/*
-/application/tmp/*
-/uploads/*
-/.idea/
+application/frontend/skin/ifhub/
+application/config/config.local.php
+application/logs
+uploads
+application/tmp
+application/plugins
