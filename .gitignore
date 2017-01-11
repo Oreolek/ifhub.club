@@ -3,4 +3,4 @@ application/config/config.local.php
 application/logs
 uploads
 application/tmp
-application/plugins
+application/plugins/admin
