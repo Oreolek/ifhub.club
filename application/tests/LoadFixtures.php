@@ -1,7 +1,7 @@
 <?php
 
-require_once("config/loader.php");
-require_once("engine/classes/Engine.class.php");
+require_once("../framework/classes/engine/Engine.class.php");
+require_once("../framework/config/loader.php");
 
 /**
  * Class for load fixtures

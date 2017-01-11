@@ -27,7 +27,7 @@
 *
 */
 
-class PluginBspoiler_ModuleBspoiler extends ModuleText_ModuleBspoiler
+class PluginBspoiler_ModuleBspoiler extends ModuleText
 {
 	protected function JevixConfig()
 	{
