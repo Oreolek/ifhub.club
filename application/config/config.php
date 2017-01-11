@@ -55,6 +55,8 @@ $config['view']['img_max_size_url'] = 500;    // максимальный раз
  * Настройки СЕО для вывода топиков
  */
 $config['seo']['description_words_count'] = 20;               // количество слов из топика для вывода в метатег description
+$config['view']['seo']['topic_heading_list'] = 'article';             // тег для списка топиков
+$config['view']['seo']['topic_heading'] = 'article';             // тег для списка топиков
 
 /**
  * Настройка основных блоков
