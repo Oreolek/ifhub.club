@@ -28,11 +28,6 @@
         {$layoutShowSidebar = !!$layoutSidebarBlocks}
     {/if}
 
-    <script>
-        ls.lang.load({json var = $aLangJs});
-        ls.registry.set({json var = $aVarsJs});
-    </script>
-
     {**
      * Тип сетки сайта
      *}
