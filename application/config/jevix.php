@@ -22,17 +22,7 @@ return array(
                 [
                     'width'  => '#int',
                     'height' => '#int',
-                    'src'    => array('#domain' => [
-                        'vk.com',
-                        'youtube.com',
-                        'rutube.ru',
-                        'vimeo.com',
-                        'video.yandex.ru',
-                        'hwcdn.net',
-                        'gamejolt.com',
-                        'philome.la',
-                        'oreolek.ru',
-                    ],
+                    'src'    => '#text',
                     'msallowfullscreen' => ['true', 'false'],
                     'mozallowfullscreen' => ['true', 'false'],
                     'allowtransparency' => ['true', 'false'],
