@@ -17,6 +17,19 @@ return array(
         ),
         // Разрешённые параметры тегов
         'cfgAllowTagParams'     => array(
+            [
+                'iframe',
+                [
+                    'width'  => '#int',
+                    'height' => '#int',
+                    'src'    => array('#domain' => array('vk.com', 'youtube.com', 'rutube.ru', 'vimeo.com', 'video.yandex.ru', 'itch.io', 'gamejolt.com', 'philome.la')),
+                    'msallowfullscreen' => ['true', 'false'],
+                    'mozallowfullscreen' => ['true', 'false'],
+                    'allowtransparency' => ['true', 'false'],
+                    'allowfullscreen' => ['true', 'false'],
+                    'webkitallowfullscreen' => ['true', 'false']
+                ]
+            ]
             array(
                 'ls',
                 array('user' => '#text')
