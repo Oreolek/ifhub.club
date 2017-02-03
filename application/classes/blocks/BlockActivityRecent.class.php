@@ -20,7 +20,7 @@
  */
 
 /**
- * Обработка блока с комментариями (прямой эфир)
+ * Обработка блока с топиками (прямой эфир)
  *
  * @package application.blocks
  * @since 1.0
@@ -33,15 +33,12 @@ class BlockActivityRecent extends Block
     public function Exec()
     {
         /**
-         * Получаем комментарии
+         * Получаем топики
          */
-        if ($aComments = $this->Comment_GetCommentsOnline('topic', Config::Get('block.stream.row'))) {
+        if ($oTopics = $this->Topic_GetTopicsLast(Config::Get('block.stream.row'))) {
             $oViewer = $this->Viewer_GetLocalViewer();
-            $oViewer->Assign('comments', $aComments, true);
-            /**
-             * Формируем результат в виде шаблона и возвращаем
-             */
-            $sTextResult = $oViewer->Fetch("component@activity.recent-comments");
+            $oViewer->Assign('topics', $oTopics, true);
+            $sTextResult = $oViewer->Fetch("component@activity.recent-topics");
             $this->Viewer_Assign('content', $sTextResult, true);
         }
 
