@@ -29,7 +29,7 @@ return array(
                             'rutube.ru',
                             'vimeo.com',
                             'video.yandex.ru',
-                            'gamejolt.com',
+                            'b.gamejolt.net',
                             'philome.la',
                             'oreolek.ru',
                             'instead-hub.github.io',
