@@ -29,11 +29,10 @@ return array(
                             'rutube.ru',
                             'vimeo.com',
                             'video.yandex.ru',
-                            'hwcdn.net',
                             'gamejolt.com',
                             'philome.la',
                             'oreolek.ru',
-                            'github.io',
+                            'instead-hub.github.io',
                         ]
                     ],
                     'msallowfullscreen' => ['true', 'false'],
