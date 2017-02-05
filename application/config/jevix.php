@@ -33,6 +33,8 @@ return array(
                             'philome.la',
                             'oreolek.ru',
                             'instead-hub.github.io',
+                            'rawgit.com',
+                            'itch.io',
                         ]
                     ],
                     'msallowfullscreen' => ['true', 'false'],
