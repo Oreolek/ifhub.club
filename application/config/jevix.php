@@ -33,7 +33,7 @@ return array(
                             'philome.la',
                             'oreolek.ru',
                             'instead-hub.github.io',
-                            'rawgit.com',
+                            'cdn.rawgit.com',
                             'itch.io',
                         ]
                     ],
