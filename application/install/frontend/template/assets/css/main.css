@@ -1,0 +1,88 @@
+body {
+    font: 13px/1.3em Arial,sans-serif;
+    background: #fafafa;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans', Arial;
+    font-weight: 300;
+}
+
+a {
+    color: #1A80DB;
+    text-decoration: none;
+}
+a:hover {
+    color: #058;
+}
+
+/**
+ * Page header
+ */
+.page-header {
+    margin-bottom: 20px;
+    padding-bottom: 4px;
+    font-size: 18px;
+    border-bottom: 1px solid #eee;
+}
+
+.container {
+    max-width: 500px;
+    margin: 40px auto 40px;
+    padding: 30px;
+    background: #fff;
+    box-shadow: 0 1px 5px rgba(0,0,0,.3)
+}
+
+/**
+ * Header
+ */
+.header {
+    padding: 10px 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 25px;
+}
+
+.header h2 {
+    margin-top: 5px;
+    font-size: 16px;
+    color: #777;
+}
+
+/**
+ * Content
+ */
+.step-buttons {
+    padding-top: 20px;
+}
+
+/**
+ * Complete
+ */
+.complete h2, .complete p {
+    text-align: center;
+}
+.complete h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+
+/**
+ * Index
+ */
+.groups {
+    padding-bottom: 15px;
+    text-align: center;
+}
+.groups li {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-family: 'Open Sans', Arial;
+}
+.groups li:last-child {
+    margin-bottom: 0;
+}

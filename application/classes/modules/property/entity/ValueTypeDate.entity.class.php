@@ -36,8 +36,7 @@ class ModuleProperty_EntityValueTypeDate extends ModuleProperty_EntityValueType
         $oValue = $this->getValueObject();
         $oProperty = $oValue->getProperty();
 
-        return $oValue->getValueDate() ? date($oProperty->getParam('format_out'),
-            strtotime($oValue->getValueDate())) : '';
+        return $oValue->getValueDate() ? $this->Viewer_GetDateFormat(strtotime($oValue->getValueDate()), $oProperty->getParam('format_out')) : '';
     }
 
     public function isEmpty()
@@ -48,18 +47,23 @@ class ModuleProperty_EntityValueTypeDate extends ModuleProperty_EntityValueType
     public function getValueForForm()
     {
         $oValue = $this->getValueObject();
-        $oProperty = $oValue->getProperty();
-
         $sDate = $oValue->getValueDate();
         $iTime = strtotime($sDate);
         // TODO: нужен конвертор формата дат вида Y в yyyy для учета $this->sFormatDateInput
-        return $sDate ? date('d.m.Y', $iTime) . ($oProperty->getParam('use_time') ? date(' H:i', $iTime) : '') : '';
+        return $sDate ? date('d.m.Y', $iTime) : '';
+    }
+
+    public function getValueTimeForForm()
+    {
+        $oValue = $this->getValueObject();
+        $sDate = $oValue->getValueDate();
+        return $sDate ? date('H:i', strtotime($sDate)) : '';
     }
 
     public function validate()
     {
         /**
-         * Данные поступают ввиде массива array( 'date'=>'..', 'time' => array( 'h' => '..', 'm' => '..' ) )
+         * Данные поступают ввиде массива array( 'date'=>'..', 'time' => '..' )
          */
         $aValue = $this->getValueForValidate();
         $oValueObject = $this->getValueObject();
@@ -69,7 +73,14 @@ class ModuleProperty_EntityValueTypeDate extends ModuleProperty_EntityValueType
          * Формируем формат для валидации даты
          * В инпуте дата идет в формате d.m.Y и плюс H:i если используется время
          */
-        $sFormatValidate = $oProperty->getParam('use_time') ? $this->sFormatDateTimeInput : $this->sFormatDateInput;
+        if ($oProperty->getParam('use_time')) {
+            $sFormatValidate = $this->sFormatDateTimeInput;
+            if (isset($aValue['time'])) {
+                $this->setValueForValidateDate($this->getValueForValidateDate() . ' ' . $aValue['time']);
+            }
+        } else {
+            $sFormatValidate = $this->sFormatDateInput;
+        }
 
         $mRes = $this->validateStandart('date', array('format' => $sFormatValidate), 'value_for_validate_date');
         if ($mRes === true) {
@@ -83,7 +94,7 @@ class ModuleProperty_EntityValueTypeDate extends ModuleProperty_EntityValueType
                  */
                 if ($oProperty->getValidateRuleOne('disallowFuture')) {
                     if ($sTimeFull > time()) {
-                        return "{$oProperty->getTitle()}: дата не может быть в будущем";
+                        return "{$oProperty->getTitle()}: " . $this->Lang_Get('property.notices.validate_value_date_future');
                     }
                 }
                 /**
@@ -92,7 +103,7 @@ class ModuleProperty_EntityValueTypeDate extends ModuleProperty_EntityValueType
                 if ($oValueObject->_isNew() or strtotime($oValueObject->getValueDate()) != $sTimeFull) {
                     if ($oProperty->getValidateRuleOne('disallowPast')) {
                         if ($sTimeFull < time()) {
-                            return "{$oProperty->getTitle()}: дата не может быть в прошлом";
+                            return "{$oProperty->getTitle()}: " . $this->Lang_Get('property.notices.validate_value_date_past');
                         }
                     }
                 }

@@ -17,11 +17,11 @@
 
 {* Название компонента *}
 {$component = 'ls-comment'}
-{component_define_params params=[ 'dateReadLast', 'showPath', 'showReply', 'authorId', 'comment', 'useFavourite', 'useScroll', 'useVote', 'useEdit', 'mods', 'classes', 'attributes' ]}
+{component_define_params params=[ 'hookPrefix', 'dateReadLast', 'showPath', 'showReply', 'authorId', 'comment', 'useFavourite', 'useScroll', 'useVote', 'useEdit', 'mods', 'classes', 'attributes' ]}
 
 {* Переменные *}
 {$useEdit = $useEdit|default:true}
-
+{$hookPrefix = $hookPrefix|default:'comment'}
 {$isDeleted = $comment->getDelete()}
 {$user      = $comment->getUser()}
 {$commentId = $comment->getId()}
@@ -69,7 +69,7 @@
          data-parent-id = "{$comment->getPid()}"
          {cattr list=$attributes}>
     {* @hook Начало комментария *}
-    {hook run='comment_comment_begin' params=$params}
+    {hook run="{$hookPrefix}_comment_begin" params=$params}
 
     {* Путь до комментария *}
     {if $showPath}
@@ -96,7 +96,7 @@
         {* Информация *}
         <ul class="{$component}-info ls-clearfix">
             {* @hook Начало блока с информацией *}
-            {hook run='comment_info_begin' params=$params}
+            {hook run="{$hookPrefix}_info_begin" params=$params}
 
             {* Автор комментария *}
             {component 'comment.info-item'
@@ -138,20 +138,20 @@
             {/if}
 
             {* @hook Конец блока с информацией *}
-            {hook run='comment_info_end' params=$params}
+            {hook run="{$hookPrefix}_info_end" params=$params}
         </ul>
 
         {* Текст комментария *}
         <div class="{$component}-content">
             {* @hook Начало блока с содержимым комментария *}
-            {hook run='comment_content_begin' params=$params}
+            {hook run="{$hookPrefix}_content_begin" params=$params}
 
             <div class="{$component}-text ls-text">
                 {$comment->getText()}
             </div>
 
             {* @hook Конец блока с содержимым комментария *}
-            {hook run='comment_content_end' params=$params}
+            {hook run="{$hookPrefix}_content_end" params=$params}
         </div>
 
         {* Информация о редактировании *}
@@ -172,33 +172,36 @@
         {* Действия *}
         <ul class="{$component}-actions ls-clearfix">
             {* @hook Начало списка экшенов комментария *}
-            {hook run='comment_actions_begin' params=$params}
+            {hook run="{$hookPrefix}_actions_begin" params=$params}
 
             {* Ответить *}
             {if $oUserCurrent && ! $isDeleted && $showReply|default:true}
-                <li>
-                    <a href="#" class="ls-link-dotted js-comment-reply" data-id="{$commentId}">{$aLang.comments.comment.reply}</a>
-                </li>
+                {component 'comment.actions-item'
+                    link=[ classes => 'js-comment-reply', attributes => [ 'data-id' => $commentId ] ]
+                    text=$aLang.comments.comment.reply}
             {/if}
 
             {* Сворачивание *}
-            <li class="{$component}-fold js-comment-fold open" data-id="{$commentId}">
-                <a href="#" class="ls-link-dotted">{$aLang.comments.folding.fold}</a>
-            </li>
+            {component 'comment.actions-item'
+                classes="{$component}-fold open"
+                link=[ classes => 'js-comment-fold', attributes => [ 'data-id' => $commentId ] ]
+                text=$aLang.comments.folding.fold}
 
             {* Редактировать *}
             {if $useEdit && $oUserCurrent && $comment->IsAllowEdit()}
-                <li>
-                    <a href="#" class="ls-link-dotted js-comment-update" data-id="{$commentId}">
-                        {$aLang.common.edit}
+                {capture assign="ls_comment_edit_text"}
+                    {$aLang.common.edit}
 
-                        {* Отображение времени отведенного для редактирования *}
-                        {* Используется плагин jquery.timers *}
-                        {if $comment->getEditTimeRemaining()}
-                            (<span class="js-comment-update-timer" data-seconds="{$comment->getEditTimeRemaining()}">...</span>)
-                        {/if}
-                    </a>
-                </li>
+                    {* Отображение времени отведенного для редактирования *}
+                    {* Используется плагин jquery.timers *}
+                    {if $comment->getEditTimeRemaining()}
+                        (<span class="js-comment-update-timer" data-seconds="{$comment->getEditTimeRemaining()}">...</span>)
+                    {/if}
+                {/capture}
+
+                {component 'comment.actions-item'
+                    link=[ classes => 'js-comment-update', attributes => [ 'data-id' => $commentId ] ]
+                    text=$ls_comment_edit_text}
             {/if}
 
             {* Удалить *}
@@ -209,12 +212,12 @@
             {/if}
 
             {* @hook Конец списка экшенов комментария *}
-            {hook run='comment_actions_end' params=$params}
+            {hook run="{$hookPrefix}_actions_end" params=$params}
         </ul>
     {else}
         {$aLang.comments.comment.deleted}
     {/if}
 
     {* @hook Конец комментария *}
-    {hook run='comment_comment_end' params=$params}
+    {hook run="{$hookPrefix}_comment_end" params=$params}
 </section>

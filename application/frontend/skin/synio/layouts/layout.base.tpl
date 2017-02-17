@@ -15,7 +15,7 @@
 {/block}
 
 {block 'layout_head_styles' append}
-    <link href="http://fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=PT+Sans:400,700&amp;subset=latin,cyrillic" rel="stylesheet" type="text/css">
     <link rel="search" type="application/opensearchdescription+xml" href="{router page='search'}opensearch/" title="{Config::Get('view.name')}" />
 {/block}
 
@@ -45,6 +45,8 @@
             .layout-container { width: {Config::Get('view.grid.fixed_width')}; }
         </style>
     {/if}
+
+    <meta name="viewport" content="">
 {/block}
 
 {block 'layout_body'}
@@ -73,7 +75,7 @@
 
             {* Первый уровень навигации *}
             {if count($layoutNav)}
-                {component 'nav' hook='main_nav' classes='layout-nav-top' params=$layoutNav[0]}
+                {component 'nav' classes='layout-nav-top' params=$layoutNav[0]}
             {/if}
         </div>
     </nav>
@@ -200,7 +202,7 @@
                     {hook run='copyright'}
 
                     <div class="layout-footer-design-by">
-                        <img src="{cfg name='path.static.skin'}/assets/images/xeoart.png" alt="xeoart" />
+                        <img src="{cfg name='path.skin.assets.web'}/images/xeoart.png" alt="xeoart" />
                         Design by <a href="http://xeoart.com">xeoart</a>
                         <div>2012</div>
                     </div>

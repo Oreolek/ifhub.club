@@ -1406,7 +1406,7 @@ class ModuleUser extends Module
         $charset = Config::Get('module.user.login.charset');
         $min = Config::Get('module.user.login.min_size');
         $max = Config::Get('module.user.login.max_size');
-        if (preg_match('/^[' . $charset . ']{' . $min . ',' . $max . '}$/i', $sLogin)) {
+        if (preg_match('/^[' . $charset . ']{' . $min . ',' . $max . '}$/ui', $sLogin)) {
             return true;
         }
         return false;
@@ -1950,5 +1950,39 @@ class ModuleUser extends Module
                 'oComplaint'  => $oComplaint,
             )
         );
+    }
+
+    /**
+     * Генерация хеша пароля
+     *
+     * @param $sPassword
+     * @return string
+     */
+    public function MakeHashPassword($sPassword)
+    {
+        return func_encrypt($sPassword);
+    }
+
+    /**
+     * Проверка пароля
+     *
+     * @param $sPassword
+     * @param $sHash
+     * @return string
+     */
+    public function VerifyPassword($sPassword, $sHash)
+    {
+        return $this->MakeHashPassword($sPassword) == $sHash;
+    }
+
+    /**
+     * Проверка доступа к авторизации
+     *
+     * @param $oUser
+     * @return bool
+     */
+    public function VerifyAccessAuth($oUser)
+    {
+        return true;
     }
 }

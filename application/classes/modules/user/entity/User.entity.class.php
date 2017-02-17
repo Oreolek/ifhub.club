@@ -486,7 +486,7 @@ class ModuleUser_EntityUser extends Entity
         if ($this->getProfileAvatar()) {
             return $this->Media_GetImageWebPath($this->getProfileAvatar(), $iSize);
         } else {
-            return $this->Media_GetImagePathBySize(Config::Get('path.skin.assets.web') . '/images/avatars/avatar_' . ($this->getProfileSex() == 'woman' ? 'female' : 'male') . '.png',
+            return $this->Media_GetImagePathBySize(Router::GetFixPathWeb(Config::Get('path.skin.assets.web')) . '/images/avatars/avatar_' . ($this->getProfileSex() == 'woman' ? 'female' : 'male') . '.png',
                 $iSize);
         }
     }
@@ -528,7 +528,7 @@ class ModuleUser_EntityUser extends Entity
      */
     public function getProfileFotoDefault()
     {
-        return Config::Get('path.skin.assets.web') . '/images/avatars/user_photo_' . ($this->getProfileSex() == 'woman' ? 'female' : 'male') . '.png';
+        return Router::GetFixPathWeb(Config::Get('path.skin.assets.web')) . '/images/avatars/user_photo_' . ($this->getProfileSex() == 'woman' ? 'female' : 'male') . '.png';
     }
 
     /**
@@ -644,6 +644,17 @@ class ModuleUser_EntityUser extends Entity
             return true;
         }
         return false;
+    }
+
+    /**
+     * Проверка пароля
+     *
+     * @param $sPassword
+     * @return string
+     */
+    public function verifyPassword($sPassword)
+    {
+        return $this->User_VerifyPassword($sPassword, $this->getPassword());
     }
 
 

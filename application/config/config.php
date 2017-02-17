@@ -21,7 +21,7 @@
  * Ничего не изменяйте в этом файле!
  * Все изменения нужно вносить в файл config/config.local.php
  */
-define('LS_VERSION', '2.0.0.alfa-2');
+define('LS_VERSION', '2.0.0');
 
 /**
  * Основные настройки путей
@@ -333,6 +333,12 @@ $config['module']['validate']['recaptcha']= array(
     'secret_key' => '', // Секретный ключ
     'use_ip' => false, // Использовать при валидации IP адрес клиента
 );
+/**
+ *  Модель Component
+ */
+$config['module']['component']['cache_tree'] = true; // кешировать или нет построение дерева компонентов
+$config['module']['component']['cache_data'] = true; // кешировать или нет данные компонентов
+
 
 // Какие модули должны быть загружены на старте
 $config['module']['autoLoad'] = array('Hook', 'Cache', 'Logger', 'Security', 'Session', 'Lang', 'Message', 'User');
@@ -565,11 +571,6 @@ $config['head']['default']['css'] = array();
 if ( $config['view']['rtl'] ) {
     //$config['head']['default']['css'][] = "___path.skin.web___/components/vote/css/vote-rtl.css";
     //$config['head']['default']['css'][] = "___path.skin.web___/components/alert/css/alert-rtl.css";
-}
-
-// Подключение темы
-if ( $config['view']['theme'] ) {
-    $config['head']['default']['css'][] = "___path.skin.web___/themes/___view.theme___/style.css";
 }
 
 /**

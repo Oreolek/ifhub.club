@@ -45,10 +45,10 @@
             {/if}
         {/if}
 
-        {component 'field' template='select'
+        {component 'field.autocomplete'
             label         = $aLang.topic.add.fields.blog.label
             name          = ''
-            placeholder   = 'Выберите блоги для публикации'
+            placeholder   = $aLang.topic.add.fields.blog.placeholder
             inputClasses  = 'js-topic-add-blogs'
             isMultiple    = true
             selectedValue = $blogsSelectedId
