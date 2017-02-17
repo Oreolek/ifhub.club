@@ -6,7 +6,7 @@ return array(
         'cfgAllowTags'          => array(
             // вызов метода с параметрами
             array(
-                array('ls', 'gallery'),
+                array('ls', 'gallery', 'spoiler'),
             ),
         ),
         // Коротие теги типа
@@ -56,6 +56,10 @@ return array(
                 'a',
                 array('data-rel' => '#text', 'class' => array('js-lbx'))
             ),
+            array(
+                'spoiler',
+                array('title' => '#text')
+            ),
         ),
         'cfgSetTagCallbackFull' => array(
             array(
@@ -65,6 +69,10 @@ return array(
             array(
                 'gallery',
                 array('_this_', 'Media_CallbackParserTagGallery'),
+            ),
+            array(
+                'spoiler',
+                array('_this_', 'Ifhub_CallbackParserTagSpoiler'),
             ),
         )
     ),
