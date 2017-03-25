@@ -155,7 +155,7 @@ jQuery(document).ready(function($){
     $('.js-popover-default').lsTooltip({
         useAttrTitle: false,
         trigger: 'click',
-        classes: 'tooltip-light'
+        classes: 'ls-tooltip-light'
     });
 
     if (ls.registry.get('block_stream_show_tip')) {
@@ -163,7 +163,7 @@ jQuery(document).ready(function($){
             $(this).lsTooltip({
                 position: {
                     my: "right center",
-                    at: "left left"
+                    at: "left center"
                 },
                 show: {
                     delay: 1500
@@ -392,7 +392,7 @@ jQuery(document).ready(function($){
         },
         changeavatar: function ( event, _this, avatars ) {
             $( '.js-user-profile-avatar, .js-wall-entry[data-user-id=' + _this.option( 'params.target_id' ) + '] .ls-comment-avatar img' ).attr( 'src', avatars[ '64crop' ] + '?' + Math.random() );
-            $( '.nav-item--userbar-username img' ).attr( 'src', avatars[ '24crop' ] + '?' + Math.random() );
+            $( '.ls-nav-item--userbar-username img' ).attr( 'src', avatars[ '24crop' ] + '?' + Math.random() );
         }
     });
 
@@ -596,7 +596,8 @@ jQuery(document).ready(function($){
             add:  aRouter['blog'] + 'ajaxaddcomment/',
             load: aRouter['blog'] + 'ajaxresponsecomment/'
         },
-        show_form: ls.registry.get('comment_show_form')
+        show_form:  ls.registry.get('comment_show_form'),
+        use_paging: ls.registry.get('comment_use_paging')
     });
 
     // Кнопка обновления комментариев
