@@ -6,7 +6,7 @@ return array(
         'cfgAllowTags'          => array(
             // вызов метода с параметрами
             array(
-                array('ls', 'gallery', 'spoiler'),
+                array('ls', 'gallery', 'spoiler', 'abbr'),
             ),
         ),
         // Коротие теги типа
@@ -44,6 +44,10 @@ return array(
                     'webkitallowfullscreen' => ['true', 'false']
                 ]
             ],
+            array(
+                'abbr',
+                array('title' => '#text')
+            ),
             array(
                 'ls',
                 array('user' => '#text')
