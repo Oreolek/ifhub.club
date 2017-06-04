@@ -12,11 +12,13 @@ return array(
                   'spoiler',
                   'abbr',
                   'audio',
-                  'source'
+                  'source',
+                  'aside',
+                  'incut'
                 ),
             ),
         ),
-        // Коротие теги типа
+        // Короктие теги типа
         'cfgSetTagShort'        => array(
             array(
                 array(
@@ -96,6 +98,14 @@ return array(
             array(
                 'spoiler',
                 array('_this_', 'Ifhub_CallbackParserTagSpoiler'),
+            ),
+            array(
+                'aside',
+                array('_this_', 'Ifhub_CallbackParserTagAside'),
+            ),
+            array(
+                'incut',
+                array('_this_', 'Ifhub_CallbackParserTagIncut'),
             ),
         )
     ),

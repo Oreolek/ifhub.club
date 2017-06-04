@@ -22,7 +22,7 @@ class ModuleIfhub extends Module
      * <spoiler title="Заголовок">Текст спойлера</spoiler>
      * </pre>
      *
-     * @param string $sTag Тег на ктором сработал колбэк
+     * @param string $sTag Тег на котором сработал колбэк
      * @param array $aParams Список параметров тега
      * @return string
      */
@@ -37,5 +37,33 @@ class ModuleIfhub extends Module
           '<b class="spoiler-title">'.$sTitle.'</b>'.
           '<div class="spoiler-body">'.$sText.'</div>'.
           '</div>';
+    }
+    /**
+     * Обработка тега aside в тексте
+     * <pre>
+     * <aside>Текст врезки</aside>
+     * </pre>
+     *
+     * @param string $sTag Тег на котором сработал колбэк
+     * @param array $aParams Список параметров тега
+     * @return string
+     */
+    public function CallbackParserTagAside($sTag, $aParams, $sText)
+    {
+        return '<div class="aside">'.$sText.'</div>';
+    }
+    /**
+     * Обработка тега incut в тексте
+     * <pre>
+     * <incut>Текст врезки</incut>
+     * </pre>
+     *
+     * @param string $sTag Тег на котором сработал колбэк
+     * @param array $aParams Список параметров тега
+     * @return string
+     */
+    public function CallbackParserTagIncut($sTag, $aParams, $sText)
+    {
+        return '<div class="incut">'.$sText.'</div>';
     }
 }
