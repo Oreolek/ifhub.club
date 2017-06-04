@@ -6,13 +6,24 @@ return array(
         'cfgAllowTags'          => array(
             // вызов метода с параметрами
             array(
-                array('ls', 'gallery', 'spoiler', 'abbr'),
+                array(
+                  'ls',
+                  'gallery',
+                  'spoiler',
+                  'abbr',
+                  'audio',
+                  'source'
+                ),
             ),
         ),
         // Коротие теги типа
         'cfgSetTagShort'        => array(
             array(
-                array('ls', 'gallery')
+                array(
+                  'ls',
+                  'gallery',
+                  'source'
+                )
             ),
         ),
         // Разрешённые параметры тегов
@@ -47,6 +58,14 @@ return array(
             array(
                 'abbr',
                 array('title' => '#text')
+            ),
+            array(
+                'audio',
+                array('controls' => '#text', 'src' => '#text')
+            ),
+            array(
+                'source',
+                array('src' => '#text', 'type' => ['audio/ogg', 'audio/mpeg'])
             ),
             array(
                 'ls',
