@@ -86,6 +86,21 @@ return array(
                 array('title' => '#text')
             ),
         ),
+        // Теги с обязательными параметрами
+        'cfgSetTagParamDefault'     => array(
+            array(
+                'a',
+                'target',
+                '_blank',
+                true
+            ),
+            array(
+                'a',
+                'rel',
+                'noreferrer noopener',
+                true
+            ),
+        ),
         'cfgSetTagCallbackFull' => array(
             array(
                 'ls',
