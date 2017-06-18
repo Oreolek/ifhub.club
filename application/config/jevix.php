@@ -30,7 +30,7 @@ return array(
         ),
         // Разрешённые параметры тегов
         'cfgAllowTagParams'     => array(
-            [
+          [
                 'iframe',
                 [
                     'width'  => '#int',
@@ -69,6 +69,12 @@ return array(
                 'source',
                 array('src' => '#text', 'type' => ['audio/ogg', 'audio/mpeg'])
             ),
+            [
+              'ol',
+              [
+                'start' => '#int',
+              ],
+            ],
             array(
                 'ls',
                 array('user' => '#text')
