@@ -7,14 +7,53 @@ return array(
             // вызов метода с параметрами
             array(
                 array(
-                  'ls',
-                  'gallery',
-                  'spoiler',
-                  'abbr',
-                  'audio',
-                  'source',
-                  'aside',
-                  'incut'
+                    'p',
+                    'ls',
+                    'cut',
+                    'a',
+                    'img',
+                    'i',
+                    'b',
+                    'u',
+                    's',
+                    'small',
+                    'video',
+                    'em',
+                    'strong',
+                    'nobr',
+                    'li',
+                    'ol',
+                    'ul',
+                    'sup',
+                    'abbr',
+                    'sub',
+                    'acronym',
+                    'h4',
+                    'h5',
+                    'h6',
+                    'br',
+                    'hr',
+                    'pre',
+                    'code',
+                    'codeline',
+                    'object',
+                    'param',
+                    'embed',
+                    'blockquote',
+                    'iframe',
+                    'table',
+                    'tbody',
+                    'thead',
+                    'th',
+                    'tr',
+                    'td',
+                    'gallery',
+                    'spoiler',
+                    'abbr',
+                    'audio',
+                    'source',
+                    'aside',
+                    'incut',
                 ),
             ),
         ),
@@ -22,14 +61,39 @@ return array(
         'cfgSetTagShort'        => array(
             array(
                 array(
+                  'br',
+                  'img',
+                  'hr',
+                  'cut',
                   'ls',
                   'gallery',
                   'source'
                 )
             ),
         ),
+        // Преформатированные теги
+        'cfgSetTagPreformatted'     => array(
+            array(
+                array('pre', 'code', 'codeline', 'video')
+            ),
+        ),
         // Разрешённые параметры тегов
         'cfgAllowTagParams'     => array(
+          // вызов метода
+          array(
+            'img',
+            array(
+              'src',
+              'alt'    => '#text',
+              'title',
+              'align'  => array('right', 'left', 'center', 'middle'),
+              'width'  => '#int',
+              'height' => '#int',
+              'hspace' => '#int',
+              'vspace' => '#int',
+              'class'  => array('image-center')
+            )
+          ),
           [
                 'iframe',
                 [
@@ -57,10 +121,10 @@ return array(
                     'webkitallowfullscreen' => ['true', 'false']
                 ]
             ],
-            array(
-                'abbr',
-                array('title' => '#text')
-            ),
+            [
+                'cut',
+                array('name')
+            ],
             array(
                 'audio',
                 array('controls' => '#text', 'src' => '#text')
@@ -68,6 +132,48 @@ return array(
             array(
                 'source',
                 array('src' => '#text', 'type' => ['audio/ogg', 'audio/mpeg'])
+            ),
+            [
+                'object',
+                array(
+                    'width'  => '#int',
+                    'height' => '#int',
+                    'data'   => array('#domain' => array('youtube.com', 'rutube.ru', 'vimeo.com')),
+                    'type'   => '#text'
+                )
+            ],
+            array(
+                'param',
+                array('name' => '#text', 'value' => '#text')
+            ),
+            array(
+                'embed',
+                array(
+                    'src'               => array('#domain' => array('youtube.com', 'rutube.ru', 'vimeo.com')),
+                    'type'              => '#text',
+                    'allowscriptaccess' => '#text',
+                    'allowfullscreen'   => '#text',
+                    'width'             => '#int',
+                    'height'            => '#int',
+                    'flashvars'         => '#text',
+                    'wmode'             => '#text'
+                )
+            ),
+            array(
+                'acronym',
+                array('title')
+            ),
+            array(
+                'abbr',
+                array('title')
+            ),
+            array(
+                'iframe',
+                array(
+                    'width'  => '#int',
+                    'height' => '#int',
+                    'src'    => array('#domain' => array('vk.com', 'youtube.com', 'rutube.ru', 'vimeo.com', 'video.yandex.ru'))
+                )
             ),
             [
               'ol',
@@ -85,29 +191,126 @@ return array(
             ),
             array(
                 'a',
-                array('data-rel' => '#text', 'class' => array('js-lbx'))
+                array('title', 'href', 'rel' => '#text', 'class' => array('js-lbx'), 'name' => '#text', 'target' => array('_blank')),
             ),
             array(
                 'spoiler',
                 array('title' => '#text')
             ),
+            array(
+                'th',
+                array(
+                    'colspan' => '#int',
+                    'rowspan' => '#int',
+                    'align'   => array('right', 'left', 'center', 'justify'),
+                    'height'  => '#int',
+                    'width'   => '#int'
+                )
+            ),
+            array(
+                'td',
+                array(
+                    'colspan' => '#int',
+                    'rowspan' => '#int',
+                    'align'   => array('right', 'left', 'center', 'justify'),
+                    'height'  => '#int',
+                    'width'   => '#int'
+                )
+            ),
+            array(
+                'table',
+                array(
+                    'border'      => '#int',
+                    'cellpadding' => '#int',
+                    'cellspacing' => '#int',
+                    'align'       => array('right', 'left', 'center'),
+                    'height'      => '#int',
+                    'width'       => '#int'
+                )
+            ),
         ),
         // Теги с обязательными параметрами
         'cfgSetTagParamDefault'     => array(
             array(
+                'embed',
+                'wmode',
+                'opaque',
+                true,
                 'a',
-                'target',
-                '_blank',
-                true
-            ),
-            array(
-                'a',
-                'rel',
-                'noreferrer noopener',
-                true
             ),
         ),
+        // допустимые комбинации значений у параметров
+        'cfgSetTagParamCombination' => array(
+            array(
+                'param',
+                'name',
+                array(
+                    'allowScriptAccess' => array(
+                        'value' => array('sameDomain'),
+                    ),
+                    'movie'             => array(
+                        'value' => array('#domain' => array('youtube.com', 'rutube.ru', 'vimeo.com')),
+                    ),
+                    'align'             => array(
+                        'value' => array('bottom', 'middle', 'top', 'left', 'right'),
+                    ),
+                    'base'              => array(
+                        'value' => true,
+                    ),
+                    'bgcolor'           => array(
+                        'value' => true,
+                    ),
+                    'border'            => array(
+                        'value' => true,
+                    ),
+                    'devicefont'        => array(
+                        'value' => true,
+                    ),
+                    'flashVars'         => array(
+                        'value' => true,
+                    ),
+                    'hspace'            => array(
+                        'value' => true,
+                    ),
+                    'quality'           => array(
+                        'value' => array('low', 'medium', 'high', 'autolow', 'autohigh', 'best'),
+                    ),
+                    'salign'            => array(
+                        'value' => array('L', 'T', 'R', 'B', 'TL', 'TR', 'BL', 'BR'),
+                    ),
+                    'scale'             => array(
+                        'value' => array('scale', 'showall', 'noborder', 'exactfit'),
+                    ),
+                    'tabindex'          => array(
+                        'value' => true,
+                    ),
+                    'title'             => array(
+                        'value' => true,
+                    ),
+                    'type'              => array(
+                        'value' => true,
+                    ),
+                    'vspace'            => array(
+                        'value' => true,
+                    ),
+                    'wmode'             => array(
+                        'value' => array('window', 'opaque', 'transparent'),
+                    ),
+                ),
+                true, // Удалять тег, если нет основного значения параметра в списке комбинаций
+            ),
+        ),
+        // Теги, после которых необходимо пропускать одну пробельную строку
+        'cfgSetTagBlockType'        => array(
+            array(
+                array('h4', 'h5', 'h6', 'ol', 'ul', 'blockquote', 'pre', 'table', 'iframe', 'code')
+            )
+        ),
         'cfgSetTagCallbackFull' => array(
+            array(
+                'video',
+                array('_this_', 'Text_CallbackParserTag'),
+            ),
             array(
                 'ls',
                 array('_this_', 'Tools_CallbackParserTagLs'),
@@ -128,6 +331,31 @@ return array(
                 'incut',
                 array('_this_', 'Ifhub_CallbackParserTagIncut'),
             ),
+            array(
+                'code',
+                array('_this_', 'Text_CallbackParserTag'),
+            ),
+            array(
+                'codeline',
+                array('_this_', 'Text_CallbackParserTag'),
+            ),
         )
+    ),
+    // настройки для обработки текста в результатах поиска
+    'search'  => array(
+        // Разрешённые теги
+        'cfgAllowTags'      => array(
+            // вызов метода с параметрами
+            array(
+                array('span'),
+            ),
+        ),
+        // Разрешённые параметры тегов
+        'cfgAllowTagParams' => array(
+            array(
+                'span',
+                array('class' => '#text')
+            ),
+        ),
     ),
 );
