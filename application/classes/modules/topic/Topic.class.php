@@ -1644,7 +1644,11 @@ class ModuleTopic extends Module
                 if (in_array($oBlogUser->getUserId(), $aUserIdSend)) {
                     continue;
                 }
-                $this->SendNotifyTopicNewToSubscribeBlog($oBlogUser->getUser(), $oTopic, $oBlogUser->getBlog(),
+                $ouser = $oBlogUser->getUser();
+                if (empty($ouser)) {
+                  continue;
+                }
+                $this->SendNotifyTopicNewToSubscribeBlog($ouser, $oTopic, $oBlogUser->getBlog(),
                     $oUserTopic);
                 $aUserIdSend[] = $oBlogUser->getUserId();
             }
