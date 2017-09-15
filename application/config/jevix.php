@@ -113,7 +113,8 @@ return array(
                             'cdn.rawgit.com',
                             'itch.io',
                         ]
-                    ],
+                      ],
+                    'frameborder' => '#int',
                     'msallowfullscreen' => ['true', 'false'],
                     'mozallowfullscreen' => ['true', 'false'],
                     'allowtransparency' => ['true', 'false'],
@@ -166,14 +167,6 @@ return array(
             array(
                 'abbr',
                 array('title')
-            ),
-            array(
-                'iframe',
-                array(
-                    'width'  => '#int',
-                    'height' => '#int',
-                    'src'    => array('#domain' => array('vk.com', 'youtube.com', 'rutube.ru', 'vimeo.com', 'video.yandex.ru'))
-                )
             ),
             [
               'ol',
