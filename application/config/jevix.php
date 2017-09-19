@@ -112,6 +112,7 @@ return array(
                             'instead-hub.github.io',
                             'cdn.rawgit.com',
                             'itch.io',
+                            'ifhub.club',
                         ]
                       ],
                     'frameborder' => '#int',
