@@ -51,6 +51,7 @@ class ActionRss extends Action
     protected function RegisterEvent()
     {
         $this->AddEvent('index', 'RssGood');
+        $this->AddEvent('full', 'RssFull');
         $this->AddEvent('new', 'RssNew');
         $this->AddEvent('allcomments', 'RssComments');
         $this->AddEvent('comments', 'RssTopicComments');
@@ -129,6 +130,48 @@ class ActionRss extends Action
             $item['guid'] = $oTopic->getUrl();
             $item['link'] = $oTopic->getUrl();
             $item['description'] = $this->getTopicText($oTopic);
+            $item['pubDate'] = $oTopic->getDatePublish();
+            $item['author'] = $oTopic->getUser()->getLogin();
+            $item['category'] = htmlspecialchars($oTopic->getTags());
+            $topics[] = $item;
+        }
+        /**
+         * Формируем ответ
+         */
+        $this->InitRss();
+        $this->Viewer_Assign('aChannel', $aChannel);
+        $this->Viewer_Assign('aItems', $topics);
+        $this->SetTemplateAction('index');
+    }
+    
+    /**
+     * Вывод полнотекстового RSS интересных топиков
+     */
+    protected function RssFull()
+    {
+        /**
+         * Получаем топики
+         */
+        $aResult = $this->Topic_GetTopicsGood(1, Config::Get('module.topic.max_rss_count'), false);
+        $aTopics = $aResult['collection'];
+        /**
+         * Формируем данные канала RSS
+         */
+        $aChannel['title'] = Config::Get('view.name');
+        $aChannel['link'] = Router::GetPath('/');
+        $aChannel['description'] = Config::Get('view.name') . ' / RSS channel';
+        $aChannel['language'] = 'ru';
+        $aChannel['managingEditor'] = Config::Get('general.rss_editor_mail');
+        $aChannel['generator'] = Config::Get('view.name');
+        /**
+         * Формируем записи RSS
+         */
+        $topics = array();
+        foreach ($aTopics as $oTopic) {
+            $item['title'] = $oTopic->getTitle();
+            $item['guid'] = $oTopic->getUrl();
+            $item['link'] = $oTopic->getUrl();
+            $item['description'] = $this->getTopicFullText($oTopic);
             $item['pubDate'] = $oTopic->getDatePublish();
             $item['author'] = $oTopic->getUser()->getLogin();
             $item['category'] = htmlspecialchars($oTopic->getTags());
@@ -404,5 +447,14 @@ class ActionRss extends Action
             $sText .= "</a>";
         }
         return $sText;
+    }
+
+    /**
+     * Формирует полный текст топика (без ката) для RSS
+     *
+     */
+    protected function getTopicFullText($oTopic)
+    {
+        return $oTopic->getText();
     }
 }
