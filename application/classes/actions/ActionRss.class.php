@@ -152,7 +152,7 @@ class ActionRss extends Action
         /**
          * Получаем топики
          */
-        $aResult = $this->Topic_GetTopicsGood(1, Config::Get('module.topic.max_rss_count'), false);
+        $aResult = $this->Topic_GetTopicsNew(1, Config::Get('module.topic.max_rss_count'), false);
         $aTopics = $aResult['collection'];
         /**
          * Формируем данные канала RSS
