@@ -110,6 +110,7 @@ return array(
                             'philome.la',
                             'oreolek.ru',
                             'instead-hub.github.io',
+                            'instead-games.ru',
                             'cdn.rawgit.com',
                             'itch.io',
                             'ifhub.club',
