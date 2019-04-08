@@ -33,8 +33,8 @@ class ModuleIfhub extends Module
             $sTitle = $aParams['title'];
         }
 
-        return '<details class="spoiler">'.
-          '<summary class="spoiler-title">'.$sTitle.'</summary>'.
+        return '<details class="newspoiler">'.
+          '<summary class="newspoiler-title">'.$sTitle.'</summary>'.
           $sText.'</details>';
     }
     /**
