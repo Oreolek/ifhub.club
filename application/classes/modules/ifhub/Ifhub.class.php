@@ -33,10 +33,9 @@ class ModuleIfhub extends Module
             $sTitle = $aParams['title'];
         }
 
-        return '<div class="spoiler">'.
-          '<b class="spoiler-title">'.$sTitle.'</b>'.
-          '<div class="spoiler-body">'.$sText.'</div>'.
-          '</div>';
+        return '<details class="spoiler">'.
+          '<summary class="spoiler-title">'.$sTitle.'</summary>'.
+          $sText.'</details>';
     }
     /**
      * Обработка тега aside в тексте
