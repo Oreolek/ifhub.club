@@ -549,7 +549,8 @@ return array(
      * Комментарии
      */
     'comments'      => array(
-        'comments_declension' => '%%count%% комментарий;%%count%% комментария;%%count%% комментариев',
+      'comments_declension' => '%%count%% комментарий;%%count%% комментария;%%count%% комментариев',
+      'comments_short' => 'комментарий;комментария;комментариев',
         'no_comments'         => 'Нет комментариев',
         'count_new'           => 'Число новых комментариев',
         'update'              => 'Обновить комментарии',
