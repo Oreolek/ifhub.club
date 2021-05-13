@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin>
+    <name>
+        <lang name="default">Similar topics</lang>
+        <lang name="russian">Похожие топики</lang>
+    </name>
+    <author>
+        <lang name="default">Chiffa</lang>
+    </author>
+    <homepage>http://goweb.pro</homepage>
+    <settings>{admin/plugin/topicsimilar}</settings>
+    <version>1.0.0</version>
+    <requires>
+        <livestreet>2.0.*</livestreet>
+        <plugins>
+        </plugins>
+    </requires>
+    <description>
+        <lang name="default">Display a block similar topics by tags in topic page</lang>
+        <lang name="russian">Выводит блок похожих топиков по тегам на странице топика</lang>
+    </description>
+</plugin>
