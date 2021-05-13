@@ -12,4 +12,5 @@ Disallow: /error/$
 Disallow: /settings/$
 Disallow: /content/$
 Disallow: /talk/$
-# Sitemap: http://example.com/sitemap.xml
+Sitemap: https://ifhub.club/sitemap.xml
+Host: https://ifhub.club
