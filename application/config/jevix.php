@@ -113,6 +113,7 @@ return array(
                             'instead-games.ru',
                             'cdn.rawgit.com',
                             'itch.io',
+                            'itch.zone',
                             'ifhub.club',
                         ]
                       ],
