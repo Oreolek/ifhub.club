@@ -113,6 +113,8 @@ return array(
                             'instead-games.ru',
                             'cdn.rawgit.com',
                             'itch.io',
+                            'html-classic.itch.zone',
+                            'html.itch.zone',
                             'itch.zone',
                             'ifhub.club',
                         ]
