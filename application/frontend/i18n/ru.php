@@ -1530,6 +1530,10 @@ return array(
         'image'   => array(
             'empty' => 'Изображения нет'
         ),
+        'imageset'   => array(
+            'label' => 'Фотосет',
+            'modalTitle' => 'Выбор фото'
+        ),
         'file'    => array(
             'forbidden' => 'Для доступа к файлу необходимо авторизоваться',
             'downloads' => 'Загрузок',
