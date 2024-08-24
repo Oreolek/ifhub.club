@@ -862,6 +862,17 @@ class ActionBlog extends Action
         $this->Viewer_SetOpenGraphProperty('og:description', $this->Viewer_GetHtmlDescription());
         $this->Viewer_SetOpenGraphProperty('og:url', $oTopic->getUrl());
         $this->Viewer_SetOpenGraphProperty('article:author', $oTopic->getUser()->getUserWebPath());
+        $socials = $oTopic->getUser()->getUserFieldValues(true, 'social');
+        if (!empty($socials)) {
+          foreach($socials as $field) {
+            if ($field->getName() === 'fediverse') {
+              $fediverse = $field->getValue();
+              if (!empty($fediverse)) {
+                $this->Viewer_SetOpenGraphProperty('fediverse:creator', $fediverse);
+              }
+            }
+          }
+        }
         $this->Viewer_SetOpenGraphProperty('article:published_time', date('c', strtotime($oTopic->getDatePublish())));
         if ($sImage = $oTopic->getPreviewImageWebPath(Config::Get('module.topic.default_preview_size'))) {
             $this->Viewer_SetOpenGraphProperty('og:image', $sImage);
