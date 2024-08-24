@@ -425,7 +425,7 @@ class ModuleComment extends Module
 
         if (false === ($aCommentsRec = $this->Cache_Get("comment_target_{$sId}_{$sTargetType}"))) {
             $aCommentsRow = $this->oMapper->GetCommentsByTargetId($sId, $sTargetType);
-            if (count($aCommentsRow)) {
+            if (is_array($aCommentsRow) && count($aCommentsRow)) {
                 $aCommentsRec = $this->BuildCommentsRecursive($aCommentsRow);
             }
             $this->Cache_Set($aCommentsRec, "comment_target_{$sId}_{$sTargetType}",
