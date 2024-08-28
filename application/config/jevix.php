@@ -194,7 +194,7 @@ return array(
           'id' => '#text',
           'href',
           'rel' => '#text',
-          'class' => array('js-lbx'),
+          'class' => array('js-lbx', 'fnlink'),
           'name' => '#text',
           'target' => array('_blank')
         ),
