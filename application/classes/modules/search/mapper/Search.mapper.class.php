@@ -37,7 +37,8 @@ class ModuleSearch_MapperSearch extends Mapper
                 FROM " . Config::Get('db.table.topic') . " AS t
                     INNER JOIN " . Config::Get('db.table.topic_content') . " AS tc ON tc.topic_id=t.topic_id
                 WHERE
-                    (t.topic_publish=1) AND ((LOWER(t.topic_title) REGEXP ?) OR (LOWER(tc.topic_text) REGEXP ?))
+                (t.topic_publish=1) AND ((LOWER(t.topic_title) REGEXP ?) OR (LOWER(tc.topic_text) REGEXP ?))
+                AND t.topic_date_publish <= NOW()
                 ORDER BY
                     weight DESC, t.topic_id DESC
                 LIMIT ?d, ?d";
