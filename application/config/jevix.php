@@ -115,6 +115,7 @@ return array(
 							'itch.io',
 							'html-classic.itch.zone',
 							'html.itch.zone',
+							'html-classic.itch.zone',
 							'itch.zone',
 							'ifhub.club',
 						]
