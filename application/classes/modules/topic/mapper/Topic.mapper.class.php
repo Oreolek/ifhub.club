@@ -605,7 +605,13 @@ class ModuleTopic_MapperTopic extends Mapper
             $sWhere .= " AND t.topic_slug =  " . $this->oDb->escape($aFilter['topic_slug']);
         }
         if (isset($aFilter['topic_publish'])) {
-            $sWhere .= " AND t.topic_publish =  " . (int)$aFilter['topic_publish'] . " AND t.topic_date_publish <= '{$sDateNow}' ";
+          $sWhere .= " AND (t.topic_publish =  " . (int)$aFilter['topic_publish'];
+          if (!isset($aFilter['topic_future'])) {
+            $sWhere .= " AND t.topic_date_publish <= '{$sDateNow}' ";
+          } else {
+            $sWhere .= " OR t.topic_date_publish > '{$sDateNow}'";
+          }
+          $sWhere .= ')';
         }
         if (isset($aFilter['topic_publish_only'])) {
             $sWhere .= " AND t.topic_publish =  " . (int)$aFilter['topic_publish_only'] . " ";

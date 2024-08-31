@@ -1045,7 +1045,8 @@ class ModuleTopic extends Module
          * закрытые блоги в которых он состоит
          */
         if ($this->oUserCurrent && $this->oUserCurrent->getId() == $sUserId) {
-            $aFilter['blog_type'][] = 'close';
+          $aFilter['blog_type'][] = 'close';
+          $aFilter['topic_future'] = true;
         }
         $this->Hook_Run('get_topics_by_custom_filter',
             array('aFilter' => &$aFilter, 'iPage' => $iPage, 'iPerPage' => $iPerPage, 'sMethod' => __FUNCTION__));
