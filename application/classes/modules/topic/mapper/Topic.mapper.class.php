@@ -961,8 +961,10 @@ class ModuleTopic_MapperTopic extends Mapper
 				), t.topic_count_vote_down = (
 					SELECT count(*)
 					FROM " . Config::Get('db.table.vote') . " v
+					LEFT JOIN admin_users_ban ON admin_users_ban.user_id = user_voter_id
 					WHERE
 						v.target_id = t.topic_id
+					AND admin_users_ban.block_type IS NULL
 					AND
 						v.vote_direction = -1
 					AND
@@ -970,13 +972,15 @@ class ModuleTopic_MapperTopic extends Mapper
 				), t.topic_count_vote_abstain = (
 					SELECT count(*)
 					FROM " . Config::Get('db.table.vote') . " v
+					LEFT JOIN admin_users_ban ON admin_users_ban.user_id = user_voter_id
 					WHERE
 						v.target_id = t.topic_id
+					AND admin_users_ban.block_type IS NULL
 					AND
 						v.vote_direction = 0
 					AND
 						v.target_type = 'topic'
-				)
+				), t.topic_count_vote = t.topic_count_vote_up - t.topic_count_vote_down, t.topic_rating = t.topic_count_vote
 			";
 		$res = $this->oDb->query($sql);
 		return $this->IsSuccessful($res);
