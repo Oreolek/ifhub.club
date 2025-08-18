@@ -549,8 +549,8 @@ return array(
      * Комментарии
      */
     'comments'      => array(
-      'comments_declension' => '%%count%% комментарий;%%count%% комментария;%%count%% комментариев',
-      'comments_short' => 'комментарий;комментария;комментариев',
+        'comments_declension' => '%%count%% комментарий;%%count%% комментария;%%count%% комментариев',
+        'comments_short' => 'комментарий;комментария;комментариев',
         'no_comments'         => 'Нет комментариев',
         'count_new'           => 'Число новых комментариев',
         'update'              => 'Обновить комментарии',
@@ -620,7 +620,7 @@ return array(
         'blog_invite_new'       => array(
             'subject' => 'Вас пригласили вступить в блог',
             'text'    =>
-                'Пользователь <a href="%%user_url%%">%%user_name%%</a>
+            'Пользователь <a href="%%user_url%%">%%user_name%%</a>
 				приглашает вас вступить в блог <a href="%%blog_url%%">%%blog_name%%</a>.
 				<br><br>
 				<a href="%%invite_url%%">Посмотреть приглашение</a>
@@ -631,7 +631,7 @@ return array(
         'comment_new'           => array(
             'subject'     => 'Новый комментарий к топику',
             'text'        =>
-                'Пользователь <a href="%%user_url%%">%%user_name%%</a>
+            'Пользователь <a href="%%user_url%%">%%user_name%%</a>
 				оставил новый комментарий к топику <b>%%topic_name%%</b>,
 				прочитать его можно перейдя по <a href="%%comment_url%%">этой ссылке</a>
 				<br><br>
@@ -643,7 +643,7 @@ return array(
         'comment_reply'         => array(
             'subject' => 'Вам ответили на ваш комментарий',
             'text'    =>
-                'Пользователь <a href="%%user_url%%">%%user_name%%</a>
+            'Пользователь <a href="%%user_url%%">%%user_name%%</a>
 				ответил на ваш комментарий в топике <b>%%topic_name%%</b>,
 				прочитать его можно перейдя по <a href="%%comment_url%%">этой ссылке</a>
 				<br><br>
@@ -653,7 +653,7 @@ return array(
         'invite'                => array(
             'subject' => 'Приглашение на регистрацию',
             'text'    =>
-                'Пользователь <a href="%%user_url%%">%%user_name%%</a>
+            'Пользователь <a href="%%user_url%%">%%user_name%%</a>
 				пригласил вас зарегистрироваться на сайте %%website_name%%
 				<br><br>
 				Для регистрации пройдите по ссылке:  <a href="%%ref_link%%">%%ref_link%%</a>.'
@@ -662,7 +662,7 @@ return array(
         'reactivation'          => array(
             'subject' => 'Повторный запрос активации',
             'text'    =>
-                'Вы запросили повторную активацию на сайте <a href="%%website_url%%">%%website_name%%</a>
+            'Вы запросили повторную активацию на сайте <a href="%%website_url%%">%%website_name%%</a>
 				<br><br>
 				Ссылка на активацию аккаунта:
 				<br>
@@ -672,7 +672,7 @@ return array(
         'registration'          => array(
             'subject' => 'Регистрация',
             'text'    =>
-                'Вы зарегистрировались на сайте <a href="%%website_url%%">%%website_name%%</a>
+            'Вы зарегистрировались на сайте <a href="%%website_url%%">%%website_name%%</a>
 				<br><br>
 				Ваши регистрационные данные:
 				<br><br>
@@ -682,7 +682,7 @@ return array(
         'registration_activate' => array(
             'subject' => 'Регистрация',
             'text'    =>
-                'Вы зарегистрировались на сайте <a href="%%website_url%%">%%website_name%%</a>
+            'Вы зарегистрировались на сайте <a href="%%website_url%%">%%website_name%%</a>
 				<br><br>
 				Ваши регистрационные данные:
 				<br><br>
@@ -695,20 +695,20 @@ return array(
         'reminder_code'         => array(
             'subject' => 'Восстановление пароля',
             'text'    =>
-                'Если вы хотите сменить себе пароль на сайте <a href="%%website_url%%">%%website_name%%</a>, то перейдите по ссылке ниже:<br>
+            'Если вы хотите сменить себе пароль на сайте <a href="%%website_url%%">%%website_name%%</a>, то перейдите по ссылке ниже:<br>
 				<a href="%%recover_url%%">%%recover_url%%</a>'
         ),
         // Новый пароль
         'reminder_password'     => array(
             'subject' => 'Новый пароль',
             'text'    =>
-                'Вам присвоен новый пароль: <b>%%password%%</b>'
+            'Вам присвоен новый пароль: <b>%%password%%</b>'
         ),
         // Оповещение о новом сообщении в диалоге
         'talk_comment_new'      => array(
             'subject' => 'У вас новый комментарий к письму',
             'text'    =>
-                'Пользователь <a href="%%user_url%%">%%user_name%%</a>
+            'Пользователь <a href="%%user_url%%">%%user_name%%</a>
 				оставил новый комментарий к письму <b>%%talk_name%%</b>,
 				прочитать его можно перейдя по <a href="%%message_url%%">этой ссылке</a>
 				<br><br>
@@ -720,7 +720,7 @@ return array(
         'talk_new'              => array(
             'subject' => 'У вас новое письмо',
             'text'    =>
-                'Вам пришло новое письмо от пользователя <a href="%%user_url%%">%%user_name%%</a>,
+            'Вам пришло новое письмо от пользователя <a href="%%user_url%%">%%user_name%%</a>,
 				прочитать его можно перейдя по <a href="%%talk_url%%">этой ссылке</a>
 				<br><br>
 				Тема письма: <b>%%talk_name%%</b><br>
@@ -732,7 +732,7 @@ return array(
         'topic_new'             => array(
             'subject' => 'Новый топик в блоге',
             'text'    =>
-                'Пользователь <a href="%%user_url%%">%%user_name%%</a>
+            'Пользователь <a href="%%user_url%%">%%user_name%%</a>
 				опубликовал в блоге <b>%%blog_name%%</b>,
 				новый топик &mdash; <a href="%%topic_url%%">%%topic_name%%</a>'
         ),
@@ -740,7 +740,7 @@ return array(
         'user_changemail'       => array(
             'subject' => 'Подтверждение смены емайла',
             'text'    =>
-                'Вами отправлен запрос на смену e-mail адреса пользователя <a href="%%user_url%%">%%user_name%%</a>
+            'Вами отправлен запрос на смену e-mail адреса пользователя <a href="%%user_url%%">%%user_name%%</a>
 				на сайте <a href="%%website_url%%">%%website_name%%</a>.
 				<br><br>
 				Старый e-mail: <b>%%mail_old%%</b><br>
@@ -753,7 +753,7 @@ return array(
         'user_complaint'        => array(
             'subject' => 'Жалоба на пользователя',
             'text'    =>
-                'Пользователь <a href="%%user_url%%">%%user_name%%</a>
+            'Пользователь <a href="%%user_url%%">%%user_name%%</a>
 				пожаловался на пользователя <a href="%%user_target_url%%">%%user_target_url%%</a>.
 				<br><br>
 				<b>Причина:</b> %%complaint_title%%<br>
@@ -764,7 +764,7 @@ return array(
         'user_friend_new'       => array(
             'subject' => 'Вас добавили в друзья',
             'text'    =>
-                'Пользователь <a href="%%user_url%%">%%user_name%%</a>
+            'Пользователь <a href="%%user_url%%">%%user_name%%</a>
 				<br><br>
 				<em>%%text%%</em>
 				<br><br>
@@ -776,7 +776,7 @@ return array(
         'wall_new'              => array(
             'subject' => 'Новое сообщение на вашей стене',
             'text'    =>
-                'Пользователь <a href="%%user_url%%">%%user_name%%</a>
+            'Пользователь <a href="%%user_url%%">%%user_name%%</a>
 				оставил сообщение на <a href="%%wall_url%%">вашей стене</a>
 				<br><br>
 				Текст сообщения:<br>
@@ -786,7 +786,7 @@ return array(
         'wall_reply'            => array(
             'subject' => 'Ответ на ваше сообщение на стене',
             'text'    =>
-                'Пользователь <a href="%%user_url%%">%%user_name%%</a>
+            'Пользователь <a href="%%user_url%%">%%user_name%%</a>
 				ответил на ваше сообщение на <a href="%%wall_url%%">стене</a>
 				<br><br>
 				<b>Ваше сообщение:</b><br>
@@ -1489,7 +1489,7 @@ return array(
      */
     'field'         => array(
         'email'       => array(
-            'label'   => 'E-mail',
+            'label'   => 'E-mail:<br>:<small>Аккаунты на подставных и временных адресах будут заблокированы</small>',
             'notices' => array(
                 'error' => 'Неверный формат e-mail',
             ),
