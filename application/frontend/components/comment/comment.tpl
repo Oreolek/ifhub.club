@@ -103,6 +103,9 @@
                 classes="{$component}-username"
                 link=[ url => $user->getUserWebPath() ]
                 text=$user->getDisplayName()}
+			{if $user->getBanned()}
+				<small style="font-size: x-small">(аккаунт заблокирован)</small>
+			{/if}
 
             {* Дата добавления комментария *}
             {* Так же является ссылкой на комментарий *}
