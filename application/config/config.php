@@ -15,6 +15,10 @@
 ---------------------------------------------------------
 */
 
+if (!class_exists('Config')) {
+	die();
+}
+
 /**
  * !!!!! ВНИМАНИЕ !!!!!
  *
@@ -72,8 +76,8 @@ $config['block']['tags']['personal_tags_count'] = 70;         // сколько 
  */
 $config['general']['close'] = false; // использовать закрытый режим работы сайта, сайт будет доступен только авторизованным пользователям
 $config['general']['close_exceptions'] = array(
-    'auth',
-    'ajax' => array('captcha'),
+	'auth',
+	'ajax' => array('captcha'),
 ); // список action/avent для исключения при закрытом режиме
 $config['general']['rss_editor_mail'] = '___sys.mail.from_email___'; // мыло редактора РСС
 $config['general']['reg']['invite'] = false; // использовать режим регистрации по приглашению или нет. Если использовать, то регистрация будет доступна ТОЛЬКО по приглашениям!
@@ -97,9 +101,9 @@ $config['acl']['create']['blog']['rating'] = 1;  // порог рейтинга 
 $config['acl']['create']['comment']['rating'] = -10; // порог рейтинга при котором юзер может добавлять комментарии
 $config['acl']['create']['comment']['limit_time'] = 10; // время в секундах между постингом комментариев, если 0 то ограничение по времени не будет работать
 $config['acl']['create']['comment']['limit_time_rating'] = -1;  // рейтинг, выше которого перестаёт действовать ограничение по времени на постинг комментов. Не имеет смысла при $config['acl']['create']['comment']['limit_time']=0
-$config['acl']['create']['topic']['limit_time'] = 240;// время в секундах между созданием записей, если 0 то ограничение по времени не будет работать
+$config['acl']['create']['topic']['limit_time'] = 240; // время в секундах между созданием записей, если 0 то ограничение по времени не будет работать
 $config['acl']['create']['topic']['limit_time_rating'] = 5;  // рейтинг, выше которого перестаёт действовать ограничение по времени на создание записей
-$config['acl']['create']['topic']['limit_rating'] = -20;// порог рейтинга при котором юзер может создавать топики (учитываются любые блоги, включая персональные), как дополнительная защита от спама/троллинга
+$config['acl']['create']['topic']['limit_rating'] = -20; // порог рейтинга при котором юзер может создавать топики (учитываются любые блоги, включая персональные), как дополнительная защита от спама/троллинга
 $config['acl']['create']['talk']['limit_time'] = 300; // время в секундах между отправкой инбоксов, если 0 то ограничение по времени не будет работать
 $config['acl']['create']['talk']['limit_time_rating'] = 1;   // рейтинг, выше которого перестаёт действовать ограничение по времени на отправку инбоксов
 $config['acl']['create']['talk_comment']['limit_time'] = 10; // время в секундах между отправкой инбоксов, если 0 то ограничение по времени не будет работать
@@ -126,11 +130,11 @@ $config['module']['blog']['collective_good'] = -3;   // рейтинг топи�
 $config['module']['blog']['index_good'] = 8;   // Рейтинг топика выше которого(включительно) он попадает на главную
 $config['module']['blog']['encrypt'] = 'livestreet'; // Ключ XXTEA шифрования идентификаторов в ссылках приглашения в блоги
 $config['module']['blog']['avatar_size'] = array(
-    '500crop',
-    '100crop',
-    '64crop',
-    '48crop',
-    '24crop'
+	'500crop',
+	'100crop',
+	'64crop',
+	'48crop',
+	'24crop'
 ); // Список размеров аватаров у блога
 $config['module']['blog']['avatar_size_big'] = '500crop'; // Размер большой аватарки блога, которая будет использоваться на странице блога
 $config['module']['blog']['category_allow'] = true;        // Разрешить использование категорий бля блогов
@@ -177,17 +181,17 @@ $config['module']['topic']['url'] = '%year%/%month%/%day%/%title%.html';
  * Без необходимых навыков лучше этот параметр не менять
  */
 $config['module']['topic']['url_preg'] = array(
-    '%year%' => '\d{4}',
-    '%month%' => '\d{2}',
-    '%day%' => '\d{2}',
-    '%hour%' => '\d{2}',
-    '%minute%' => '\d{2}',
-    '%second%' => '\d{2}',
-    '%login%' => '[\w\-\_]+',
-    '%blog%' => '[\w\-\_]+',
-    '%id%' => '\d+',
-    '%title%' => '[\w\-\_]+',
-    '%type%' => '[\w\-\_]+',
+	'%year%' => '\d{4}',
+	'%month%' => '\d{2}',
+	'%day%' => '\d{2}',
+	'%hour%' => '\d{2}',
+	'%minute%' => '\d{2}',
+	'%second%' => '\d{2}',
+	'%login%' => '[\w\-\_]+',
+	'%blog%' => '[\w\-\_]+',
+	'%id%' => '\d+',
+	'%title%' => '[\w\-\_]+',
+	'%type%' => '[\w\-\_]+',
 );
 
 
@@ -198,10 +202,10 @@ $config['module']['user']['friend_notice']['delete'] = false; // Отправи�
 $config['module']['user']['friend_notice']['accept'] = false; // Отправить talk-сообщение в случае одобрения заявки на добавление в друзья
 $config['module']['user']['friend_notice']['reject'] = false; // Отправить talk-сообщение в случае отклонения заявки на добавление в друзья
 $config['module']['user']['avatar_size'] = array(
-    '100crop',
-    '64crop',
-    '48crop',
-    '24crop'
+	'100crop',
+	'64crop',
+	'48crop',
+	'24crop'
 ); // Список размеров аватаров у пользователя
 $config['module']['user']['login']['min_size'] = 3; // Минимальное количество символов в логине
 $config['module']['user']['login']['max_size'] = 30; // Максимальное количество символов в логине
@@ -220,9 +224,9 @@ $config['module']['user']['complaint_notify_by_mail'] = true;  // Уведомл
 $config['module']['user']['complaint_text_required'] = true;  // Обязательно указывать текст при жалобе
 $config['module']['user']['complaint_text_max'] = 2000;  // Максимальный размер текста жалобы
 $config['module']['user']['complaint_type'] = array(    // Список типов жалоб на пользователя
-    'spam',
-    'obscene',
-    'other'
+	'spam',
+	'obscene',
+	'other'
 );
 $config['module']['user']['rbac_role_default'] = 'user'; // Роль, которая автоматически назначается пользователю при регистрации
 $config['module']['user']['count_auth_session'] = 4; // Количество разрешенных сессий пользователя (авторизаций в разных браузерах)
@@ -238,8 +242,8 @@ $config['module']['comment']['nested_per_page'] = 0;    // Число комме
 $config['module']['comment']['nested_page_reverse'] = true;    // Определяет порядок вывода страниц. true - последние комментарии на первой странице, false - последние комментарии на последней странице
 $config['module']['comment']['favourite_target_allow'] = array('topic');    // Список типов комментов, которые разрешено добавлять в избранное
 $config['module']['comment']['edit_target_allow'] = array(
-    'topic',
-    'talk'
+	'topic',
+	'talk'
 );    // Список типов комментов, которые разрешено редактировать
 $config['module']['comment']['vote_target_allow'] = array('topic');    // Список типов комментов, за которые разрешено голосовать
 $config['module']['comment']['max_rss_count'] = 20; // Максимальное количество комментов в RSS потоке
@@ -273,24 +277,24 @@ $config['module']['wall']['text_max'] = 250;            // Ограничени�
 $config['module']['wall']['text_min'] = 1;              // Ограничение на минимальное количество символов в одном сообщении на стене
 // Модуль Sitemap
 $config['module']['sitemap']['index'] = array(  // Главная страница
-    'priority' => '1',
-    'changefreq' => 'hourly' // Вероятная частота изменения этой страницы (https://www.sitemaps.org/ru/protocol.html#changefreqdef)
+	'priority' => '1',
+	'changefreq' => 'hourly' // Вероятная частота изменения этой страницы (https://www.sitemaps.org/ru/protocol.html#changefreqdef)
 );
 $config['module']['sitemap']['stream'] = array( // Вся активность
-    'priority' => '0.7',
-    'changefreq' => 'hourly'
+	'priority' => '0.7',
+	'changefreq' => 'hourly'
 );
 $config['module']['sitemap']['topic'] = array(  // Топики
-    'priority' => '0.9',
-    'changefreq' => 'weekly'
+	'priority' => '0.9',
+	'changefreq' => 'weekly'
 );
 $config['module']['sitemap']['blog'] = array(   // Блоги
-    'priority' => '0.8',
-    'changefreq' => 'weekly'
+	'priority' => '0.8',
+	'changefreq' => 'weekly'
 );
 $config['module']['sitemap']['user'] = array(   // Пользователи
-    'priority' => '0.5',
-    'changefreq' => 'weekly'
+	'priority' => '0.5',
+	'changefreq' => 'weekly'
 );
 
 /**
@@ -306,53 +310,53 @@ $config['module']['image']['params']['blog_avatar']['size_max_height'] = 1000;
 /**
  * Модуль Media
  */
-$config['module']['media']['max_size'] = 3*1024; // Максимальный размер файла в kB
+$config['module']['media']['max_size'] = 3 * 1024; // Максимальный размер файла в kB
 $config['module']['media']['max_count_files'] = 30; // Максимальное количество файлов медиа у одного объекта
-$config['module']['media']['image']['max_size'] = 5*1024; // Максимальный размер файла изображения в kB
+$config['module']['media']['image']['max_size'] = 5 * 1024; // Максимальный размер файла изображения в kB
 $config['module']['media']['image']['autoresize'] = true; // Разрешает автоматическое создание изображений нужного размера при их запросе
 $config['module']['media']['image']['original'] = '1500x'; // Размер для хранения оригинала. Если true, то будет сохраняться исходный оригинал без ресайза. Если false, то оригинал сохраняться не будет
 $config['module']['media']['image']['sizes'] = array(  // список размеров, которые необходимо делать при загрузке изображения
-    array(
-        'w'    => 1000,
-        'h'    => null,
-        'crop' => false,
-    ),
-    array(
-        'w'    => 500,
-        'h'    => null,
-        'crop' => false,
-    ),
-    array(
-        'w'    => 100,
-        'h'    => 100,
-        'crop' => true,
-    ),
-    array(
-        'w'    => 50,
-        'h'    => 50,
-        'crop' => true,
-    )
+	array(
+		'w'    => 1000,
+		'h'    => null,
+		'crop' => false,
+	),
+	array(
+		'w'    => 500,
+		'h'    => null,
+		'crop' => false,
+	),
+	array(
+		'w'    => 100,
+		'h'    => 100,
+		'crop' => true,
+	),
+	array(
+		'w'    => 50,
+		'h'    => 50,
+		'crop' => true,
+	)
 );
 $config['module']['media']['image']['preview']['sizes'] = array(  // список размеров, которые необходимо делать при создании превью
-    array(
-        'w'    => 900,
-        'h'    => 300,
-        'crop' => true,
-    ),
-    array(
-        'w'    => 250,
-        'h'    => 150,
-        'crop' => true,
-    ),
+	array(
+		'w'    => 900,
+		'h'    => 300,
+		'crop' => true,
+	),
+	array(
+		'w'    => 250,
+		'h'    => 150,
+		'crop' => true,
+	),
 );
 /**
  * Модуль Validate
  */
 // Настройки Google рекаптчи - https://www.google.com/recaptcha/admin#createsite
-$config['module']['validate']['recaptcha']= array(
-    'site_key' => '', // Ключ
-    'secret_key' => '', // Секретный ключ
-    'use_ip' => false, // Использовать при валидации IP адрес клиента
+$config['module']['validate']['recaptcha'] = array(
+	'site_key' => '', // Ключ
+	'secret_key' => '', // Секретный ключ
+	'use_ip' => false, // Использовать при валидации IP адрес клиента
 );
 /**
  *  Модель Component
@@ -443,10 +447,10 @@ $config['db']['tables']['engine'] = 'InnoDB';  // InnoDB или MyISAM
 $config['router']['rewrite'] = array();
 // Правила реврайта для REQUEST_URI
 $config['router']['uri'] = array(
-    // короткий вызов топиков из личных блогов
-    '~^(\d+)\.html~i' => "blog/\\1.html",
-    '~^sitemap\.xml~i' => "sitemap",
-    '~^sitemap_(\w+)_(\d+)\.xml~i' => "sitemap/\\1/\\2",
+	// короткий вызов топиков из личных блогов
+	'~^(\d+)\.html~i' => "blog/\\1.html",
+	'~^sitemap\.xml~i' => "sitemap",
+	'~^sitemap_(\w+)_(\d+)\.xml~i' => "sitemap/\\1/\\2",
 );
 // Распределение action
 $config['router']['page']['error'] = 'ActionError';
@@ -470,8 +474,8 @@ $config['router']['page']['subscribe'] = 'ActionSubscribe';
 $config['router']['page']['content'] = 'ActionContent';
 $config['router']['page']['property'] = 'ActionProperty';
 $config['router']['page']['wall'] = 'ActionWall';
-$config['router']['page']['sitemap'] = function() {
-    return LS::Sitemap_ShowSitemap();
+$config['router']['page']['sitemap'] = function () {
+	return LS::Sitemap_ShowSitemap();
 };
 // Глобальные настройки роутинга
 $config['router']['config']['default']['action'] = 'index';
@@ -486,117 +490,183 @@ $config['router']['force_secure'] = array();
  * Настройки вывода блоков
  */
 $config['block']['rule_index_blog'] = array(
-    'action' => array(
-        'index',
-        'blog' => array('{topics}', '{blog}')
-    ),
-    'blocks' => array(
-        'right' => array(
-            'activityRecent' => array('priority' => 100),
-            'topicsTags'   => array('priority' => 50),
-            'blogs'  => array('params' => array(), 'priority' => 1)
-        )
-    ),
-    'clear'  => false,
+	'action' => array(
+		'index',
+		'blog' => array('{topics}', '{blog}')
+	),
+	'blocks' => array(
+		'right' => array(
+			'activityRecent' => array('priority' => 100),
+			'topicsTags'   => array('priority' => 50),
+			'blogs'  => array('params' => array(), 'priority' => 1)
+		)
+	),
+	'clear'  => false,
 );
 $config['block']['rule_topic_type'] = array(
-    'action' => array(
-        'content' => array('add', 'edit'),
-    ),
-    'blocks' => array('right' => array('component@blog.block.info-note')),
+	'action' => array(
+		'content' => array('add', 'edit'),
+	),
+	'blocks' => array('right' => array('component@blog.block.info-note')),
 );
 $config['block']['rule_tag'] = array(
-    'action' => array('tag'),
-    'blocks' => array('right' => array('topicsTags')),
+	'action' => array('tag'),
+	'blocks' => array('right' => array('topicsTags')),
 );
 $config['block']['rule_blogs'] = array(
-    'action' => array('blogs'),
-    'blocks' => array(
-        'right' => array(
-            'component@blog.block.add' => array('priority' => 100),
-            'blogsSearch'              => array('priority' => 50)
-        )
-    ),
+	'action' => array('blogs'),
+	'blocks' => array(
+		'right' => array(
+			'component@blog.block.add' => array('priority' => 100),
+			'blogsSearch'              => array('priority' => 50)
+		)
+	),
 );
 
 $config['block']['userfeedBlogs'] = array(
-    'action' => array('feed'),
-    'blocks' => array(
-        'right' => array(
-            'userfeedBlogs' => array()
-        )
-    )
+	'action' => array('feed'),
+	'blocks' => array(
+		'right' => array(
+			'userfeedBlogs' => array()
+		)
+	)
 );
 $config['block']['userfeedUsers'] = array(
-    'action' => array('feed'),
-    'blocks' => array(
-        'right' => array(
-            'userfeedUsers' => array()
-        )
-    )
+	'action' => array('feed'),
+	'blocks' => array(
+		'right' => array(
+			'userfeedUsers' => array()
+		)
+	)
 );
 $config['block']['rule_users'] = array(
-    'action' => array('people'),
-    'blocks' => array(
-        'right' => array(
-            'component@user.block.users-statistics',
-            'component@user.block.users-search',
-        )
-    )
+	'action' => array('people'),
+	'blocks' => array(
+		'right' => array(
+			'component@user.block.users-statistics',
+			'component@user.block.users-search',
+		)
+	)
 );
 $config['block']['rule_profile'] = array(
-    'action' => array('profile', 'talk', 'settings'),
-    'blocks' => array(
-        'right' => array(
-            'component@user.block.photo'   => array('priority' => 100),
-            'component@user.block.actions' => array('priority' => 50),
-            'component@user.block.note'    => array('priority' => 25),
-            'component@user.block.nav'     => array('priority' => 1),
-        )
-    )
+	'action' => array('profile', 'talk', 'settings'),
+	'blocks' => array(
+		'right' => array(
+			'component@user.block.photo'   => array('priority' => 100),
+			'component@user.block.actions' => array('priority' => 50),
+			'component@user.block.note'    => array('priority' => 25),
+			'component@user.block.nav'     => array('priority' => 1),
+		)
+	)
 );
 $config['block']['rule_blog'] = array(
-    'action' => array('blog' => array('{blog}')),
-    'blocks' => array(
-        'right' => array(
-            'component@blog.block.photo'   => array('priority' => 300),
-            'component@blog.block.actions' => array('priority' => 300),
-            'component@blog.block.users'   => array('priority' => 300),
-            'component@blog.block.admins'  => array('priority' => 300)
-        )
-    ),
-    'clear'  => true
+	'action' => array('blog' => array('{blog}')),
+	'blocks' => array(
+		'right' => array(
+			'component@blog.block.photo'   => array('priority' => 300),
+			'component@blog.block.actions' => array('priority' => 300),
+			'component@blog.block.users'   => array('priority' => 300),
+			'component@blog.block.admins'  => array('priority' => 300)
+		)
+	),
+	'clear'  => true
 );
 
 /**
  * Подключение компонентов
  */
 $config['components'] = array(
-    // Базовые компоненты
-    'css-reset', 'css-helpers', 'typography', 'forms', 'grid', 'ls-vendor', 'ls-core', 'ls-component', 'lightbox', 'avatar', 'slider', 'details', 'alert', 'dropdown', 'button', 'block',
-    'nav', 'tooltip', 'tabs', 'modal', 'table', 'text', 'uploader', 'email', 'field', 'pagination', 'editor', 'more', 'crop',
-    'performance', 'toolbar', 'actionbar', 'badge', 'autocomplete', 'icon', 'item', 'highlighter', 'jumbotron', 'notification', 'blankslate', 'confirm',
+	// Базовые компоненты
+	'css-reset',
+	'css-helpers',
+	'typography',
+	'forms',
+	'grid',
+	'ls-vendor',
+	'ls-core',
+	'ls-component',
+	'lightbox',
+	'avatar',
+	'slider',
+	'details',
+	'alert',
+	'dropdown',
+	'button',
+	'block',
+	'nav',
+	'tooltip',
+	'tabs',
+	'modal',
+	'table',
+	'text',
+	'uploader',
+	'email',
+	'field',
+	'pagination',
+	'editor',
+	'more',
+	'crop',
+	'performance',
+	'toolbar',
+	'actionbar',
+	'badge',
+	'autocomplete',
+	'icon',
+	'item',
+	'highlighter',
+	'jumbotron',
+	'notification',
+	'blankslate',
+	'confirm',
 
-    // Компоненты LS CMS
-    'favourite', 'vote', 'auth', 'media', 'property', 'photo', 'note', 'user-list-add', 'subscribe', 'content', 'report', 'comment',
-    'toolbar-scrollup', 'toolbar-scrollnav', 'tags-personal', 'search-ajax', 'search', 'sort', 'search-form', 'info-list',
-    'tags', 'userbar', 'admin', 'user', 'wall', 'blog', 'topic', 'poll', 'activity', 'feed', 'talk'
+	// Компоненты LS CMS
+	'favourite',
+	'vote',
+	'auth',
+	'media',
+	'property',
+	'photo',
+	'note',
+	'user-list-add',
+	'subscribe',
+	'content',
+	'report',
+	'comment',
+	'toolbar-scrollup',
+	'toolbar-scrollnav',
+	'tags-personal',
+	'search-ajax',
+	'search',
+	'sort',
+	'search-form',
+	'info-list',
+	'tags',
+	'userbar',
+	'admin',
+	'user',
+	'wall',
+	'blog',
+	'topic',
+	'poll',
+	'activity',
+	'feed',
+	'talk'
 );
 
 $config['head']['default']['js'] = array(
-    //"___path.skin.web___/components/ls-vendor/html5shiv.js" => array('browser' => 'lt IE 9'),
-    //"___path.skin.web___/components/ls-vendor/jquery.placeholder.min.js" => array('browser' => 'lt IE 9'),
+	//"___path.skin.web___/components/ls-vendor/html5shiv.js" => array('browser' => 'lt IE 9'),
+	//"___path.skin.web___/components/ls-vendor/jquery.placeholder.min.js" => array('browser' => 'lt IE 9'),
 
-    "//yastatic.net/share/share.js" => array('merge' => false),
-    "https://www.google.com/recaptcha/api.js?onload=__do_nothing__&render=explicit" => array('merge' => false),
+	"//yastatic.net/share/share.js" => array('merge' => false),
+	"https://www.google.com/recaptcha/api.js?onload=__do_nothing__&render=explicit" => array('merge' => false),
 );
 
 $config['head']['default']['css'] = array();
 
 // Стили для RTL языков
-if ( $config['view']['rtl'] ) {
-    //$config['head']['default']['css'][] = "___path.skin.web___/components/vote/css/vote-rtl.css";
-    //$config['head']['default']['css'][] = "___path.skin.web___/components/alert/css/alert-rtl.css";
+if ($config['view']['rtl']) {
+	//$config['head']['default']['css'][] = "___path.skin.web___/components/vote/css/vote-rtl.css";
+	//$config['head']['default']['css'][] = "___path.skin.web___/components/alert/css/alert-rtl.css";
 }
 
 /**
