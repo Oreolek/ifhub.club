@@ -270,7 +270,7 @@ class ModuleTopic_MapperTopic extends Mapper
 					FROM
 						" . Config::Get('db.table.topic') . " as t
 					LEFT JOIN blog as b ON b.blog_id = t.blog_id
-					LEFT JOIN tg_posts ON t.topic_slug = tg_posts.topic_slug
+					LEFT OUTER JOIN tg_posts ON t.topic_slug = tg_posts.topic_slug
 					WHERE
 						1=1
 						" . $sWhere . "
@@ -680,7 +680,7 @@ class ModuleTopic_MapperTopic extends Mapper
 				$sPublishIndex = " or topic_publish_index = 1 ) and ( topic_skip_index = 0 and b.blog_skip_index = 0 ";
 			}
 			if ($aFilter['topic_rating']['type'] == 'top') {
-				$sWhere .= " AND ( (t.topic_rating + (`tg_posts`.`like_count` * 0.5)) >= " . (float)$aFilter['topic_rating']['value'] . " {$sPublishIndex} ) ";
+				$sWhere .= " AND ( (t.topic_rating + coalesce(0, (`tg_posts`.`like_count` * 0.5))) >= " . (float)$aFilter['topic_rating']['value'] . " {$sPublishIndex} ) ";
 			} else {
 				$sWhere .= " AND ( t.topic_rating < " . (float)$aFilter['topic_rating']['value'] . "  ) ";
 			}
