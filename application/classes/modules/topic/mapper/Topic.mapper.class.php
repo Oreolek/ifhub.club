@@ -268,17 +268,16 @@ class ModuleTopic_MapperTopic extends Mapper
 		$sql = "SELECT
 						t.topic_id
 					FROM
-						" . Config::Get('db.table.topic') . " as t,
-						" . Config::Get('db.table.blog') . " as b
+						" . Config::Get('db.table.topic') . " as t
+					LEFT JOIN blog as b ON b.blog_id = t.blog_id
+					LEFT JOIN tg_posts ON t.topic_slug = tg_posts.topic_slug
 					WHERE
 						1=1
 						" . $sWhere . "
-						AND
-						t.blog_id=b.blog_id
 					ORDER BY " .
 			implode(', ', $aFilter['order'])
 			. "
-					LIMIT ?d, ?d";
+			LIMIT ?d, ?d";
 		$aTopics = array();
 		if ($aRows = $this->oDb->selectPage($iCount, $sql, ($iCurrPage - 1) * $iPerPage, $iPerPage)) {
 			foreach ($aRows as $aTopic) {
@@ -681,7 +680,7 @@ class ModuleTopic_MapperTopic extends Mapper
 				$sPublishIndex = " or topic_publish_index = 1 ) and ( topic_skip_index = 0 and b.blog_skip_index = 0 ";
 			}
 			if ($aFilter['topic_rating']['type'] == 'top') {
-				$sWhere .= " AND ( t.topic_rating >= " . (float)$aFilter['topic_rating']['value'] . " {$sPublishIndex} ) ";
+				$sWhere .= " AND ( (t.topic_rating + (`tg_posts`.`like_count` * 0.5)) >= " . (float)$aFilter['topic_rating']['value'] . " {$sPublishIndex} ) ";
 			} else {
 				$sWhere .= " AND ( t.topic_rating < " . (float)$aFilter['topic_rating']['value'] . "  ) ";
 			}
