@@ -22,13 +22,6 @@
                             {date_format date=$oSimilarTopic->getDatePublish() hours_back="12" minutes_back="60" now="60" day="day H:i" format="j F Y"}
                         </time>
                     </li>
-                    <li>
-                        <a href="{$topic->getUrl()}#comments" class="ls-topic-similar-comments">
-                            {component 'icon' icon='comments'}
-                            {lang 'comments.comments_declension' count=$oSimilarTopic->getCountComment() plural=true}
-                            {if $oSimilarTopic->getCountCommentNew()}<span>+{$oSimilarTopic->getCountCommentNew()}</span>{/if}
-                        </a>
-                    </li>
                 </ul>
             {/capture}
 
