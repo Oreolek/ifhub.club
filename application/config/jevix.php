@@ -251,7 +251,10 @@ return array(
 			),
 			[
 				'dfn',
-				['lang' => '#text'],
+				[
+					'lang' => '#text',
+					'id' => '#text'
+				],
 			],
 			[
 				'codeline',
