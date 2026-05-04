@@ -35,7 +35,11 @@ class ModuleText_EntityParserTagCodeline extends Entity
      * @return bool|string
      */
     public function parse($sContent, $aParams = array())
-    {
-        return "<code>{$sContent}</code>";
+	{
+		$sLang = $aParams['lang'] ?? '';
+		if (!empty($sLang)) {
+			$sLang = "lang='{$sLang}'";
+		}
+        return "<code {$sLang}>{$sContent}</code>";
     }
 }
