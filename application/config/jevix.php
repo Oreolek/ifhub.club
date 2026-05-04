@@ -253,6 +253,10 @@ return array(
 				['lang' => '#text'],
 			],
 			[
+				'blockquote',
+				['lang' => '#text'],
+			],
+			[
 				'ruby',
 				[
 					'lang' => '#text',
