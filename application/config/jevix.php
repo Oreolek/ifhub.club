@@ -54,6 +54,9 @@ return array(
 					'source',
 					'aside',
 					'incut',
+					'ruby',
+					'rt',
+					'rp',
 				),
 			),
 		),
@@ -61,13 +64,13 @@ return array(
 		'cfgSetTagShort'		=> array(
 			array(
 				array(
-				  'br',
-				  'img',
-				  'hr',
-				  'cut',
-				  'ls',
-				  'gallery',
-				  'source'
+					'br',
+					'img',
+					'hr',
+					'cut',
+					'ls',
+					'gallery',
+					'source'
 				)
 			),
 		),
@@ -79,22 +82,22 @@ return array(
 		),
 		// Разрешённые параметры тегов
 		'cfgAllowTagParams'	 => array(
-		  // вызов метода
-		  array(
-			'img',
+			// вызов метода
 			array(
-			  'src',
-			  'alt'	=> '#text',
-			  'title',
-			  'align'  => array('right', 'left', 'center', 'middle'),
-			  'width'  => '#int',
-			  'height' => '#int',
-			  'hspace' => '#int',
-			  'vspace' => '#int',
-			  'class'  => array('image-center')
-			)
-		  ),
-		  [
+				'img',
+				array(
+					'src',
+					'alt'	=> '#text',
+					'title',
+					'align'  => array('right', 'left', 'center', 'middle'),
+					'width'  => '#int',
+					'height' => '#int',
+					'hspace' => '#int',
+					'vspace' => '#int',
+					'class'  => array('image-center')
+				)
+			),
+			[
 				'iframe',
 				[
 					'width'  => '#int',
@@ -119,7 +122,7 @@ return array(
 							'itch.zone',
 							'ifhub.club',
 						]
-					  ],
+					],
 					'frameborder' => '#int',
 					'msallowfullscreen' => ['true', 'false'],
 					'mozallowfullscreen' => ['true', 'false'],
@@ -168,17 +171,23 @@ return array(
 			),
 			array(
 				'acronym',
-				array('title')
+				[
+					'title' => '#text',
+					'lang' => '#text',
+				]
 			),
 			array(
 				'abbr',
-				array('title')
+				[
+					'title' => '#text',
+					'lang' => '#text',
+				]
 			),
 			[
-			  'ol',
-			  [
-				'start' => '#int',
-			  ],
+				'ol',
+				[
+					'start' => '#int',
+				],
 			],
 			array(
 				'ls',
@@ -190,15 +199,15 @@ return array(
 			),
 			array(
 				'a',
-        array(
-          'title',
-          'id' => '#text',
-          'href',
-          'rel' => '#text',
-          'class' => array('js-lbx', 'fnlink'),
-          'name' => '#text',
-          'target' => array('_blank')
-        ),
+				array(
+					'title',
+					'id' => '#text',
+					'href',
+					'rel' => '#text',
+					'class' => array('js-lbx', 'fnlink'),
+					'name' => '#text',
+					'target' => array('_blank')
+				),
 			),
 			array(
 				'spoiler',
@@ -237,8 +246,18 @@ return array(
 			),
 			array(
 				'li',
-        array('id' => '#text')
-      ),
+				array('id' => '#text')
+			),
+			[
+				'codeline',
+				['lang' => '#text'],
+			],
+			[
+				'ruby',
+				[
+					'lang' => '#text',
+				],
+			],
 		),
 		// Теги с обязательными параметрами
 		'cfgSetTagParamDefault'	 => array(
