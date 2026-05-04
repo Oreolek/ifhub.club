@@ -34,6 +34,7 @@ return array(
 					'br',
 					'hr',
 					'pre',
+					'span',
 					'code',
 					'codeline',
 					'object',
@@ -248,6 +249,10 @@ return array(
 				'li',
 				array('id' => '#text')
 			),
+			[
+				'span',
+				['lang' => '#text'],
+			],
 			[
 				'codeline',
 				['lang' => '#text'],
