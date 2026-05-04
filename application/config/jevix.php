@@ -34,9 +34,9 @@ return array(
 					'br',
 					'hr',
 					'pre',
-					'span',
 					'code',
 					'codeline',
+					'dfn',
 					'object',
 					'param',
 					'embed',
@@ -250,7 +250,7 @@ return array(
 				array('id' => '#text')
 			),
 			[
-				'span',
+				'dfn',
 				['lang' => '#text'],
 			],
 			[
