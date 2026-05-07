@@ -58,6 +58,8 @@ return array(
 					'ruby',
 					'rt',
 					'rp',
+					'figure',
+					'figcaption',
 				),
 			),
 		),
