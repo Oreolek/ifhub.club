@@ -407,7 +407,7 @@ class ModuleLang extends Module
         if (strlen($sLang) > 3) {
             $sLang = substr($sLang, 0, -strlen(strrchr($sLang, '_')));
         }
-        $iNumber = abs($iNumber);
+        $iNumber = abs((int) $iNumber);
         $iForm = 0;
         /*
          * The plural rules are derived from code of the Zend Framework (2010-09-25),

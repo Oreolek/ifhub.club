@@ -220,7 +220,7 @@ class Timestamp
 			return ($is_gmt)? @gmdate($fmt): @date($fmt);
 
 		// check if number in 32-bit signed range
-		if ((abs($d) <= 0x7FFFFFFF))
+		if ((abs((int) $d) <= 0x7FFFFFFF))
 		{
 			// if windows, must be +ve integer
 			if ($d >= 0)
@@ -266,7 +266,7 @@ class Timestamp
 				if ($secs < 10) $dates .= ':0'.$secs; else $dates .= ':'.$secs;
 
 				$gmt = self::getGMTDiff();
-				$dates .= sprintf(' %s%04d',($gmt<=0)?'+':'-',abs($gmt)/36);
+				$dates .= sprintf(' %s%04d',($gmt<=0)?'+':'-',abs((int) $gmt)/36);
 				break;
 
 			case 'Y': $dates .= $year; break;
@@ -299,7 +299,7 @@ class Timestamp
 			case 'O':
 				$gmt = ($is_gmt) ? 0 : self::getGMTDiff();
 
-				$dates .= sprintf('%s%04d',($gmt<=0)?'+':'-',abs($gmt)/36);
+				$dates .= sprintf('%s%04d',($gmt<=0)?'+':'-',abs((int) $gmt)/36);
 				break;
 
 			case 'H':
