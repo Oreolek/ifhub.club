@@ -185,8 +185,15 @@ class ModuleSession extends Module
     public function SetCookie($sName, $sValue, $iTime = null, $bSecure = false, $bHttpOnly = false)
     {
         $_COOKIE[$sName] = $sValue;
-        setcookie($sName, $sValue, $iTime, Config::Get('sys.cookie.path'), Config::Get('sys.cookie.host'), $bSecure,
-            $bHttpOnly);
+        setcookie(
+            $sName,
+            (string) $sValue,
+            $iTime === null ? 0 : (int) $iTime,
+            (string) Config::Get('sys.cookie.path'),
+            (string) Config::Get('sys.cookie.host'),
+            $bSecure,
+            $bHttpOnly
+        );
     }
 
     /**
@@ -211,7 +218,13 @@ class ModuleSession extends Module
      */
     public function DropCookie($sName)
     {
-        setcookie($sName, null, -1, Config::Get('sys.cookie.path'), Config::Get('sys.cookie.host'));
+        setcookie(
+            $sName,
+            '',
+            -1,
+            (string) Config::Get('sys.cookie.path'),
+            (string) Config::Get('sys.cookie.host')
+        );
         unset($_COOKIE[$sName]);
     }
 }

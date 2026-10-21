@@ -68,6 +68,10 @@ class JSqueeze
 
     $charFreq;
 
+    public
+    $local_tree = array(),
+    $used_tree = array();
+
     protected
 
     $strings,
@@ -248,7 +252,7 @@ class JSqueeze
                     ++$i;
 
                     if ("\n" != $f[$i]) {
-                        isset($q[$f[$i]]) && ++$q[$f[$i]];
+                        isset($q[$f[$i]]) && is_int($q[$f[$i]]) && ++$q[$f[$i]];
                         $s[] = '\\'.$f[$i];
                     }
                 } elseif ('[' == $f[$i] && "/'" == $instr) {
