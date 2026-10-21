@@ -635,7 +635,10 @@ class ModuleTopic extends Module
     public function GetTimelifeCacheForTopics()
     {
         if ($sDate = $this->oMapperTopic->GetNextTopicDatePublish()) {
-            return abs(strtotime($sDate) - time());
+            $iDatePublish = strtotime((string) $sDate);
+            if ($iDatePublish !== false) {
+                return abs($iDatePublish - time());
+            }
         }
         return 60 * 60 * 24 * 1;
     }
