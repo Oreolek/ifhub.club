@@ -1,0 +1,16 @@
+{
+    "name": "avatar",
+    "version": "1.0.0",
+    "dependencies": {
+        "css-reset": "*"
+    },
+    "templates": {
+        "avatar": "avatar.tpl",
+        "list": "avatar-list.tpl",
+        "loop": "avatar-loop.tpl"
+    },
+    "styles": {
+        "avatar": "css/avatar.css",
+        "list": "css/avatar-list.css"
+    }
+}
