@@ -51,7 +51,7 @@
 {/if}
 
 {* Дополнительный мод-ор для иконок *}
-{$iconMod = ( in_array( 'small', explode(' ', $mods) ) ) ? 'white' : ''}
+{$iconMod = ( in_array( 'small', explode(' ', $mods|default:'') ) ) ? 'white' : ''}
 
 {block 'vote_options'}{/block}
 
@@ -70,18 +70,18 @@
 
             {* Воздержаться *}
             {if $useAbstain}
-                <div class="{$component}-item {$component}-item-abstain js-vote-item" {if ! $vote}title="{$aLang.$component.abstain}"{/if} data-vote-value="0">
+                <div class="{$component}-item {$component}-item-abstain js-vote-item" {if ! $vote}title="{$aLang.vote.abstain}"{/if} data-vote-value="0">
                     {component 'icon' icon='eye' mods=$iconMod}
                 </div>
             {/if}
 
             {* Нравится *}
-            <div class="{$component}-item {$component}-item-up js-vote-item" {if ! $vote}title="{$aLang.$component.up}"{/if} data-vote-value="1">
+            <div class="{$component}-item {$component}-item-up js-vote-item" {if ! $vote}title="{$aLang.vote.up}"{/if} data-vote-value="1">
                 {component 'icon' icon='plus' mods=$iconMod}
             </div>
 
             {* Не нравится *}
-            <div class="{$component}-item {$component}-item-down js-vote-item" {if ! $vote}title="{$aLang.$component.down}"{/if} data-vote-value="-1">
+            <div class="{$component}-item {$component}-item-down js-vote-item" {if ! $vote}title="{$aLang.vote.down}"{/if} data-vote-value="-1">
                 {component 'icon' icon='minus' mods=$iconMod}
             </div>
         {/block}

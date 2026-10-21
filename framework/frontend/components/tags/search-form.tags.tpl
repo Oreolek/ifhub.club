@@ -2,7 +2,7 @@
  * Форма поиска по тегам
  *}
 
-{component_define_params params=[ 'mods', 'classes', 'attributes' ]}
+{component_define_params params=[ 'mods', 'classes', 'attributes', 'tag' ]}
 
 {component 'search-form'
         name         = 'tags'
@@ -11,4 +11,4 @@
         classes      = 'js-tag-search-form'
         inputClasses = 'autocomplete-tags js-tag-search'
         inputName    = 'tag'
-        value        = $tag}
+        value        = $tag|default:''}

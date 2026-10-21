@@ -61,7 +61,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function current()
+    public function current(): mixed
     {
         return new Image($this->resource, $this->palette, new MetadataBag());
     }
@@ -69,7 +69,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function key()
+    public function key(): mixed
     {
         return $this->offset;
     }
@@ -77,7 +77,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function next()
+    public function next(): void
     {
         ++$this->offset;
     }
@@ -85,7 +85,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->offset = 0;
     }
@@ -93,7 +93,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function valid()
+    public function valid(): bool
     {
         return $this->offset < 1;
     }
@@ -101,7 +101,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function count()
+    public function count(): int
     {
         return 1;
     }
@@ -109,7 +109,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return 0 === $offset;
     }
@@ -117,7 +117,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         if (0 === $offset) {
             return new Image($this->resource, $this->palette, new MetadataBag());
@@ -129,7 +129,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         throw new NotSupportedException('GD does not support layer set');
     }
@@ -137,7 +137,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         throw new NotSupportedException('GD does not support layer unset');
     }

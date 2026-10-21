@@ -700,9 +700,9 @@ class ModuleViewer extends Module
      */
     protected function BuildBlocks()
     {
-        $sAction = strtolower(Router::GetAction());
-        $sEvent = strtolower(Router::GetActionEvent());
-        $sEventName = strtolower(Router::GetActionEventName());
+        $sAction = strtolower((string) Router::GetAction());
+        $sEvent = strtolower((string) Router::GetActionEvent());
+        $sEventName = strtolower((string) Router::GetActionEventName());
         foreach ($this->aBlockRules as $sName => $aRule) {
             $bUse = false;
             /**

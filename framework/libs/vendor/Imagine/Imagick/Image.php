@@ -238,7 +238,7 @@ final class Image extends AbstractImage
      *
      * @return ImageInterface
      */
-    public function rotate($angle, ColorInterface $background = null)
+    public function rotate($angle, ?ColorInterface $background=null)
     {
         $color = $background ? $background : $this->palette->color('fff');
 
@@ -585,7 +585,7 @@ final class Image extends AbstractImage
 
         try {
             try {
-                $hasICCProfile = (Boolean) $this->imagick->getImageProfile('icc');
+                $hasICCProfile = (bool) $this->imagick->getImageProfile('icc');
             } catch (\ImagickException $e) {
                 $hasICCProfile = false;
             }

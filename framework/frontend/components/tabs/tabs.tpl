@@ -34,21 +34,21 @@
     <div class="ls-tabs-panes" data-tab-panes>
         {foreach $tabs as $tab}
             {if $tab[ 'is_enabled' ]|default:true}
-                <div class="ls-tab-pane" {if $tab['isActive'] || ($activeTab && $tab['name'] == $activeTab)}style="display: block"{/if} data-tab-pane id="{$tab[ 'uid' ]}">
-                    {if $tab[ 'content' ]}
+                <div class="ls-tab-pane" {if ($tab['isActive']|default:false) || ($activeTab && $tab['name'] == $activeTab)}style="display: block"{/if} data-tab-pane id="{$tab[ 'uid' ]}">
+                    {if !empty($tab[ 'content' ])}
                         <div class="ls-tab-pane-content">
                             {$tab[ 'content' ]}
                         </div>
                     {/if}
 
                     {* Item group *}
-                    {if is_array( $tab[ 'list' ] )}
+                    {if isset($tab[ 'list' ]) && is_array( $tab[ 'list' ] )}
                         {component 'item' template='group' params=$tab[ 'list' ]}
-                    {elseif $tab[ 'list' ]}
+                    {elseif !empty($tab[ 'list' ])}
                         {$tab[ 'list' ]}
                     {/if}
 
-                    {$tab[ 'body' ]}
+                    {$tab[ 'body' ]|default:''}
                 </div>
             {/if}
         {/foreach}

@@ -1,8 +1,7 @@
 language: php
 
 php:
-  - 5.3
-  - 5.4
+  - 8.5
 
 before_script:
   # export virtual display
@@ -18,7 +17,7 @@ before_script:
 
   # install required PHP stuff
   - sudo apt-get update
-  - sudo apt-get install php5 php5-cli php5-mysql php5-mcrypt php5-xsl php5-xdebug php-apc php5-gd php5-curl php5-intl mysql-server mysql-client
+  - sudo apt-get install php8.5-cli php8.5-mysql php8.5-xml php8.5-xdebug php8.5-gd php8.5-curl php8.5-intl mysql-server mysql-client
 
   # launch apache, MySQL and PHPUnit Selenium installers
   - ./tests/travis/apache_setup.sh

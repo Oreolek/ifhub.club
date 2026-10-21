@@ -238,7 +238,7 @@ final class Image extends AbstractImage
      *
      * @return ImageInterface
      */
-    public function rotate($angle, ColorInterface $background = null)
+    public function rotate($angle, ?ColorInterface $background=null)
     {
         try {
             $background = $background ?: $this->palette->color('fff');
@@ -659,7 +659,7 @@ final class Image extends AbstractImage
 
         try {
             try {
-                $hasICCProfile = (Boolean) $this->gmagick->getimageprofile('ICM');
+                $hasICCProfile = (bool) $this->gmagick->getimageprofile('ICM');
             } catch (\GmagickException $e) {
                 $hasICCProfile = false;
             }

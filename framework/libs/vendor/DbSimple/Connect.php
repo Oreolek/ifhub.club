@@ -3,13 +3,19 @@
 /**
  * Используйте константу DBSIMPLE_SKIP в качестве подстановочного значения чтобы пропустить опцональный SQL блок.
  */
-define('DBSIMPLE_SKIP', log(0));
+if (!defined('DBSIMPLE_SKIP')) {
+    define('DBSIMPLE_SKIP', log(0));
+}
 /**
  * Имена специализированных колонок в резальтате,
  * которые используются как ключи в результирующем массиве
  */
-define('DBSIMPLE_ARRAY_KEY', 'ARRAY_KEY');   // hash-based resultset support
-define('DBSIMPLE_PARENT_KEY', 'PARENT_KEY'); // forrest-based resultset support
+if (!defined('DBSIMPLE_ARRAY_KEY')) {
+    define('DBSIMPLE_ARRAY_KEY', 'ARRAY_KEY');
+}   // hash-based resultset support
+if (!defined('DBSIMPLE_PARENT_KEY')) {
+    define('DBSIMPLE_PARENT_KEY', 'PARENT_KEY');
+} // forrest-based resultset support
 
 /**
  * Класс обертка для DbSimple
@@ -213,7 +219,7 @@ class DbSimple_Connect
 	 * Set cache mechanism called during each query if specified.
 	 * Returns previous handler.
 	 */
-	public function setCacher(Zend_Cache_Backend_Interface $cacher=null)
+	public function setCacher(?Zend_Cache_Backend_Interface $cacher=null)
 	{
 		$prev = $this->_cacher;
 		$this->_cacher = $cacher;

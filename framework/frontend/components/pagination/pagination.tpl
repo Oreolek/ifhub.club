@@ -25,7 +25,7 @@
  * @param string $page             Страница
  * @param string $linkClasses      Дополнительные классы для ссылки
  *}
-{function pagination_item page=0 text='' isActive=false}
+{function pagination_item page=0 text='' isActive=false linkClasses=''}
     <li class="{$component}-item {if $isActive}active{/if}">
         {if $isActive || ! $page}
             <span class="{$component}-item-inner">{$text|default:$page}</span>

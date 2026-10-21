@@ -47,34 +47,42 @@ class LoadFixtures
     public function purgeDB()
     {
         $sDbname = Config::Get('db.params.dbname');
+        $sHost = Config::Get('db.params.host');
+        $sUser = Config::Get('db.params.user');
+        $sPass = Config::Get('db.params.pass');
+        $iPort = (int) Config::Get('db.params.port');
 
-        if (mysql_select_db($sDbname)) {
+        $oDb = @new mysqli($sHost, $sUser, $sPass, null, $iPort ?: null);
+        if ($oDb->connect_errno) {
+            throw new Exception('DB connection error: ' . $oDb->connect_error);
+        }
 
-            $result = mysql_query("SELECT concat('TRUNCATE TABLE ', TABLE_NAME)
+        if ($oDb->select_db($sDbname)) {
+
+            $sDbnameEscaped = $oDb->real_escape_string($sDbname);
+            $result = $oDb->query("SELECT concat('TRUNCATE TABLE ', TABLE_NAME)
                                    FROM INFORMATION_SCHEMA.TABLES
-                                   WHERE TABLE_SCHEMA  = '" . $sDbname . "'");
+                                   WHERE TABLE_SCHEMA  = '" . $sDbnameEscaped . "'");
 
-            mysql_query('SET FOREIGN_KEY_CHECKS = 0');
+            $oDb->query('SET FOREIGN_KEY_CHECKS = 0');
             echo "TRUNCATE TABLE FROM TEST BASE\n";
-            while ($row = mysql_fetch_row($result)) {
-                if (!mysql_query($row[0])) {
+            while ($row = $result->fetch_row()) {
+                if (!$oDb->query($row[0])) {
                     // exception
                     throw new Exception("TRUNCATE TABLE FROM TEST BASE - Exception");
                 }
             }
-            mysql_query('SET FOREIGN_KEY_CHECKS = 1');
+            $oDb->query('SET FOREIGN_KEY_CHECKS = 1');
 
-            mysql_free_result($result);
+            $result->free();
         } else {
 
-            if (mysql_query("CREATE DATABASE IF NOT EXISTS $sDbname") === false) {
+            if ($oDb->query("CREATE DATABASE IF NOT EXISTS `" . $sDbname . "`") === false) {
                 // exception
                 throw new Exception("DB \"$sDbname\" is not Created");
-                echo "CREATE DATABASE $sDbname \n";
-                return mysql_error();
             } else {
 
-                mysql_select_db($sDbname);
+                $oDb->select_db($sDbname);
 
                 // Load dump from sql.sql
                 $result = $this->oEngine->Database_ExportSQL(dirname(__FILE__) . '/fixtures/sql/sql.sql');
@@ -120,6 +128,8 @@ class LoadFixtures
             return $result['errors'];
         }
         echo "Export INSERT SQL to DATABASE $sDbname\n";
+
+        $oDb->close();
 
         return true;
     }

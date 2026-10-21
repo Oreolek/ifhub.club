@@ -45,12 +45,12 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
      * =====> (string) cache_dir :
      * - Directory where to put the cache files
      *
-     * =====> (boolean) file_locking :
+     * =====> (bool) file_locking :
      * - Enable / disable file_locking
      * - Can avoid cache corruption under bad circumstances but it doesn't work on multithread
      * webservers and on NFS filesystems for example
      *
-     * =====> (boolean) read_control :
+     * =====> (bool) read_control :
      * - Enable / disable read control
      * - If enabled, a control key is embeded in cache file and this key is compared with the one
      * calculated after the reading.
@@ -659,19 +659,12 @@ class Zend_Cache_Backend_File extends Zend_Cache_Backend implements Zend_Cache_B
         if (!is_file($file)) {
             return false;
         }
-        if (function_exists('get_magic_quotes_runtime') && function_exists('set_magic_quotes_runtime')) {
-            $mqr = @get_magic_quotes_runtime();
-            @set_magic_quotes_runtime(0);
-        }
         $f = @fopen($file, 'rb');
         if ($f) {
             if ($this->_options['file_locking']) @flock($f, LOCK_SH);
             $result = stream_get_contents($f);
             if ($this->_options['file_locking']) @flock($f, LOCK_UN);
             @fclose($f);
-        }
-        if (function_exists('set_magic_quotes_runtime')) {
-            @set_magic_quotes_runtime($mqr);
         }
         return $result;
     }

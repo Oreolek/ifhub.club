@@ -25,6 +25,13 @@ require_once __DIR__.'/Database.php';
 class DbSimple_Mysqli extends DbSimple_Database
 {
     var $link;
+
+    /**
+     * Last executed query.
+     *
+     * @var array
+     */
+    protected $_lastQuery = array();
    /**
      * DbSimple_Mysqli constructor.
      * Connect to MySQL server.

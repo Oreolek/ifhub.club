@@ -53,7 +53,7 @@ class LsConsoleCommandMigration extends LsConsoleCommandBase
                 'target'   => $sPath . $sFileName,
                 'callback' => function ($sSource, $aParams) use ($sClassName) {
                     $sContent = file_get_contents($sSource);
-                    $sContent = str_replace('{{className}}', $sClassName, $sContent);
+                    $sContent = str_replace('__MIGRATION_CLASS_NAME__', $sClassName, $sContent);
                     return $sContent;
                 }
             )

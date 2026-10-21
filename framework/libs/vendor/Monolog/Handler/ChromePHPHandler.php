@@ -135,7 +135,7 @@ class ChromePHPHandler extends AbstractProcessingHandler
         }
 
         $json = @json_encode(self::$json);
-        $data = base64_encode(utf8_encode($json));
+        $data = base64_encode(mb_convert_encoding($json, "UTF-8", "ISO-8859-1"));
         if (strlen($data) > 240 * 1024) {
             self::$overflowed = true;
 
@@ -150,7 +150,7 @@ class ChromePHPHandler extends AbstractProcessingHandler
             );
             self::$json['rows'][count(self::$json['rows']) - 1] = $this->getFormatter()->format($record);
             $json = @json_encode(self::$json);
-            $data = base64_encode(utf8_encode($json));
+            $data = base64_encode(mb_convert_encoding($json, "UTF-8", "ISO-8859-1"));
         }
 
         if (trim($data) !== '') {

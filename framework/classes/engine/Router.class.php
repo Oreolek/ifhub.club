@@ -387,7 +387,7 @@ class Router extends LsObject
      */
     protected function DefineActionClass()
     {
-        if (isset($this->aConfigRoute['page'][self::$sAction])) {
+        if (self::$sAction !== null && isset($this->aConfigRoute['page'][self::$sAction])) {
 
         } elseif (self::$sAction === null) {
             self::$sAction = $this->aConfigRoute['config']['default']['action'];
@@ -872,6 +872,7 @@ class Router extends LsObject
     public function Standart($sPage)
     {
         $aRewrite = array_flip($this->aConfigRoute['rewrite']);
+        $sPage = (string) $sPage;
         return (isset($aRewrite[$sPage]))
             ? $aRewrite[$sPage]
             : $sPage;

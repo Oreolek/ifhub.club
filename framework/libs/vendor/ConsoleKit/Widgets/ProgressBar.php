@@ -48,7 +48,7 @@ class ProgressBar extends AbstractWidget
      * @param int $total
      * @param int $size
      */
-    public function __construct(TextWriter $writer = null, $total = 100, $size = 50, $showRemainingTime = true)
+    public function __construct(?TextWriter $writer=null, $total = 100, $size = 50, $showRemainingTime = true)
     {
         $this->textWriter = $writer;
         $this->size = $size;
@@ -149,7 +149,7 @@ class ProgressBar extends AbstractWidget
      */
     public function render()
     {
-        $percentage = (double) ($this->value / $this->total);
+        $percentage = (float) ($this->value / $this->total);
 
         $progress = floor($percentage * $this->size);
         $output = "\r[" . str_repeat('=', $progress);

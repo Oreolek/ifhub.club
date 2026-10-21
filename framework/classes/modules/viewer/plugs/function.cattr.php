@@ -29,20 +29,24 @@
  */
 function smarty_function_cattr( $params )
 {
-    if ( ! $params['list'] || ! is_array($params['list'])) return '';
+    if (empty($params['list']) || ! is_array($params['list'])) return '';
+
+    $result = '';
+    $prefix = isset($params['prefix']) ? $params['prefix'] : '';
 
     foreach ($params['list'] as $key => $value)
     {
         if (is_bool($value) && $value)
         {
-            $result .= $params['prefix'] . "$key ";
+            $result .= $prefix . "$key ";
         }
         else
         {
+            $value = (string) $value;
             // Удаляем кавычки в начале и конце значения
-            if ($value[0] === '"') $value = substr($value, 1, -1);
+            if (isset($value[0]) && $value[0] === '"') $value = substr($value, 1, -1);
 
-            $result .= $params['prefix'] . "$key=\"$value\" ";
+            $result .= $prefix . "$key=\"$value\" ";
         }
     }
 

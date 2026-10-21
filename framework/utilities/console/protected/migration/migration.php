@@ -10,7 +10,7 @@ if (!class_exists('ModuleMigration_EntityAbstract')) {
 /**
  * Основной класс плагина
  */
-class {{className}} extends ModuleMigration_EntityAbstract
+class __MIGRATION_CLASS_NAME__ extends ModuleMigration_EntityAbstract
 {
     public function up() {
 

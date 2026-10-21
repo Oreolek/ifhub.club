@@ -39,7 +39,7 @@ class Util
                     $curlError = curl_error($ch);
 
                     if ($closeAfterDone) {
-                        curl_close($ch);
+                        unset($ch);
                     }
 
                     throw new \RuntimeException(sprintf('Curl error (code %s): %s', $curlErrno, $curlError));
@@ -49,7 +49,7 @@ class Util
             }
 
             if ($closeAfterDone) {
-                curl_close($ch);
+                unset($ch);
             }
             break;
         }

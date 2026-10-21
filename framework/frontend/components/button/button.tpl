@@ -30,7 +30,7 @@
 <{$tag}
         {if ! $url}
             type="{$type}"
-            value="{if $value}{$value}{elseif isset( $_aRequest[ $name ] )}{$_aRequest[ $name ]}{/if}"
+            value="{if $value}{$value}{elseif $name && isset( $_aRequest[ $name ] )}{$_aRequest[ $name ]}{/if}"
             {if $isDisabled}disabled{/if}
             {if $form}form="{$form}"{/if}
         {else}

@@ -113,8 +113,8 @@ class Timestamp
 	protected static function digitCheck($y)
 	{
 		if ($y < 100){
-			$yr = (integer) date("Y");
-			$century = (integer) ($yr /100);
+			$yr = (int) date("Y");
+			$century = (int) ($yr /100);
 
 			if ($yr%100 > 50) {
 				$c1 = $century + 1;

@@ -58,7 +58,7 @@ class ModuleSession extends Module
     {
         session_name(Config::Get('sys.session.name'));
         session_set_cookie_params(
-            Config::Get('sys.session.timeout'),
+            (int) Config::Get('sys.session.timeout'),
             Config::Get('sys.session.path'),
             Config::Get('sys.session.host'),
             Config::Get('sys.session.secure'),

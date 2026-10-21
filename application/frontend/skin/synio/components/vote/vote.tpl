@@ -57,7 +57,7 @@
     {$mods = "$mods rating-hidden"}
 {/if}
 
-{if ! in_array( 'small', explode(' ', $mods) )}
+{if ! in_array( 'small', explode(' ', $mods|default:'') )}
     {$mods = "$mods default"}
 {/if}
 

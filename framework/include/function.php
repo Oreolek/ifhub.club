@@ -82,7 +82,7 @@ function getRequest($sName, $default = null, $sType = null)
     /**
      * Выбираем в каком из суперглобальных искать указанный ключ
      */
-    switch (strtolower($sType)) {
+    switch (strtolower((string) $sType)) {
         default:
         case null:
             $aStorage = $_REQUEST;
@@ -180,7 +180,7 @@ function func_urlspecialchars($data)
 {
     $aTable = get_html_translation_table();
     unset($aTable['&']);
-    return strtr($data, $aTable);
+    return strtr((string) $data, $aTable);
 }
 
 /**
@@ -464,7 +464,7 @@ if (!function_exists('class_alias')) {
 
 function func_underscore($sStr)
 {
-    return strtolower(preg_replace('/([^A-Z])([A-Z])/', "$1_$2", $sStr));
+    return strtolower(preg_replace('/([^A-Z])([A-Z])/', "$1_$2", (string) $sStr));
 }
 
 function func_camelize($sStr)

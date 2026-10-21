@@ -42,12 +42,7 @@ class DbSimple_Mypdo extends DbSimple_Database
 				PDO::ATTR_TIMEOUT => isset($dsn['timeout']) && $dsn['timeout'] ? $dsn['timeout'] : 0
 			);
 
-			if (version_compare(PHP_VERSION, '5.3.6') < 0) {
-				$phpNew = false;
-				$options[PDO::MYSQL_ATTR_INIT_COMMAND] = 'SET NAMES ' . (!empty($dsn['enc']) ? $dsn['enc'] : 'utf8');
-			} else {
-				$phpNew = true;
-			}
+			$phpNew = true;
 
 			if ( !empty($dsn['socket']) ) {
 				// Socket connection

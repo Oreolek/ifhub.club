@@ -26,7 +26,7 @@
 {$disabledItemsCounter = 0}
 
 {foreach $items as $item}
-    {$disabledItemsCounter = $disabledItemsCounter + ( ! $item['is_enabled']|default:true && $item['name'] != '-' )}
+    {$disabledItemsCounter = $disabledItemsCounter + ( ! ($item['is_enabled']|default:true) && ($item['name']|default:'') != '-' )}
 {/foreach}
 
 {$classes = "{$classes} ls-clearfix"}
@@ -44,17 +44,17 @@
 {if count( $items ) - $disabledItemsCounter - ( ( $showSingle|default:true ) ? 0 : 1 )}
     <ul class="{$component} {cmods name=$component mods=$mods} {$classes}" {cattr list=$attributes}>
         {foreach $items as $item}
-            {$isEnabled = $item[ 'is_enabled' ]}
+            {$isEnabled = $item[ 'is_enabled' ]|default:true}
 
-            {if $item['html']}
+            {if isset($item['html']) && $item['html']}
                 {$item['html']}
             {else}
-                {if $isEnabled|default:true}
-                    {if $item['name'] != '-'}
+                {if $isEnabled}
+                    {if ($item['name']|default:'') != '-'}
                         {component 'nav' template='item'
                             isRoot   = !$isSubnav
                             activeItem = $activeItem
-                            isActive = ($activeItem && $activeItem == $item['name'])
+                            isActive = ($activeItem && $activeItem == ($item['name']|default:''))
                             params   = $item}
                     {else}
                         {* Разделитель *}

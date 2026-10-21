@@ -42,7 +42,7 @@ class WebProcessor
      * @param array|\ArrayAccess $serverData  Array or object w/ ArrayAccess that provides access to the $_SERVER data
      * @param array|null         $extraFields Field names and the related key inside $serverData to be added. If not provided it defaults to: url, ip, http_method, server, referrer
      */
-    public function __construct($serverData = null, array $extraFields = null)
+    public function __construct($serverData = null, ?array $extraFields=null)
     {
         if (null === $serverData) {
             $this->serverData = &$_SERVER;

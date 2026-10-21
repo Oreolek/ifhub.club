@@ -28,7 +28,7 @@ class Box extends AbstractWidget
      * @param TextWriter $writer
      * @param string $text
      */
-    public function __construct(TextWriter $writer = null, $text = '', $lineCharacter = '*', $padding = 2)
+    public function __construct(?TextWriter $writer=null, $text = '', $lineCharacter = '*', $padding = 2)
     {
         $this->textWriter = $writer;
         $this->text = $text;

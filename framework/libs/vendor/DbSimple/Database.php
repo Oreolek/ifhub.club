@@ -98,6 +98,13 @@ abstract class DbSimple_Database extends DbSimple_LastError
      * Public methods.
      */
 
+    /**
+     * Query attributes.
+     *
+     * @var array
+     */
+    public $attributes = array();
+
 	/**
 	 * Protected methods
 	 */

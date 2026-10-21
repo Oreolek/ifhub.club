@@ -93,7 +93,7 @@ class Checklist extends AbstractWidget
     public function step($message, $callback, $maxMessageLength = null)
     {
         $maxMessageLength = $maxMessageLength ?: $this->maxMessageLength;
-        $this->textWriter->write(sprintf("%-${maxMessageLength}s", $message));
+        $this->textWriter->write(sprintf("%-{$maxMessageLength}s", $message));
         if (call_user_func($callback)) {
             $this->textWriter->write(Colors::colorize($this->successText, $this->successColor));
         } else {

@@ -43,7 +43,7 @@ final class Imagine extends AbstractImagine
     /**
      * {@inheritdoc}
      */
-    public function create(BoxInterface $size, ColorInterface $color = null)
+    public function create(BoxInterface $size, ?ColorInterface $color=null)
     {
         $width  = $size->getWidth();
         $height = $size->getHeight();
@@ -151,7 +151,7 @@ final class Imagine extends AbstractImagine
 
             imagecopymerge($truecolor, $resource, 0, 0, 0, 0, $width, $height, 100);
 
-            imagedestroy($resource);
+            unset($resource);
             $resource = $truecolor;
         }
 

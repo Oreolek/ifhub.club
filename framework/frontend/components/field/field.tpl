@@ -49,7 +49,7 @@
     {/if}
 
     {* Escape *}
-    {$value = ($escape) ? htmlspecialchars($value) : $value}
+    {$value = ($escape) ? htmlspecialchars((string) $value) : $value}
 {/block}
 
 {**

@@ -50,7 +50,7 @@ class Console implements TextWriter
     /**
      * @param array $commands
      */
-    public function __construct(array $commands = array(), OptionsParser $parser = null, TextWriter $writer = null)
+    public function __construct(array $commands = array(), ?OptionsParser $parser=null, ?TextWriter $writer=null)
     {
         $this->optionsParser = $parser ?: new DefaultOptionsParser();
         $this->textWriter = $writer ?: new StdTextWriter();
@@ -292,7 +292,7 @@ class Console implements TextWriter
      * @param array $args
      * @return mixed Results of the command callback
      */
-    public function run(array $argv = null)
+    public function run(?array $argv=null)
     {
         try {
             if ($argv === null) {

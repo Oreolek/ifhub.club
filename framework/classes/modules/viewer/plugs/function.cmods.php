@@ -35,10 +35,10 @@ function smarty_function_cmods($aParams)
     }
 
     // Разделитель между названием компонента и мод-ом
-    $sDelimiter = $aParams['delimiter'] ?: Config::Get('view.mod_delimiter');
+    $sDelimiter = (isset($aParams['delimiter']) ? $aParams['delimiter'] : null) ?: Config::Get('view.mod_delimiter');
 
     // Удаляем лишние пробелы
-    $sMods = trim(preg_replace('/\s+/', ' ', $aParams['mods']));
+    $sMods = trim(preg_replace('/\s+/', ' ', (string) (isset($aParams['mods']) ? $aParams['mods'] : '')));
 
     // Получаем список модификаторов
     $aMods = array_filter(explode(' ', $sMods));
@@ -49,6 +49,7 @@ function smarty_function_cmods($aParams)
     }
 
     // Формируем список с классами-модификаторами
+    $sResultMods = '';
     foreach ($aMods as $sMod) {
         $sResultMods .= $aParams['name'] . $sDelimiter . $sMod . " ";
     }

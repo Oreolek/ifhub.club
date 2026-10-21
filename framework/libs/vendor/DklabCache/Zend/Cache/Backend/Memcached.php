@@ -63,7 +63,7 @@ class Zend_Cache_Backend_Memcached extends Zend_Cache_Backend implements Zend_Ca
      * 'port' => (int) : the port of the memcached server
      * 'persistent' => (bool) : use or not persistent connections to this memcached server
      *
-     * =====> (boolean) compression :
+     * =====> (bool) compression :
      * true if you want to use on-the-fly compression
      *
      * @var array available options

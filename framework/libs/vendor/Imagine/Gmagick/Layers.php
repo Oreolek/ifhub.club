@@ -114,7 +114,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function current()
+    public function current(): mixed
     {
         return $this->extractAt($this->offset);
     }
@@ -143,7 +143,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function key()
+    public function key(): mixed
     {
         return $this->offset;
     }
@@ -151,7 +151,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function next()
+    public function next(): void
     {
         ++$this->offset;
     }
@@ -159,7 +159,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function rewind()
+    public function rewind(): void
     {
         $this->offset = 0;
     }
@@ -167,7 +167,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function valid()
+    public function valid(): bool
     {
         return $this->offset < count($this);
     }
@@ -175,7 +175,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function count()
+    public function count(): int
     {
         try {
             return $this->resource->getnumberimages();
@@ -187,7 +187,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return is_int($offset) && $offset >= 0 && $offset < count($this);
     }
@@ -195,7 +195,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function offsetGet($offset)
+    public function offsetGet($offset): mixed
     {
         return $this->extractAt($offset);
     }
@@ -203,7 +203,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function offsetSet($offset, $image)
+    public function offsetSet($offset, $image): void
     {
         if (!$image instanceof Image) {
             throw new InvalidArgumentException('Only a Gmagick Image can be used as layer');
@@ -254,7 +254,7 @@ class Layers extends AbstractLayers
     /**
      * {@inheritdoc}
      */
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         try {
             $this->extractAt($offset);

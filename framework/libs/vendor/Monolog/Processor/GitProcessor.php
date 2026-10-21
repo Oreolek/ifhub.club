@@ -51,7 +51,7 @@ class GitProcessor
             return self::$cache;
         }
 
-        $branches = `git branch -v --no-abbrev`;
+        $branches = shell_exec("git branch -v --no-abbrev");
         if (preg_match('{^\* (.+?)\s+([a-f0-9]{40})(?:\s|$)}m', $branches, $matches)) {
             return self::$cache = array(
                 'branch' => $matches[1],

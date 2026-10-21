@@ -489,6 +489,7 @@ class Smarty_Data extends Smarty_Internal_Data {
  * @package Smarty
  * @subpackage Template
  */
+#[\AllowDynamicProperties]
 class Smarty_Variable {
 
     /**
