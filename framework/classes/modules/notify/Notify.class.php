@@ -207,6 +207,17 @@ class ModuleNotify extends Module
     }
 
     /**
+     * Удаляет задания, созданные раньше указанной даты
+     *
+     * @param  string $sDate Дата в формате DATETIME
+     * @return bool
+     */
+    public function DeleteTasksOlder($sDate)
+    {
+        return $this->oMapper->DeleteTasksOlder($sDate);
+    }
+
+    /**
      * Возвращает путь к шаблону по переданному имени
      *
      * @param  string $sName Название шаблона

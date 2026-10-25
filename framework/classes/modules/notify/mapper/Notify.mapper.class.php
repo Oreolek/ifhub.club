@@ -128,6 +128,23 @@ class ModuleNotify_MapperNotify extends Mapper
     }
 
     /**
+     * Удаляет задания, созданные раньше указанной даты
+     *
+     * @param  string $sDate Дата в формате DATETIME
+     * @return bool
+     */
+    public function DeleteTasksOlder($sDate)
+    {
+        $sql = "
+			DELETE FROM " . Config::Get('db.table.notify_task') . "
+			WHERE
+				date_created < ?
+		";
+        $res = $this->oDb->query($sql, $sDate);
+        return $this->IsSuccessful($res);
+    }
+
+    /**
      * Получает массив заданий на публикацию из базы с указанным количественным ограничением (выборка FIFO)
      *
      * @param  int $iLimit Количество

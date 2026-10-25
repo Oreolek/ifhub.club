@@ -175,6 +175,8 @@ class ModuleTools extends Module
      */
     public function SystemTaskNotify()
     {
+		// Не уведомлять остарых событиях.
+        $this->Notify_DeleteTasksOlder(date('Y-m-d H:i:s', time() - 3 * 24 * 60 * 60));
         $aNotifyTasks = $this->Notify_GetTasksDelayed(Config::Get('module.notify.per_process'));
         if (!$aNotifyTasks) {
             return 'empty';
