@@ -40,7 +40,7 @@
 
 			<li class="{$component}-item {if $change}{$component}-item--{$change}{/if}">
 				<h3 class="{$component}-item-title">
-					{abs(number_format($item.count, 0, '.', ' '))}
+					{number_format($item.count, 0, '.', ' ')}
 
 					{* Прирост/спад *}
 					{if $change}
