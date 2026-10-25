@@ -1,7 +1,5 @@
-application/frontend/skin/ifhub/
 application/config/config.local.php
 application/logs
 uploads
 application/tmp
-application/plugins/admin
 application/install
