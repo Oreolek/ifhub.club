@@ -1128,7 +1128,7 @@ class ModuleViewer extends Module
         $iPrevPage = $iCurrentPage > 1 ? $iCurrentPage - 1 : false;
 
         $sGetParams = '';
-        if (is_string($aGetParamsList) or count($aGetParamsList)) {
+        if (is_string($aGetParamsList) or (is_array($aGetParamsList) and count($aGetParamsList))) {
             $sGetParams = '?' . (is_array($aGetParamsList) ? http_build_query($aGetParamsList, '',
                     '&') : $aGetParamsList);
         }
