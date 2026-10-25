@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<skin>
+    <name>
+        <lang name="default">IFHub</lang>
+    </name>
+    <author>
+        <lang name="default">Alexander Yakovlev</lang>
+    </author>
+    <homepage>https://ifhub.club</homepage>
+    <version>1.0</version>
+    <requires>
+        <livestreet>2.0</livestreet>
+        <plugins>
+        </plugins>
+    </requires>
+    <description>
+        <lang name="ru">Шаблон ifhub.club</lang>
+        <lang name="default">Template for ifhub.club</lang>
+    </description>
+    <themes>
+        <item>
+            <value>default</value>
+            <description>
+                <lang name="ru">по-умолчанию</lang>
+                <lang name="default">default</lang>
+            </description>
+        </item>
+        <item>
+            <value>light</value>
+            <description>
+                <lang name="ru">облегченная</lang>
+                <lang name="default">light</lang>
+            </description>
+        </item>
+    </themes>
+</skin>

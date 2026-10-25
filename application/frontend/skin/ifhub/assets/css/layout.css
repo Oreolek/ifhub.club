@@ -1,0 +1,282 @@
+/**
+ * Сетка
+ *
+ * @license   GNU General Public License, version 2
+ * @copyright 2013 OOO "ЛС-СОФТ" {@link http://livestreetcms.com}
+ * @author    Denis Shakhov <denis.shakhov@gmail.com>
+ */
+
+
+/**
+ * Сетка
+ */
+.layout-container {
+    margin: 0 auto;
+    padding: 0 50px;
+}
+.layout-content {
+    background: #fff;
+    padding: 40px !important;
+}
+.layout-nav .ls-nav.ls-nav--main {
+    margin: 0 auto;
+}
+.layout-footer {
+    padding: 20px 0 50px;
+    color: #777;
+    position: relative;
+}
+.layout-container.layout-no-sidebar .layout-content {
+    width: 100%;
+    margin-right: 0;
+}
+.layout-sidebar {
+    padding-left: 10px !important;
+}
+.layout-sidebar .ls-block {
+    margin-bottom: 10px;
+}
+
+/* Responsive */
+@media (max-width: 999px)  {
+    .layout-content { width: 100% !important; margin-bottom: 30px; padding: 15px !important; }
+    .layout-sidebar { width: 100% !important; margin-bottom: 30px; padding: 0; }
+
+    .ls-toolbar {
+        display: none;
+    }
+}
+@media (max-width: 480px)  {
+    .layout-container {
+        padding: 0;
+    }
+}
+
+/**
+ * Главное меню
+ */
+.layout-nav {
+    padding: 0 20px;
+    margin-bottom: 10px;
+    background: #222;
+}
+
+@media (max-width: 480px)  {
+    .layout-nav {
+        padding: 0;
+        margin-bottom: 0;
+    }
+}
+
+
+/**
+ * Шапка сайта
+ */
+.ls-jumbotron {
+    background-image: url(../images/header.jpg);
+}
+
+/**
+ * Для статей
+ */
+
+.incut {
+    margin: 0.5em auto;
+    padding: 1em 2em;
+    border: .08em solid rgba(0,0,0,.1);
+    color: rgba(0,0,0,.75);
+    background-color: #f7f7f7;
+    box-shadow: inset 0 0 .12em rgba(0,0,0,.1);
+    max-width: 600px;
+}
+.aside {
+    margin: 1em;
+    padding: 1em 2em;
+    border: .08em solid rgba(0,0,0,.1);
+    color: rgba(0,0,0,.75);
+    background-color: #f7f7f7;
+    box-shadow: inset 0 0 .12em rgba(0,0,0,.1);
+    float: right;
+}
+
+/**
+ * Делаем минус незаметнее, разделяем кнопки визуально
+ */
+.ls-topic {
+    content-visibility: auto;
+}
+.ls-topic-footer .ls-vote .ls-vote-body .ls-vote-item {
+    padding: 0.5em 1em;
+    margin-left: 0.2em;
+}
+.ls-topic-footer .ls-vote .ls-vote-body .ls-vote-item-down {
+    background: #eee;
+}
+
+@media (max-width: 800px) {
+    .markItUp .markItUpContainer .markItUpEditor {
+        font-size: 11pt;
+    }
+}
+@media (min-width: 801px) {
+    .markItUp .markItUpContainer .markItUpEditor {
+        font-size: 12pt;
+    }
+}
+.markItUp .markItUpContainer .markItUpEditor {
+    line-height: 1.6;
+    font-family: "Fira Code","Anonymous Pro","PT Mono","IBM Plex Mono", "Noto Mono","Courier New",Courier,"Lucida Sans Typewriter","Lucida Typewriter",monospace;
+}
+
+summary {
+    font-weight: bold;
+    margin: -.5em -.5em 0;
+    padding: .5em;
+}
+
+/** Спойлер
+ * Modified by fedorov mich // 2014 // bSpoiler LS 1.0
+ **/
+.spoiler-title {
+    color: #6da3bd;
+    border-bottom: 1px dashed;
+    font-weight: normal;
+    cursor: pointer;
+}
+.spoiler-title:hover {
+    color: #4d7285;
+}
+.spoiler-body {
+    display: none;
+    padding: 10px;
+    border: 1px solid #eee;
+    background: #f9f9f9;
+    margin-top: 10px;
+    overflow: hidden;
+}
+.spoiler-title:before {
+    float: left;
+    content: " ";
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    display: block;
+    border: 0px solid red;
+    background: url(../images/spoiler.icon.png) no-repeat left top;
+}
+.spoiler-title.open:before {
+    background: url(../images/spoiler.icon.png) no-repeat left bottom;
+}
+
+
+.newspoiler-title {
+    color: #6da3bd;
+    text-decoration: underline 1px dashed;
+    font-weight: normal;
+    cursor: pointer;
+}
+.newspoiler-title:hover {
+    color: #4d7285;
+}
+.newspoiler[open] .newspoiler-title {
+    text-decoration: none;
+    margin-bottom: .5em;
+}
+.newspoiler {
+    padding: 10px;
+}
+.newspoiler[open] {
+    border: 1px solid #eee;
+    background: #f9f9f9;
+}
+.newspoiler-title:before {
+    float: left;
+    content: " ";
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    display: block;
+    border: 0px solid red;
+    background: url(../images/spoiler.icon.png) no-repeat left top;
+}
+.newspoiler[open] .newspoiler-title:before {
+    background: url(../images/spoiler.icon.png) no-repeat left bottom;
+}
+
+/* https://github.com/stationer/DetailsShim - заглушка <details> для старых браузеров */
+details.details_shim_closed,
+details.details_shim_open {display: block;}
+details.details_shim_closed > * {display: none;}
+details.details_shim_closed > summary,
+details.details_shim_open   > summary {display: block;}
+details.details_shim_closed > summary:before {display: inline-block; content: "\25b6"; padding: 0 0.1em; margin-right: 0.4em; font-size: 0.9em;}
+details.details_shim_open > summary:before {display: inline-block; content: "\25bc"; padding: 0; margin-right: 0.35em;}
+.hidden {
+    display: none;
+}
+.ls-block--primary {
+    border: none;
+}
+.ls-block .ls-tab-list {
+    border-bottom: none;
+}
+.ls-tab.active {
+    -moz-box-shadow:    inset 0 0 4px #0c3151;
+    -webkit-box-shadow: inset 0 0 4px #0c3151;
+    box-shadow:         inset 0 0 4px #0c3151;
+}
+.ls-activity-block-recent-info {
+    width: 5em;
+    flex-grow: 0;
+    flex-shrink: 0;
+}
+/**
+ * Делаем кнопку комментов чуть больше, чтобы легче её нажимать
+ */
+.ls-activity-block-recent-info .ls-activity-block-recent-comments {
+    padding: 5px;
+}
+.shortinfo {
+    width: auto;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+.ls-item-group .ls-item {
+    border-bottom: 0;
+    padding-bottom: 7px;
+    padding-top: 7px;
+}
+.ls-block--activity-recent .ls-tab-pane .ls-item-body {
+    width: 100%;
+    display: flex;
+}
+.ls-tab-pane .ls-item-description {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+.ls-block--activity-recent .ls-block-header {
+    display: none;
+}
+/* Ссылка на сноску и обратно - большие поля чтобы было проще попасть пальцем. */
+.fnlink {
+    padding: 0.3rem;
+    font-size: 110%;
+}
+.fnlink sup {
+    font-size: 80%;
+}
+.notice {
+    padding: 0.5rem;
+      color: #333;
+      background-color: #C2E4FF;
+}
+/* Включаем переносы слов на узких экранах. */
+@media (max-width: 560px)  {
+    .ls-word-wrap,
+    .ls-topic-text,
+    .ls-item-title,
+    .ls-item-body .shortinfo {
+        hyphens: auto;
+    }
+}

@@ -1,0 +1,52 @@
+.ls-user::before {
+  background: url(/application/frontend/skin/ifhub/assets/images/usericon_28.png) no-repeat !important;
+  background-size: 100% 100% !important;
+  width: 18px !important;
+  height: 18px !important;
+  color: transparent;
+  content: "__" !important;
+}
+.ls-block-header > .ls-block-title > a {
+  color: #fff !important;
+}
+.ls-nav-item--userbar-username img.avatar {
+  display: none;
+}
+ul.classic {
+  list-style: inside;
+  list-style-type: circle;
+}
+ol.classic {
+  list-style: inside;
+  list-style-type: decimal;
+}
+
+.ls-nav--userbar > .ls-nav-item > a{
+  color: #ddd !important;
+  padding: 15px 20px !important;
+}
+.ls-nav--userbar > .ls-nav-item > a:hover{
+  color: #ddd !important;
+  background: #333 !important;
+}
+.ls-nav--userbar > .ls-nav-item > a > img {
+  display: none;
+}
+/**
+ *  Главный поиск в шапке сайта - показывается по клику
+ **/
+.main-search {
+    display: none;
+}
+.no-js .main-search {
+    display: block;
+}
+
+/** Визуально выделить край комментария **/
+.ls-comment {
+    border-left: 1px solid #aaa;
+}
+dfn {
+    font-style: normal;
+    color: darkgreen;
+}
