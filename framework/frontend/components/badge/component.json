@@ -1,0 +1,13 @@
+{
+    "name": "badge",
+    "version": "1.0.0",
+    "dependencies": {
+        "css-reset": "*"
+    },
+    "templates": {
+        "badge": "badge.tpl"
+    },
+    "styles": {
+        "badge": "css/badge.css"
+    }
+}

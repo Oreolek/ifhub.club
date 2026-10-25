@@ -1,0 +1,92 @@
+/**
+ * Группировка кнопок
+ * Стили частично позаимствованы у бутстрапа
+ *
+ * @module ls/button/group
+ *
+ * @license   GNU General Public License, version 2
+ * @copyright 2013 OOO "ЛС-СОФТ" {@link http://livestreetcms.com}
+ * @author    Denis Shakhov <denis.shakhov@gmail.com>
+ */
+
+.ls-button-group {
+    display: inline-block;
+}
+
+.ls-button-group > .ls-dropdown,
+.ls-button-group > .ls-button {
+    position: relative;
+}
+
+/* Переносим кнопки вперед, */
+/* чтобы бордеры нормально отображались при ховере и фокусе */
+.ls-button-group .ls-button:hover,
+.ls-button-group .ls-button:focus {
+    z-index: 2;
+}
+
+/* Убираем закругления у кнопок посередине */
+.ls-button-group > .ls-dropdown:not(:last-child):not(:first-child) > .ls-button,
+.ls-button-group > .ls-button:not(:last-child):not(:first-child) {
+    border-radius: 0;
+}
+
+
+/**
+ * @modifier horizontal Горизонтальная группировка
+ */
+.ls-button-group--horizontal > .ls-dropdown,
+.ls-button-group--horizontal > .ls-button {
+    float: left;
+}
+
+/* Убираем двойные бордеры */
+.ls-button-group--horizontal > * + * {
+    margin-left: -1px;
+}
+.ls-button-group--horizontal > *:first-child {
+    margin-left: 0;
+}
+
+/* Убираем закругления у кнопок по краям */
+.ls-button-group--horizontal > .ls-dropdown:first-child:not(:last-child) > .ls-button,
+.ls-button-group--horizontal > .ls-button:first-child:not(:last-child) {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.ls-button-group--horizontal > .ls-dropdown:last-child:not(:first-child) > .ls-button,
+.ls-button-group--horizontal > .ls-button:last-child:not(:first-child) {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+
+/**
+ * @modifier vertical Вертикальная группировка
+ */
+.ls-button-group--vertical > .ls-dropdown,
+.ls-button-group--vertical > .ls-button {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Убираем двойные бордеры */
+.ls-button-group--vertical > * + * {
+    margin-top: -1px;
+}
+.ls-button-group--vertical > *:first-child {
+    margin-top: 0;
+}
+
+/* Убираем закругления у кнопок по краям */
+.ls-button-group--vertical > .ls-dropdown:first-child:not(:last-child) > .ls-button,
+.ls-button-group--vertical > .ls-button:first-child:not(:last-child) {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.ls-button-group--vertical > .ls-dropdown:last-child:not(:first-child) > .ls-button,
+.ls-button-group--vertical > .ls-button:last-child:not(:first-child) {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
