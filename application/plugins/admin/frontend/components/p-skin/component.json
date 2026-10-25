@@ -1,0 +1,15 @@
+{
+    "name": "p-skin",
+    "version": "1.0.0",
+    "dependencies": {
+        "p-plugin": "*"
+    },
+    "templates": {
+        "p-skin": "skin.tpl",
+        "preview-alert": "preview-alert.tpl",
+        "list": "list.tpl"
+    },
+    "styles": {
+        "skin": "css/skin.css"
+    }
+}

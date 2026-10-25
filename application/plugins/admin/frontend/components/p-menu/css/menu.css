@@ -1,0 +1,182 @@
+/**
+ * Навгиация
+ */
+
+/**
+ * Основная навгиация
+ */
+.p-menu {
+    font-family: 'Open Sans';
+    background: #f6f6f6;
+}
+
+/* Root */
+.p-menu-section-item {
+    display: block;
+    padding: 5px 10px 5px 42px;
+    min-height: 19px;
+    font-size: 16px;
+    color: #464646;
+}
+.p-menu-section-item.open {
+    background: #fff;
+}
+.p-menu-section.active .p-menu-section-text {
+    color: #000;
+}
+
+/**
+ * Icons
+ */
+.p-menu-section.active .p-menu-section-icon {
+    opacity: 1;
+}
+.p-menu-section-icon {
+    position: absolute;
+    top: 15px;
+    left: 11px;
+    width: 19px;
+    height: 19px;
+    background-repeat: no-repeat;
+    opacity: .35;
+    font: normal normal normal 19px/1 FontAwesome;
+    text-align: center;
+}
+.p-menu-section-icon-custom:before           { content: "\f013"; }
+.p-menu-section-icon-custom--home:before     { content: "\f015"; }
+.p-menu-section-icon-custom--users:before    { content: "\f0c0"; }
+.p-menu-section-icon-custom--plugins:before  { content: "\f1e6"; }
+.p-menu-section-icon-custom--settings:before { content: "\f013"; }
+.p-menu-section-icon-custom--skins:before    { content: "\f03e"; }
+.p-menu-section-icon-custom--fold:before     { content: "\f190"; }
+
+/**
+ * Submenu
+ */
+.p-menu-section-submenu {
+    display: none;
+}
+.p-menu-section.open .p-menu-section-submenu {
+    display: block;
+}
+.p-menu-section-submenu-item {
+    font-size: 13px;
+}
+.p-menu-section-submenu-item a {
+    display: block;
+    padding: 5px 0 5px 42px;
+    color: #6c6c6c;
+}
+.p-menu-section-submenu-item a:hover,
+.p-menu-section-submenu-item.active a {
+    background: #fff;
+    color: #000;
+}
+
+/* Separator */
+.p-menu-section {
+    position: relative;
+    padding: 10px 0;
+}
+.p-menu-section:before {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    width: 100%;
+    height: 0;
+    border-bottom: 1px solid #E8E8E8;
+}
+.p-menu-section:last-child:before {
+    display: none;
+}
+
+/**
+ * Dropdown
+ */
+.p-menu-section-submenu.ls-dropdown-menu {
+    min-width: none;
+    width: 200px;
+}
+.p-menu-section-submenu.ls-dropdown-menu .p-menu-section-submenu-item a {
+    padding: 5px 10px;
+}
+
+/**
+ * Toggle
+ */
+.p-menu-toggle {
+    display: none;
+}
+.p-menu-toggle {
+    padding: 15px;
+    background: #fafafa;
+    font: 400 16px/1em 'Open Sans', Arial;
+    color: #6c6c6c;
+}
+.p-menu-toggle i {
+    vertical-align: baseline;
+}
+.p-menu-toggle.dropdown-toggle.open {
+    background-color: #fff;
+    box-shadow: none;
+}
+.p-menu-toggle.dropdown-toggle:after {
+    border-top-color: #aaa;
+}
+
+/**
+ * Fold
+ */
+.p-menu-section--fold span.p-menu-section-text {
+    font-size: 11px;
+}
+.p-menu.folded .p-menu-section-icon-custom--fold {
+    -webkit-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+/* Folded */
+.p-menu.folded {
+    width: 42px;
+}
+.p-menu.folded .p-menu-section-text,
+.p-menu.folded .p-menu-section-submenu,
+.p-menu.folded .p-menu-section:before {
+    display: none;
+}
+.p-menu.folded .p-menu-section {
+    padding: 0;
+}
+.p-menu.folded .p-menu-section-item {
+    padding: 0;
+    height: 37px;
+}
+.p-menu.folded .p-menu-section.active .p-menu-section-item {
+    background: #fff;
+}
+.p-menu.folded .p-menu-section-icon {
+    top: 9px;
+}
+
+/* Layout */
+.is-nav-main-folded #header {
+    padding-right: 47px;
+}
+.is-nav-main-folded #sidebar {
+    width: 42px;
+}
+
+
+@media (max-width: 999px)  {
+    .p-menu-section--fold,
+    .p-menu-nav {
+        display: none;
+    }
+    .p-menu.open .p-menu-nav {
+        display: block;
+        margin-top: 0;
+    }
+    .p-menu-toggle {
+        display: block;
+    }
+}

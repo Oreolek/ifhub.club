@@ -1,0 +1,52 @@
+{
+    "name": "p-user",
+    "version": "1.0.0",
+    "templates": {
+        "contact-form": "contact/form.tpl",
+        "contact-list": "contact/list.tpl",
+
+        "ban-list": "ban/list.tpl",
+        "ban-form": "ban/form.tpl",
+        "ban-view": "ban/view.tpl",
+        "ban-desc": "ban/desc.tpl",
+
+        "report-list": "report/list.tpl",
+        "report-reply": "report/reply.tpl",
+        "report-reply-modal": "report/reply-modal.tpl",
+
+        "vote-list": "vote/list.tpl",
+
+        "search": "search.tpl",
+
+        "profile": "profile.tpl",
+        "profile-section": "profile-section.tpl",
+        "profile-header": "profile-header.tpl",
+
+        "chart-location": "charts/chart.location.tpl",
+        "chart-age": "charts/chart.age.tpl",
+
+        "block-genders": "blocks/block.genders.tpl",
+        "block-activity": "blocks/block.activity.tpl",
+
+        "form": "form.tpl",
+        "list": "list.tpl",
+        "delete": "delete.tpl",
+        "actions": "actions.tpl",
+
+        "preview-alert": "preview-alert.tpl"
+    },
+    "scripts": {
+        "ban": "js/ban.js",
+        "search": "js/search.js",
+        "chart-location": "js/chart-location.js",
+        "report": "js/report.js"
+    },
+    "styles": {
+        "blocks": "css/blocks.css",
+        "ban": "css/ban.css",
+        "list": "css/list.css",
+        "profile": "css/profile.css",
+        "charts": "css/charts.css",
+        "flags": "css/flags.css"
+    }
+}

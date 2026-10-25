@@ -1,0 +1,11 @@
+{
+    "templates": {
+        "on-page": "elements-on-page.tpl"
+    },
+    "styles": {
+        "pagination": "css/pagination-admin.css"
+    },
+    "scripts": {
+        "on-page": "js/on-page.js"
+    }
+}

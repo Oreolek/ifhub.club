@@ -1,0 +1,14 @@
+.p-graph {
+    margin-bottom: 40px;
+}
+.p-graph-title {
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+.p-graph-filter {
+    margin-bottom: 15px;
+}
+.p-graph-body {
+    padding: 15px;
+    border: 1px solid #eee;
+}

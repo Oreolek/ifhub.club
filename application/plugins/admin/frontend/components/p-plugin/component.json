@@ -1,0 +1,18 @@
+{
+    "name": "p-plugin",
+    "version": "1.0.0",
+    "dependencies": {
+    },
+    "templates": {
+        "p-plugin": "plugin.tpl",
+        "plugin-market": "plugin-market.tpl",
+        "plugin-market-list": "plugin-market-list.tpl",
+        "star-rating": "star-rating.tpl",
+        "install-help": "install-help.tpl",
+        "list": "list.tpl"
+    },
+    "styles": {
+        "plugin": "css/plugin.css",
+        "star-rating": "css/star-rating.css"
+    }
+}

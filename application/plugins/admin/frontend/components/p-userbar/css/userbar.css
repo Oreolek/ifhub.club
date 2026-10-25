@@ -1,0 +1,49 @@
+/* Logo */
+.p-userbar-logo {
+    float: left;
+}
+
+.p-userbar-logo-home {
+    font-size: 11px;
+    margin-bottom: 5px;
+}
+.p-userbar-logo-home a {
+    color: #6c6c6c;
+}
+
+.p-userbar-logo-name {
+    float: left;
+    font: 300 40px/1em 'Open Sans', Arial;
+    padding-top: 15px;
+}
+.p-userbar-logo-name a {
+    color: #333;
+}
+.p-userbar-logo-name a:hover {
+    color: #f00;
+}
+
+/* Userbar */
+.admin-userbar { float: right; position: relative; min-height: 40px; margin-bottom: 2px; }
+
+.userbar-avatar { border-radius: 50%; vertical-align: middle; margin-right: 10px; }
+
+.admin-userbar .ls-dropdown-toggle {
+    font: 400 16px/38px 'Open Sans', Arial;
+    color: #6c6c6c;
+    height: auto;
+    padding: 8px;
+    box-shadow: none;
+    background: transparent;
+    border: none;
+}
+.admin-userbar .ls-dropdown-toggle.open {
+    background: #eaeaea;
+}
+.admin-userbar .ls-dropdown-toggle:focus {
+    outline: none;
+}
+
+@media (max-width: 999px)   {
+    
+}
