@@ -2043,7 +2043,7 @@ class ModuleTopic extends Module
         /**
          * Проверяем можно ли юзеру рассылать уведомление
          */
-        if (!$oUserTo->getSettingsNoticeNewTopic()) {
+        if (!$oUserTo->getSettingsNoticeNewTopic() or $oUserTo->getBanned()) {
             return false;
         }
         $this->Notify_Send(
