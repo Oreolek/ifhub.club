@@ -441,18 +441,6 @@ if (!function_exists('array_intersect_key')) {
     }
 }
 
-if (!function_exists('class_alias')) {
-    function class_alias($original, $alias)
-    {
-        if (!class_exists($original)) {
-            return false;
-        }
-        eval('abstract class ' . $alias . ' extends ' . $original . ' {}');
-        return true;
-    }
-}
-
-
 function func_underscore($sStr)
 {
     return strtolower(preg_replace('/([^A-Z])([A-Z])/', "$1_$2", (string)$sStr));
