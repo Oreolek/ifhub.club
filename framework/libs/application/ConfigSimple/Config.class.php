@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * LiveStreet CMS
  * Copyright © 2013 OOO "ЛС-СОФТ"
@@ -278,13 +278,32 @@ class Config
             }
         }
 
-        $sEval = 'self::getInstance($sInstance)->aConfig';
-        foreach ($aKeys as $sK) {
-            $sEval .= '[' . var_export((string)$sK, true) . ']';
-        }
-        $sEval .= '=$value;';
-        eval($sEval);
+        $oConfig = self::getInstance($sInstance);
+        $oConfig->aConfig = self::SetByPath($oConfig->aConfig, $aKeys, $value);
         return true;
+    }
+
+    /**
+     * Записывает значение по пути из ключей, создавая недостающие уровни
+     *
+     * @param array $aConfig Массив конфига
+     * @param array $aKeys Путь из ключей
+     * @param mixed $value Значение
+     * @return array
+     */
+    static protected function SetByPath($aConfig, $aKeys, $value)
+    {
+        $sK = array_shift($aKeys);
+        if ($aKeys) {
+            // Промежуточный узел, не являющийся массивом, заменяем массивом
+            if (!isset($aConfig[$sK]) || !is_array($aConfig[$sK])) {
+                $aConfig[$sK] = array();
+            }
+            $aConfig[$sK] = self::SetByPath($aConfig[$sK], $aKeys, $value);
+        } else {
+            $aConfig[$sK] = $value;
+        }
+        return $aConfig;
     }
 
     /**
