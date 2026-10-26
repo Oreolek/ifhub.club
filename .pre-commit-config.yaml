@@ -1,0 +1,49 @@
+fail_fast: true
+repos:
+  - repo: git@github.com:justin-at-demac/pre-commit-php.git
+    rev: 3.0.1
+    hooks:
+      - id: php-lint
+      - id: php-no-dumps
+      - id: php-no-var_dumps
+      - id: php-no-exits
+      - id: php-cs-fixer
+        files: \.(php)$
+        args: ["--config=.php-cs-fixer.php", "--quiet"]
+      - id: php-md
+        files: \.(php)$
+        args: ["codesize,controversial,design,naming,unusedcode"]
+      - id: php-stan
+        files: \.(php)$
+        args: ["--configuration=phpstan.neon"]
+  # Lint JS files.
+  - repo: https://github.com/pre-commit/mirrors-eslint
+    rev: v10.9.1
+    hooks:
+      - id: eslint
+        files: \.[jt]sx?$ # *.js, *.jsx, *.ts and *.tsx
+        types: [file]
+        additional_dependencies:
+          - eslint@latest
+          - eslint-config-standard@latest
+  - repo: https://github.com/awebdeveloper/pre-commit-stylelint
+    rev: "0.0.2" # Use the sha or tag you want to point at like 0.0.1
+    hooks:
+      - id: stylelint
+        additional_dependencies:
+          ["stylelint@17.1.1", "stylelint-config-standard-scss@17.0.0"]
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-json
+      - id: check-xml
+      - id: check-yaml
+      - id: check-merge-conflict
+  - repo: https://github.com/scanaislop/aislop
+    rev: v0.16.0
+    hooks:
+      - id: aislop
+  - repo: https://github.com/betterleaks/betterleaks
+    rev: v1.8.1
+    hooks:
+      - id: betterleaks
