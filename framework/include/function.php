@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*-------------------------------------------------------
 *
 *   LiveStreet Engine Social Networking
@@ -59,15 +59,6 @@ function isAjaxRequest()
 {
     return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
 }
-
-/**
- * функция вывода отладочных сообщений через консоль браузера
- */
-function dump()
-{
-    Engine::getInstance()->Logger_Console(func_get_args());
-}
-
 
 /**
  * функция доступа к GET POST параметрам
@@ -148,7 +139,7 @@ function func_generator($iLength = 10)
     if ($iLength > 32) {
         $iLength = 32;
     }
-    return substr(md5(uniqid(mt_rand(), true)), 0, $iLength);
+    return substr(md5(uniqid((string) mt_rand(), true)), 0, $iLength);
 }
 
 /**

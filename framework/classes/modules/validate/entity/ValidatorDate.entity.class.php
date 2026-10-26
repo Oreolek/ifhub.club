@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * LiveStreet CMS
  * Copyright © 2013 OOO "ЛС-СОФТ"
@@ -64,8 +64,6 @@ class ModuleValidate_EntityValidatorDate extends ModuleValidate_EntityValidator
         if ($this->allowEmpty && $this->isEmpty($sValue)) {
             return true;
         }
-
-        require_once(Config::Get('path.framework.libs_vendor.server') . '/DateTime/DateTimeParser.php');
 
         $aFormats = is_string($this->format) ? array($this->format) : $this->format;
         $bValid = false;

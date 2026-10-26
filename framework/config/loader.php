@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*-------------------------------------------------------
 *
 *   LiveStreet Engine Social Networking
@@ -16,9 +16,11 @@
 */
 
 /**
- * Подключаем Composer-зависимости
+ * Подключаем Composer-зависимости и запоминаем автозагрузчик
+ * для PSR-4 автозагрузки пространств имён плагинов (см. Engine::AddAutoloaderNamespace)
  */
-require_once(dirname(dirname(dirname(__FILE__))) . '/vendor/autoload.php');
+$oComposerAutoloader = require_once(dirname(dirname(dirname(__FILE__))) . '/vendor/autoload.php');
+Engine::SetAutoloader($oComposerAutoloader);
 /**
  * Основные константы
  */

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * LiveStreet CMS
  * Copyright © 2013 OOO "ЛС-СОФТ"
@@ -81,8 +81,6 @@ class ModuleValidate_EntityValidatorType extends ModuleValidate_EntityValidator
             return true;
         }
 
-        require_once(Config::Get('path.framework.libs_vendor.server') . '/DateTime/DateTimeParser.php');
-
         if ($this->type === 'integer') {
             $bValid = preg_match('/^[-+]?[0-9]+$/', trim($sValue));
         } else {
@@ -90,20 +88,13 @@ class ModuleValidate_EntityValidatorType extends ModuleValidate_EntityValidator
                 $bValid = preg_match('/^[-+]?([0-9]*\.)?[0-9]+([eE][-+]?[0-9]+)?$/', trim($sValue));
             } else {
                 if ($this->type === 'date') {
-                    $bValid = DateTimeParser::parse($sValue, $this->dateFormat,
-                            array('month' => 1, 'day' => 1, 'hour' => 0, 'minute' => 0, 'second' => 0)) !== false;
+                    $bValid = DateTimeParser::parse($sValue, $this->dateFormat) !== false;
                 } else {
                     if ($this->type === 'time') {
                         $bValid = DateTimeParser::parse($sValue, $this->timeFormat) !== false;
                     } else {
                         if ($this->type === 'datetime') {
-                            $bValid = DateTimeParser::parse($sValue, $this->datetimeFormat, array(
-                                    'month'  => 1,
-                                    'day'    => 1,
-                                    'hour'   => 0,
-                                    'minute' => 0,
-                                    'second' => 0
-                                )) !== false;
+                            $bValid = DateTimeParser::parse($sValue, $this->datetimeFormat) !== false;
                         } else {
                             if ($this->type === 'array') {
                                 $bValid = is_array($sValue);

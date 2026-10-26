@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * LiveStreet CMS
  * Copyright © 2013 OOO "ЛС-СОФТ"
@@ -1712,7 +1712,6 @@ class ActionBlog extends Action
             )
         );
 
-        require_once Config::Get('path.framework.libs_vendor.server') . '/XXTEA/encrypt.php';
         /**
          * Формируем код подтверждения в URL
          */
@@ -1752,7 +1751,6 @@ class ActionBlog extends Action
      */
     protected function EventInviteBlog()
     {
-        require_once Config::Get('path.framework.libs_vendor.server') . '/XXTEA/encrypt.php';
         /**
          * Получаем код подтверждения из ревеста и дешефруем его
          */

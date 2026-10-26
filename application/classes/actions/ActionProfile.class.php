@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * LiveStreet CMS
  * Copyright © 2013 OOO "ЛС-СОФТ"
@@ -666,7 +666,6 @@ class ActionProfile extends Action
      */
     public function EventFriendOffer()
     {
-        require_once Config::Get('path.framework.libs_vendor.server') . '/XXTEA/encrypt.php';
         /**
          * Из реквеста дешефруем ID польователя
          */
@@ -1036,7 +1035,6 @@ class ActionProfile extends Action
                 )
             );
 
-            require_once Config::Get('path.framework.libs_vendor.server') . '/XXTEA/encrypt.php';
             $sCode = $this->oUserCurrent->getId() . '_' . $oUser->getId();
             $sCode = rawurlencode(base64_encode(xxtea_encrypt($sCode, Config::Get('module.talk.encrypt'))));
 

@@ -12,7 +12,8 @@
         "phpmailer/phpmailer": "^7.1",
         "psr/log": "^3.0",
         "smarty/smarty": "^5.8",
-        "symfony/console": "^8.1"
+        "symfony/console": "^8.1",
+        "xxtea/xxtea": "^1.0"
     },
     "autoload": {
         "classmap": [
@@ -21,5 +22,11 @@
     },
     "config": {
         "sort-packages": true
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.95",
+        "phpstan/phpstan": "^2.3",
+        "symfony/var-dumper": "^8.1",
+        "symplify/phpstan-rules": "^14.19"
     }
 }

@@ -5,3 +5,5 @@ application/logs
 uploads
 application/tmp
 application/install
+.php-cs-fixer.cache
+application/plugins/plugins.dat

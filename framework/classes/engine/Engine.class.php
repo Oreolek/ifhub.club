@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * LiveStreet CMS
  * Copyright © 2013 OOO "ЛС-СОФТ"
@@ -176,9 +176,10 @@ class Engine
      */
     static protected $sEnvironment = 'local';
     /**
-     * Автозагрузчик классов по стандарту PSR-4
+     * Composer-автозагрузчик, используется для PSR-4 автозагрузки
+     * пространств имён плагинов (см. AddAutoloaderNamespace)
      *
-     * @var Psr4AutoloaderClass|null
+     * @var \Composer\Autoload\ClassLoader|null
      */
     static protected $oAutoloader = null;
     /**
@@ -1491,11 +1492,20 @@ class Engine
     {
         spl_autoload_register(array('Engine', 'autoload'));
         /**
-         * Подключаем PSR-4 автозагрузчик
+         * PSR-4 автозагрузка пространств имён выполняется Composer-автозагрузчиком,
+         * который уже зарегистрирован в config/loader.php через {@link SetAutoloader}
          */
-        require_once(Config::Get('path.framework.libs_vendor.server') . DIRECTORY_SEPARATOR . 'php-fig' . DIRECTORY_SEPARATOR . 'PSR-4' . DIRECTORY_SEPARATOR . 'Psr4AutoloaderClass.php');
-        self::$oAutoloader = new Psr4AutoloaderClass();
-        self::$oAutoloader->register();
+    }
+
+    /**
+     * Устанавливает Composer-автозагрузчик для PSR-4 автозагрузки
+     * пространств имён плагинов
+     *
+     * @param \Composer\Autoload\ClassLoader $oAutoloader
+     */
+    static public function SetAutoloader($oAutoloader)
+    {
+        self::$oAutoloader = $oAutoloader;
     }
 
     /**
@@ -1509,7 +1519,12 @@ class Engine
      */
     static public function AddAutoloaderNamespace($sPrefix, $sBaseDir, $bPrepend = false)
     {
-        self::$oAutoloader->addNamespace($sPrefix, $sBaseDir, $bPrepend);
+        // нормализация как в замененном Psr4AutoloaderClass: префикс с завершающим '\', путь с разделителем в конце
+        self::$oAutoloader->addPsr4(
+            rtrim($sPrefix, '\\') . '\\',
+            rtrim($sBaseDir, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR,
+            $bPrepend
+        );
     }
 
     /**
