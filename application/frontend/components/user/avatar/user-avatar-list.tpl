@@ -14,7 +14,7 @@
     {* TODO: Костыль для блогов *}
     {if $user->getUser()}{$user = $user->getUser()}{/if}
 
-    {$items[] = {component 'user' template='avatar' size=$smarty.local.size|default:'small' user=$user}}
+    {$items[] = {component 'user' template='avatar' size=$size|default:'small' user=$user}}
 {/foreach}
 
 {component 'avatar' template='list' items=$items params=$params}

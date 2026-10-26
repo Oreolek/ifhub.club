@@ -19,6 +19,8 @@
  *
  */
 
+require_once(__DIR__ . '/insert.block.php');
+
 /**
  * Показывает блоки определенно группы
  *
@@ -38,7 +40,6 @@ function smarty_function_show_blocks($aParams, &$oSmarty)
 
     $sResult = '';
     if (isset($aBlocks[$sGroup]) and is_array($aBlocks[$sGroup])) {
-        $oSmarty->loadPlugin('smarty_insert_block');
         foreach ($aBlocks[$sGroup] as $aBlock) {
             if ($aBlock['type'] == 'block') {
                 $sResult .= smarty_insert_block(array('block' => $aBlock['name'], 'params' => isset($aBlock['params']) ? $aBlock['params'] : array()),

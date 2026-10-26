@@ -16,6 +16,10 @@
 */
 
 /**
+ * Подключаем Composer-зависимости
+ */
+require_once(dirname(dirname(dirname(__FILE__))) . '/vendor/autoload.php');
+/**
  * Основные константы
  */
 define('LS_VERSION_FRAMEWORK', '2.0.1');

@@ -2,6 +2,14 @@
 
 На основе [LiveStreet CMS](http://livestreetcms.ru) 2.0.1.dev
 
+### Зависимости
+
+Требуется PHP 8.5.
+
+```bash
+composer install
+```
+
 ### Лицензия
 
 LiveStreet - open-source проект под лицензией [GPL-2.0](http://opensource.org/licenses/GPL-2.0).

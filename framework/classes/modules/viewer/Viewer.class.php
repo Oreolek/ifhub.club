@@ -19,7 +19,6 @@
  *
  */
 
-require_once(Config::Get('path.framework.libs_vendor.server') . '/Smarty/libs/Smarty.class.php');
 require_once(Config::Get('path.framework.libs_application.server') . '/SmartyLS/SmartyLS.class.php');
 
 /**
@@ -445,7 +444,7 @@ class ModuleViewer extends Module
     public function Assign($mName, $mValue = null, $bLocal = false, $bByRef = false)
     {
         if ($bByRef and isset($mValue[0])) {
-            $this->oSmarty->assignByRef($mName, $mValue[0]);
+            $this->oSmarty->assign($mName, $mValue[0]);
         } else {
             $this->oSmarty->assign($mName, $mValue, false, $bLocal);
         }

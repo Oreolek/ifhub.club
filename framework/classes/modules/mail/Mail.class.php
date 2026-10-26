@@ -19,8 +19,6 @@
  *
  */
 
-require_once(Config::Get('path.framework.libs_vendor.server') . '/phpMailer/PHPMailerAutoload.php');
-
 /**
  * Модуль для отправки почты(e-mail) через phpMailer
  * <pre>
@@ -39,7 +37,7 @@ class ModuleMail extends Module
     /**
      * Основной объект рассыльщика
      *
-     * @var phpmailer
+     * @var PHPMailer\PHPMailer\PHPMailer
      */
     protected $oMailer;
     /**
@@ -173,7 +171,7 @@ class ModuleMail extends Module
         /**
          * Создаём объект phpMailer и устанвливаем ему необходимые настройки
          */
-        $this->oMailer = new phpmailer();
+        $this->oMailer = new PHPMailer\PHPMailer\PHPMailer();
         $this->oMailer->Host = $this->sHost;
         $this->oMailer->Port = $this->iPort;
         $this->oMailer->Username = $this->sUsername;

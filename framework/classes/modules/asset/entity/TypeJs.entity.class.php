@@ -45,13 +45,7 @@ class ModuleAsset_EntityTypeJs extends ModuleAsset_EntityType
      */
     public function compress()
     {
-        $oJSqueeze = new \Patchwork\JSqueeze();
-        $this->setContent($oJSqueeze->squeeze(
-            $this->getContent(),
-            true,   // $singleLine
-            false,  // $keepImportantComments
-            false   // $specialVarRx
-        ));
+        $this->setContent((new \MatthiasMullie\Minify\JS($this->getContent()))->minify());
     }
 
     /**

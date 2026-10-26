@@ -53,46 +53,6 @@
     {$value = ($escape) ? htmlspecialchars($value) : $value}
 {/block}
 
-{**
- * Общие атрибуты
- *}
-{function field_input_attr_common useValue=true}
-    id="{$uid}"
-    class="{$component}-input {$inputClasses}"
-    {if $useValue}value="{$value}"{/if}
-    {if $name}name="{$name}"{/if}
-    {if $placeholder}placeholder="{$placeholder}"{/if}
-    {if $isDisabled}disabled{/if}
-    {foreach $rules as $rule}
-        {if is_bool( $rule@value ) && ! $rule@value}
-            {continue}
-        {/if}
-
-        {if $rule@key === 'remote'}
-            data-parsley-remote-validator="{$rules['remote-validator']|default:'livestreet'}"
-            data-parsley-trigger="focusout"
-
-            {* Default remote options *}
-            {$json = [ 'type' => 'post', 'data' => [ 'security_ls_key' => $LIVESTREET_SECURITY_KEY ] ]}
-
-            {if array_key_exists('remote-options', $rules)}
-                {$json = array_merge_recursive($json, $rules['remote-options'])}
-            {/if}
-
-            data-parsley-remote-options='{json_encode($json)}'
-        {/if}
-
-        {if $rule@key === 'remote-options'}
-            {continue}
-        {/if}
-
-        data-parsley-{$rule@key}="{$rule@value}"
-    {/foreach}
-    {cattr list=$inputAttributes}
-    {cdata name=$component list=$inputData}
-{/function}
-
-
 {block 'field'}
     <div class="{$component} {cmods name=$component mods=$mods} ls-clearfix {$classes} {block 'field_classes'}{/block}"
         {cdata name=$component list=$data}

@@ -45,7 +45,6 @@ class ModuleAsset_EntityTypeCss extends ModuleAsset_EntityType
      */
     public function compress()
     {
-        require_once(Config::Get('path.framework.libs_vendor.server') . '/cssmin/CssMin.php');
         $oCssMinifier = new CssMinifier($this->getContent());
         $this->setContent($oCssMinifier->getMinified());
     }
