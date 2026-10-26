@@ -163,7 +163,7 @@ class PluginAdmin_ModuleStorage extends PluginAdmin_Inherits_ModuleStorage
      * @param            $sInstance        инстанция хранилища
      * @return bool
      */
-    public function SaveMyConfig($aKeysToSave = array(), $oCaller, $sInstance = self::DEFAULT_INSTANCE)
+    public function SaveMyConfig($aKeysToSave = array(), $oCaller = null, $sInstance = self::DEFAULT_INSTANCE)
     {
         if (empty($aKeysToSave)) {
             return false;

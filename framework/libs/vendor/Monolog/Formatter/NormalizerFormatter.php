@@ -267,7 +267,7 @@ class NormalizerFormatter implements FormatterInterface
         if (is_string($data) && !preg_match('//u', $data)) {
             $data = preg_replace_callback(
                 '/[\x80-\xFF]+/',
-                function ($m) { return utf8_encode($m[0]); },
+                function ($m) { return mb_convert_encoding($m[0], 'UTF-8', 'ISO-8859-1'); },
                 $data
             );
             $data = str_replace(

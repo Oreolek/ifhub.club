@@ -58,7 +58,7 @@
     {component 'admin:field.textarea'
         name  = 'profile_about'
         rows  = 4
-        value = $user->getProfileAbout()|strip_tags
+        value = $user->getProfileAbout()|default:''|strip_tags
         label = $aLang.plugin.admin.users.profile_edit.about_user}
 
     {component 'admin:button' text=$aLang.common.save name='submit_edit' mods='primary'}

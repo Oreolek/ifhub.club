@@ -149,7 +149,7 @@ class ProgressBar extends AbstractWidget
      */
     public function render()
     {
-        $percentage = (double) ($this->value / $this->total);
+        $percentage = (float) ($this->value / $this->total);
 
         $progress = floor($percentage * $this->size);
         $output = "\r[" . str_repeat('=', $progress);

@@ -953,6 +953,7 @@ class ModuleUser extends Module
     public function GetStatUsers()
     {
         if (false === ($aStat = $this->Cache_Get("user_stats"))) {
+            $aStat = array();
             $aStat['count_all'] = $this->oMapper->GetCountUsers();
             $sDate = date("Y-m-d H:i:s", time() - Config::Get('module.user.time_active'));
             $aStat['count_active'] = $this->oMapper->GetCountUsersActive($sDate);

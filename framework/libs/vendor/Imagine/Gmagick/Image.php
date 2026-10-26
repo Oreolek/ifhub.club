@@ -659,7 +659,7 @@ final class Image extends AbstractImage
 
         try {
             try {
-                $hasICCProfile = (Boolean) $this->gmagick->getimageprofile('ICM');
+                $hasICCProfile = (bool) $this->gmagick->getimageprofile('ICM');
             } catch (\GmagickException $e) {
                 $hasICCProfile = false;
             }

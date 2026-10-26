@@ -300,10 +300,8 @@ class ModuleLs extends Module
 
             $sData = curl_exec($ch);
             if (curl_errno($ch)) {
-                curl_close($ch);
                 return false;
             }
-            curl_close($ch);
             return $sData;
         } else {
             $aUrl = parse_url($sUrl);

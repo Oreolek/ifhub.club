@@ -49,6 +49,7 @@
     {/if}
 
     {* Escape *}
+    {$value = $value|default:''}
     {$value = ($escape) ? htmlspecialchars($value) : $value}
 {/block}
 

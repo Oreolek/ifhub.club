@@ -931,7 +931,7 @@ class PluginAdmin_ModuleSettings extends ModuleStorage
      * @param string $sInstance инстанция хранилища
      * @return mixed
      */
-    final public function SavePluginConfig($aKeysToSave = array(), $sCallerName, $sInstance = self::DEFAULT_INSTANCE)
+    final public function SavePluginConfig($aKeysToSave = array(), $sCallerName = null, $sInstance = self::DEFAULT_INSTANCE)
     {
         /*
          * Получить сохраненный конфиг из хранилища

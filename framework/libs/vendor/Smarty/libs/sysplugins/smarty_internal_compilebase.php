@@ -13,6 +13,7 @@
  * @package Smarty
  * @subpackage Compiler
  */
+#[AllowDynamicProperties]
 abstract class Smarty_Internal_CompileBase {
 
     /**

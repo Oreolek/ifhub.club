@@ -22,6 +22,7 @@ require_once __DIR__.'/Database.php';
 /**
  * Database class for MySQL.
  */
+#[AllowDynamicProperties]
 class DbSimple_Mysqli extends DbSimple_Database
 {
     var $link;

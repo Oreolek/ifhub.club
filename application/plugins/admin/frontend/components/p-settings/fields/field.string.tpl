@@ -9,7 +9,7 @@
 
     {$label = $parameter->getName()}
     {$note = $parameter->getDescription()}
-    {$value = $parameter->getValue()|escape}
+    {$value = $parameter->getValue()|default:''|escape}
 {/block}
 
 {block 'field_input' prepend}

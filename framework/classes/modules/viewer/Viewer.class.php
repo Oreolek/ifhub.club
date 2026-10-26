@@ -700,9 +700,9 @@ class ModuleViewer extends Module
      */
     protected function BuildBlocks()
     {
-        $sAction = strtolower(Router::GetAction());
-        $sEvent = strtolower(Router::GetActionEvent());
-        $sEventName = strtolower(Router::GetActionEventName());
+        $sAction = strtolower((string)Router::GetAction());
+        $sEvent = strtolower((string)Router::GetActionEvent());
+        $sEventName = strtolower((string)Router::GetActionEventName());
         foreach ($this->aBlockRules as $sName => $aRule) {
             $bUse = false;
             /**
@@ -1295,7 +1295,7 @@ class ModuleViewer extends Module
                      * Хардкодная проверка на модуль user
                      */
                     if ($oUserCurrent = $this->User_GetUserCurrent() and $oUserCurrent->getSettingsTimezone()) {
-                        $oNow = new DateTime(null, new DateTimeZone($oUserCurrent->getSettingsTimezone()));
+                        $oNow = new DateTime('now', new DateTimeZone($oUserCurrent->getSettingsTimezone()));
                         $iTz = $oNow->getOffset() / 3600;
                     }
                 } catch (Exception $e) {

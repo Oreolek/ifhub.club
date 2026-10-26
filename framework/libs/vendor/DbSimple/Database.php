@@ -92,6 +92,7 @@ require_once __DIR__ . '/CacherImpl.php';
  * Logger is COMMON for multiple transactions.
  * Error handler is private for each transaction and database.
  */
+#[AllowDynamicProperties]
 abstract class DbSimple_Database extends DbSimple_LastError
 {
     /**

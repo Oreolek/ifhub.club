@@ -127,7 +127,7 @@ class PluginAdmin_ModuleUsers extends Module
     protected function GetCorrectSortingOrder(
         $aOrder = array(),
         $aCorrectSortingOrderList = array(),
-        $sSortingOrderByDefault
+        $sSortingOrderByDefault = ''
     ) {
         $sOrder = '';
         foreach ($aOrder as $sRow => $sDir) {

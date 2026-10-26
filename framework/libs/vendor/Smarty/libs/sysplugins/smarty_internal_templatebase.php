@@ -554,7 +554,7 @@ abstract class Smarty_Internal_TemplateBase extends Smarty_Internal_Data {
         }
         // register the object
         $this->smarty->registered_objects[$object_name] =
-        array($object_impl, (array) $allowed, (boolean) $smarty_args, (array) $block_methods);
+        array($object_impl, (array) $allowed, (bool) $smarty_args, (array) $block_methods);
         return $this;
     }
 

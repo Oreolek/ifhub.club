@@ -5,7 +5,7 @@ skin{**
 {extends "{$aTemplatePathPlugin.admin}layouts/layout.base.tpl"}
 
 {block 'layout_page_title'}
-	{$aLang.plugin.admin.plugins.list.titles[$sType]} <span>({count($aPluginsInfo.collection)})</span>
+	{$aLang.plugin.admin.plugins.list.titles[$sType|default:'']} <span>({count($aPluginsInfo.collection)})</span>
 {/block}
 
 {block 'layout_content_actionbar'}

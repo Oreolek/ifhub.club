@@ -237,7 +237,7 @@ abstract class Action extends LsObject
             Router::SetActionEvent($this->sCurrentEvent);
         }
         foreach ($this->aRegisterEvent as $aEvent) {
-            if (preg_match($aEvent['preg'], $this->sCurrentEvent, $aMatch)) {
+            if (preg_match($aEvent['preg'], (string)$this->sCurrentEvent, $aMatch)) {
                 $this->aParamsEventMatch['event'] = $aMatch;
                 $this->aParamsEventMatch['params'] = array();
                 foreach ($aEvent['params_preg'] as $iKey => $sParamPreg) {

@@ -274,8 +274,6 @@ class PluginAdmin_ModuleRemoteserver extends Module
             $sErrorMsg = curl_error($oCurl);
         }
 
-        curl_close($oCurl);
-
         return array(
             /*
              * флаг успеха

@@ -70,7 +70,7 @@ class PluginAdmin_ActionAdmin_EventUsers extends Event
         /*
          * сортировка
          */
-        $sOrder = $this->GetDataFromFilter('order_field');
+        $sOrder = (string)$this->GetDataFromFilter('order_field');
         $sWay = $this->GetDataFromFilter('order_way');
 
         /*
@@ -423,7 +423,7 @@ class PluginAdmin_ActionAdmin_EventUsers extends Event
      */
     protected function SetPaging($iParamNum = 1, $sConfigKeyPerPage = 'users.per_page')
     {
-        if (!$this->iPage = intval(preg_replace('#^page(\d+)$#iu', '$1', $this->GetParam($iParamNum)))) {
+        if (!$this->iPage = intval(preg_replace('#^page(\d+)$#iu', '$1', (string)$this->GetParam($iParamNum)))) {
             $this->iPage = 1;
         }
         $this->iPerPage = Config::Get('plugin.admin.' . $sConfigKeyPerPage) ?: 10;
@@ -498,7 +498,7 @@ class PluginAdmin_ActionAdmin_EventUsers extends Event
         /*
          * сортировка
          */
-        $sOrder = $this->GetDataFromFilter('order_field');
+        $sOrder = (string)$this->GetDataFromFilter('order_field');
         $sWay = $this->GetDataFromFilter('order_way');
 
         /*
@@ -683,7 +683,7 @@ class PluginAdmin_ActionAdmin_EventUsers extends Event
         /*
          * сортировка
          */
-        $sOrder = $this->GetDataFromFilter('order_field');
+        $sOrder = (string)$this->GetDataFromFilter('order_field');
         $sWay = $this->GetDataFromFilter('order_way');
 
         /*
@@ -1552,7 +1552,7 @@ class PluginAdmin_ActionAdmin_EventUsers extends Event
         /*
          * сортировка
          */
-        $sOrder = $this->GetDataFromFilter('order_field');
+        $sOrder = (string)$this->GetDataFromFilter('order_field');
         $sWay = $this->GetDataFromFilter('order_way');
 
         /*

@@ -51,7 +51,7 @@ function smarty_function_asset($aParams, &$oSmarty)
      * Получаем список текущих подключенных файлов
      */
     $sKeyIncluded = 'smarty_asset_included';
-    $aIncluded = $oEngine->Cache_GetLife($sKeyIncluded);
+    $aIncluded = (array)$oEngine->Cache_GetLife($sKeyIncluded);
     /**
      * Проверяем на компонент
      */

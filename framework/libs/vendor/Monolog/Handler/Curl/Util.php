@@ -38,19 +38,12 @@ class Util
                 if (false === in_array($curlErrno, self::$retriableErrorCodes, true) || !$retries) {
                     $curlError = curl_error($ch);
 
-                    if ($closeAfterDone) {
-                        curl_close($ch);
-                    }
-
                     throw new \RuntimeException(sprintf('Curl error (code %s): %s', $curlErrno, $curlError));
                 }
 
                 continue;
             }
 
-            if ($closeAfterDone) {
-                curl_close($ch);
-            }
             break;
         }
     }

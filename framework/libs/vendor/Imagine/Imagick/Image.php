@@ -585,7 +585,7 @@ final class Image extends AbstractImage
 
         try {
             try {
-                $hasICCProfile = (Boolean) $this->imagick->getImageProfile('icc');
+                $hasICCProfile = (bool) $this->imagick->getImageProfile('icc');
             } catch (\ImagickException $e) {
                 $hasICCProfile = false;
             }
