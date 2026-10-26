@@ -1,24 +1,51 @@
 <?php
 
-use ConsoleKit\Console,
-    ConsoleKit\Command,
-    ConsoleKit\Colors,
-    ConsoleKit\Utils,
-    ConsoleKit\Widgets\Dialog,
-    ConsoleKit\Widgets\ProgressBar;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Input\InputOption;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Migration commands
  */
 class LsConsoleCommandMigration extends LsConsoleCommandBase
 {
-    public function executeCreate(array $args, array $options = array())
+    /**
+     * Configure command
+     */
+    protected function configure(): void
     {
-        if (!($sName = Utils::get($args, 0))) {
-            $this->writeerr('The name migration is not specified.')->writeln('');
-            return;
+        $this->setName('migration')
+            ->setDescription('Migration commands')
+            ->addArgument('action', InputArgument::REQUIRED, 'Action: create|migrate')
+            ->addArgument('name', InputArgument::OPTIONAL, 'The name of the new migration')
+            ->addOption('plugin', null, InputOption::VALUE_REQUIRED, 'Plugin code')
+            ->addOption('dry', null, InputOption::VALUE_NONE, 'Dry run');
+    }
+
+    /**
+     * Execute command
+     */
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        switch ($input->getArgument('action')) {
+            case 'create':
+                return $this->executeCreate((array)$input->getArgument('name'), $input->getOption('plugin'));
+            case 'migrate':
+                return $this->executeMigrate($input);
+            default:
+                $this->io->error("Unknown action '" . $input->getArgument('action') . "'");
+                return Command::FAILURE;
         }
-        $sPlugin = Utils::get($options, 'plugin');
+    }
+
+    public function executeCreate(array $args, $sPlugin = null)
+    {
+        if (!($sName = reset($args))) {
+            $this->io->error('The name migration is not specified.');
+            return Command::FAILURE;
+        }
         $sNameUnderscore = func_underscore($sName);
         if ($sPlugin) {
             $sPlugin = func_underscore($sPlugin);
@@ -29,15 +56,15 @@ class LsConsoleCommandMigration extends LsConsoleCommandBase
 
         $sDirParent = dirname($sPath);
         if (!is_dir($sDirParent)) {
-            $this->writeerr("The directory '{$sDirParent}' is not valid.")->writeln('');
-            return;
+            $this->io->error("The directory '{$sDirParent}' is not valid.");
+            return Command::FAILURE;
         }
         if (!is_dir($sPath)) {
             @mkdir($sPath, 0755, true);
         }
         if (!is_dir($sPath)) {
-            $this->writeerr("Can not create 'migrations' directory.")->writeln('');
-            return;
+            $this->io->error("Can not create 'migrations' directory.");
+            return Command::FAILURE;
         }
 
         $sVersion = (string)time();
@@ -47,8 +74,8 @@ class LsConsoleCommandMigration extends LsConsoleCommandBase
             $sClassName = 'Plugin' . func_camelize($sPlugin) . '_' . $sClassName;
         }
         $sSourceFile = dirname(__DIR__) . '/protected/migration/migration.php';
-        $this->copyFiles(array(
-            array(
+        $this->copyFiles([
+            [
                 'source'   => $sSourceFile,
                 'target'   => $sPath . $sFileName,
                 'callback' => function ($sSource, $aParams) use ($sClassName) {
@@ -56,27 +83,28 @@ class LsConsoleCommandMigration extends LsConsoleCommandBase
                     $sContent = str_replace('{{className}}', $sClassName, $sContent);
                     return $sContent;
                 }
-            )
-        ));
+            ]
+        ]);
 
-        $this->writeln("Your migration has been created successfully: " . $sPath . $sFileName, Colors::GREEN);
+        $this->io->writeln("<info>Your migration has been created successfully: " . $sPath . $sFileName . "</info>");
+        return Command::SUCCESS;
     }
 
-    public function executeMigrate(array $args, array $options = array())
+    public function executeMigrate(InputInterface $input)
     {
-        $bIsDry = Utils::get($options, 'dry', false);
-        $sPlugin = Utils::get($options, 'plugin');
+        $bIsDry = $input->getOption('dry');
+        $sPlugin = $input->getOption('plugin');
         /**
          * Список каталогов, где могут быть миграции
          */
         $aLocations = Engine::getInstance()->Migration_GetLocationsForMigration($sPlugin);
         if (!$aLocations) {
-            $this->writeln("Not found migrate locations", Colors::GREEN);
-            return;
+            $this->io->writeln("<info>Not found migrate locations</info>");
+            return Command::SUCCESS;
         }
-        $this->writeln("Found migrate locations:", Colors::GREEN);
+        $this->io->writeln("<info>Found migrate locations:</info>");
         foreach ($aLocations as $aLocation) {
-            $this->writeln($aLocation['path'], Colors::YELLOW);
+            $this->io->writeln("<comment>{$aLocation['path']}</comment>");
         }
 
         if (!Engine::getInstance()->Database_IsTableExists('prefix_migration')) {
@@ -98,15 +126,15 @@ class LsConsoleCommandMigration extends LsConsoleCommandBase
               MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;');
         }
 
-        $aMigrationCompleted = array();
+        $aMigrationCompleted = [];
         foreach ($aLocations as $aLocation) {
             $aMigrationFiles = Engine::getInstance()->Migration_GetNewMigrationFiles($aLocation);
             $iCountNew = count($aMigrationFiles);
-            $this->writeln("Location {$aLocation['path']}: " . $iCountNew . ' new migrations', Colors::GREEN);
+            $this->io->writeln("<info>Location {$aLocation['path']}: " . $iCountNew . ' new migrations</info>');
             if ($aMigrationFiles) {
                 foreach ($aMigrationFiles as $sMigrationFile) {
                     $iTime1 = microtime(true);
-                    $this->writeln("Migrate {$sMigrationFile}", Colors::YELLOW);
+                    $this->io->writeln("<comment>Migrate {$sMigrationFile}</comment>");
                     $bRes = true;
                     if ($bIsDry) {
                         sleep(1);
@@ -116,12 +144,12 @@ class LsConsoleCommandMigration extends LsConsoleCommandBase
                     if ($bRes) {
                         $iTime2 = microtime(true);
                         $fSeconds = round(($iTime2 - $iTime1), 2);
-                        $this->writeln("Migrated {$sMigrationFile}: {$fSeconds} sec", Colors::YELLOW);
+                        $this->io->writeln("<comment>Migrated {$sMigrationFile}: {$fSeconds} sec</comment>");
 
-                        $aMigrationCompleted[] = array(
+                        $aMigrationCompleted[] = [
                             'location' => $aLocation,
                             'file'     => $sMigrationFile
-                        );
+                        ];
                     } else {
                         /**
                          * Откатываем все обратно
@@ -134,13 +162,14 @@ class LsConsoleCommandMigration extends LsConsoleCommandBase
                             }
                         }
 
-                        $this->writeln("Failed", Colors::RED);
-                        exit(1);
+                        $this->io->error("Failed");
+                        return Command::FAILURE;
                     }
                 }
             }
         }
 
-        $this->writeln("All migrate successfully", Colors::GREEN);
+        $this->io->writeln("<info>All migrate successfully</info>");
+        return Command::SUCCESS;
     }
 }

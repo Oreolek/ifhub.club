@@ -19,8 +19,9 @@ require_once(__DIR__ . '/commands/migration.php');
 /**
  * Запускаем консоль
  */
-$console = new \ConsoleKit\Console(array(
-    'plugin'    => 'LsConsoleCommandPlugin',
-    'migration' => 'LsConsoleCommandMigration'
+$application = new \Symfony\Component\Console\Application('LiveStreet Console', '1.0');
+$application->addCommands(array(
+    new LsConsoleCommandPlugin(),
+    new LsConsoleCommandMigration()
 ));
-$console->run();
+$application->run();

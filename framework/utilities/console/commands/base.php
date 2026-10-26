@@ -1,26 +1,35 @@
 <?php
 
-use ConsoleKit\Console,
-    ConsoleKit\Command,
-    ConsoleKit\Colors,
-    ConsoleKit\Utils,
-    ConsoleKit\Widgets\Dialog,
-    ConsoleKit\Widgets\ProgressBar;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Style\SymfonyStyle;
 
 /**
  * Base class for commands
  */
 abstract class LsConsoleCommandBase extends Command
 {
-    /** @var array */
-    protected $defaultFormatOptions = array();
+    /** @var SymfonyStyle */
+    protected $io;
+    /** @var ProgressBar|null */
+    protected $progress;
+
+    /**
+     * Инициализация вывода
+     */
+    protected function initialize(InputInterface $input, OutputInterface $output): void
+    {
+        $this->io = new SymfonyStyle($input, $output);
+    }
 
     /*
      * Создает массив файлов используемый при копировании
      */
     public function buildFileList($sSourceDir, $sTargetDir, $sBaseDir = '')
     {
-        $aList = array();
+        $aList = [];
         $handle = opendir($sSourceDir);
         while (($sFile = readdir($handle)) !== false) {
             if ($sFile === '.' || $sFile === '..' || $sFile === '.svn' || $sFile === '.gitignore') {
@@ -33,10 +42,10 @@ abstract class LsConsoleCommandBase extends Command
             $sName = ($sBaseDir === '') ? $sFile : $sBaseDir . '/' . $sFile;
 
             // Строим массив с ключем в виде имени файла или папки, пути к исходнику и пути назначения
-            $aList[$sName] = array(
+            $aList[$sName] = [
                 'source' => $sSourcePath,
                 'target' => $sTargetPath
-            );
+            ];
 
             // Если директория то рекурсивно получаем массив его содержимого и объединяем с главным
             if (is_dir($sSourcePath)) {
@@ -52,15 +61,16 @@ abstract class LsConsoleCommandBase extends Command
      */
     public function copyFiles($fileList)
     {
-        $progress = new ProgressBar($this->console, count($fileList));
+        $this->progress = new ProgressBar($this->io, count($fileList));
+        $this->progress->start();
         $overwriteAll = false;
         foreach ($fileList as $name => $file) {
-            $progress->incr();
+            $this->progress->advance();
             $source = strtr($file['source'], '/\\', DIRECTORY_SEPARATOR);
             $target = strtr($file['target'], '/\\', DIRECTORY_SEPARATOR);
 
-            $callback = isset($file['callback']) ? $file['callback'] : null;
-            $params = isset($file['params']) ? $file['params'] : null;
+            $callback = $file['callback'] ?? null;
+            $params = $file['params'] ?? null;
 
             if (is_dir($source)) {
                 // Проверяем существует ли директория или досоздаем папки
@@ -80,47 +90,56 @@ abstract class LsConsoleCommandBase extends Command
             if (is_file($target)) {
                 // Если содержимое старого и нового файла совпадают
                 if ($content === file_get_contents($target)) {
-                    $this->writeln("  unchanged $name");
+                    $this->writeProgress("  unchanged $name");
                     continue;
                 }
 
                 // Если мы выбрали перезапись в ветке false
                 if ($overwriteAll) {
-                    $this->writeln("  overwrite $name", Colors::BLUE);
+                    $this->writeProgress("  overwrite $name");
                 } else {
-                    $this->writeln("      exist $name");
-                    $this->writeln("            ...overwrite? [Yes|No|All|Quit] ");
-
-                    $dialog = new Dialog($this->console);
-                    $answer = $dialog->ask('            ...overwrite? [Yes|No|All|Quit] ', 'No');
+                    $this->progress->clear();
+                    $this->io->writeln("      exist $name");
+                    $answer = $this->io->ask('            ...overwrite? [Yes|No|All|Quit] ', 'No');
                     if (!strncasecmp($answer, 'q', 1)) {
-                        $this->writeerr('Copy files break')->writeln('');
+                        $this->io->writeln('<error>Copy files break</error>');
+                        $this->progress->display();
                         return;
                     } else {
-                        if (!strncasecmp($answer, 'y', 1)) {
-                            $this->writeln("  overwrite $name", Colors::BLUE);
+                        if (!strncasecmp($answer, 'y', 1) || !strncasecmp($answer, 'a', 1)) {
+                            $overwriteAll = !strncasecmp($answer, 'a', 1);
+                            $this->io->writeln("  overwrite $name");
                         } else {
-                            if (!strncasecmp($answer, 'a', 1)) {
-                                $this->writeln("  overwrite $name", Colors::BLUE);
-                                $overwriteAll = true;
-                            } else {
-                                $this->writeln("       skip $name");
-                                continue;
-                            }
+                            $this->io->writeln("       skip $name");
+                            $this->progress->display();
+                            continue;
                         }
                     }
+                    $this->progress->display();
                 }
             } // Если файла еще не существует
             else {
                 // Досоздаем папки в случае отсутствия
                 $this->ensureDirectory(dirname($target));
-                $this->writeln("   generate $name");
+                $this->writeProgress("   generate $name");
             }
 
             // Создаем файл и записываем в него содержимое
             file_put_contents($target, $content);
         }
-        $progress->stop();
+        $this->progress->finish();
+        $this->io->newLine();
+    }
+
+    /**
+     * Вывод строки без затирания активного прогресс-бара
+     * @param string $text
+     */
+    protected function writeProgress($text)
+    {
+        $this->progress->clear();
+        $this->io->writeln($text);
+        $this->progress->display();
     }
 
     /**
@@ -131,7 +150,7 @@ abstract class LsConsoleCommandBase extends Command
     {
         if (!is_dir($directory)) {
             $this->ensureDirectory(dirname($directory));
-            $this->writeln("      mkdir " . strtr($directory, '\\', '/'));
+            $this->writeProgress("      mkdir " . strtr($directory, '\\', '/'));
             mkdir($directory);
         }
     }

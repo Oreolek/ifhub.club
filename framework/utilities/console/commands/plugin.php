@@ -1,11 +1,9 @@
 <?php
 
-use ConsoleKit\Console,
-    ConsoleKit\Command,
-    ConsoleKit\Colors,
-    ConsoleKit\Utils,
-    ConsoleKit\Widgets\Dialog,
-    ConsoleKit\Widgets\ProgressBar;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputArgument;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Plugin commands
@@ -16,15 +14,38 @@ class LsConsoleCommandPlugin extends LsConsoleCommandBase
     protected $_name_under;
 
     /**
+     * Configure command
+     */
+    protected function configure(): void
+    {
+        $this->setName('plugin')
+            ->setDescription('Plugin commands')
+            ->addArgument('action', InputArgument::REQUIRED, 'Action: new')
+            ->addArgument('code', InputArgument::OPTIONAL, 'The code of the new plugin. Use only [a-z_] symbols.');
+    }
+
+    /**
+     * Execute command
+     */
+    protected function execute(InputInterface $input, OutputInterface $output): int
+    {
+        if ($input->getArgument('action') === 'new') {
+            return $this->executeNew((array)$input->getArgument('code'));
+        }
+        $this->io->error("Unknown action '" . $input->getArgument('action') . "'");
+        return Command::FAILURE;
+    }
+
+    /**
      * Generate new empty plugin
      *
      * @arg code The code of the new plugin. Use only [a-z_] symbols.
      */
-    public function executeNew(array $args, array $options = array())
+    public function executeNew(array $args)
     {
-        if (!($code = Utils::get($args, 0))) {
-            $this->writeerr('The plugin code is not specified.')->writeln('');
-            return;
+        if (!($code = reset($args))) {
+            $this->io->error('The plugin code is not specified.');
+            return Command::FAILURE;
         }
 
         $this->_name_under = func_underscore($code);
@@ -38,14 +59,14 @@ class LsConsoleCommandPlugin extends LsConsoleCommandBase
 
         $dir = rtrim(realpath(dirname($path)), '\\/');
         if ($dir === false || !is_dir($dir)) {
-            $this->writeerr("The directory '{$path}' is not valid. Please make sure the parent directory exists.")->writeln('');
-            return;
+            $this->io->error("The directory '{$path}' is not valid. Please make sure the parent directory exists.");
+            return Command::FAILURE;
         }
 
         $sourceDir = dirname(__DIR__) . '/protected/plugin';
         if ($sourceDir === false) {
-            $this->writeerr('Unable to locate the source directory.')->writeln('');
-            return;
+            $this->io->error('Unable to locate the source directory.');
+            return Command::FAILURE;
         }
 
         // Создаем массив файлов для функции копирования
@@ -63,13 +84,14 @@ class LsConsoleCommandPlugin extends LsConsoleCommandBase
 
             $aFile['target'] = $sTarget;
             $aList[$sNewName] = $aFile;
-            $aList[$sNewName]['callback'] = array($this, 'generatePlugin');
+            $aList[$sNewName]['callback'] = [$this, 'generatePlugin'];
         }
 
         // Копируем файлы
         $this->copyFiles($aList);
 
-        $this->writeln("Your plugin has been created successfully under {$path}", Colors::GREEN);
+        $this->io->writeln("<info>Your plugin has been created successfully under {$path}</info>");
+        return Command::SUCCESS;
     }
 
     /*
