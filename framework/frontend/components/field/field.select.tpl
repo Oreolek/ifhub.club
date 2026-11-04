@@ -36,7 +36,7 @@
                     {$isSelected = ( is_array( $selectedValue ) ) ? in_array( $item.value, $selectedValue ) : ( $item.value == $selectedValue )}
 
                     <option value="{$item.value}" {if $isSelected}selected{/if} {cattr list=$item.attributes} {cdata name=$component data=$item.data}>
-                        {$item.text|indent:( $item.level * 5 ):'&nbsp;'}
+                        {$item.text|indent:( ($item.level|default:0) * 5 ):'&nbsp;'}
                     </option>
                 {/if}
             {/foreach}

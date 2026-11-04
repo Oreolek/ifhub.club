@@ -68,4 +68,4 @@
     assign           = 'mediaModal'}
 
 {* Добавляем модальное окно (компонент media) в конец лэйаута чтобы избежать вложенных форм *}
-{$sLayoutAfter = "$sLayoutAfter $mediaModal" scope='root'}
+{$sLayoutAfter = "{$sLayoutAfter|default:''} $mediaModal" scope='root'}

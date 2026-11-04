@@ -11,7 +11,7 @@
         <dl class="{$component}-item">
             {foreach $item['tags'] as $tag}
                 <dt>
-                    <a href="#" class="ls-link-dotted js-tags-help-link" {if $tag['insert']}data-insert="{$tag['insert']}"{/if}>
+                    <a href="#" class="ls-link-dotted js-tags-help-link" {if $tag['insert']|default:''}data-insert="{$tag['insert']}"{/if}>
                         {$tag['text']}
                     </a>
                 </dt>

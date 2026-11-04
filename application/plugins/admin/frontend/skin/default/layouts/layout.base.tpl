@@ -163,7 +163,7 @@
 {* для вывода общей статистики *}
 {hook run='admin_body_end'}
 
-{$sLayoutAfter}
+{$sLayoutAfter|default:''}
 
 </body>
 </html>

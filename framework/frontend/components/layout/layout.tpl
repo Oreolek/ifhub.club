@@ -126,6 +126,6 @@
     {/block}
 
 
-    {$sLayoutAfter}
+    {$sLayoutAfter|default:''}
 </body>
 </html>

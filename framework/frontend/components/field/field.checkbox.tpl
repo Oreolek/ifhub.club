@@ -25,5 +25,5 @@
         {/if}
     {/if}
 
-    <input type="checkbox" {field_input_attr_common} {if $checked}checked{/if} />
+    <input type="checkbox" {field_input_attr_common} {if $checked|default:false}checked{/if} />
 {/block}

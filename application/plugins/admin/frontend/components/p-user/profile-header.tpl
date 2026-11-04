@@ -4,7 +4,7 @@
 <div class="{$component} {cmods name=$component mods=$mods} {$classes}" {cattr list=$attributes}>
     <div class="user-brief-body">
         <a href="{$user->getUserWebPath()}" class="user-avatar {if $user->isOnline()}user-is-online{/if}">
-            <img src="{$user->getProfileAvatarPath(100)}" alt="avatar" title="{if $user->isOnline()}{$aLang.user_status_online}{else}{$aLang.user_status_offline}{/if}" />
+            <img src="{$user->getProfileAvatarPath(100)}" alt="avatar" title="{if $user->isOnline()}{$aLang.user_status_online|default:''}{else}{$aLang.user_status_offline|default:''}{/if}" />
         </a>
 
         <h3 class="user-login">

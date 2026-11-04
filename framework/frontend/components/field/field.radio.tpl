@@ -14,5 +14,5 @@
         {$checked = $value == {field_get_value form=$form name=$name}}
     {/if}
 
-    <input type="radio" {field_input_attr_common} {if $checked}checked{/if} />
+    <input type="radio" {field_input_attr_common} {if $checked|default:false}checked{/if} />
 {/block}

@@ -21,7 +21,7 @@
         {* Список *}
         <ul class="{$component}-list">
             {foreach $list as $item}
-                <li class="{$component}-item {$item['classes']}" {cattr list=$item['attributes']}>
+                <li class="{$component}-item {$item['classes']|default:''}" {cattr list=$item['attributes']|default:''}>
                     <div class="{$component}-item-label">
                         {$item['label']}
                     </div>

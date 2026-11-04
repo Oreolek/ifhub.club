@@ -20,7 +20,7 @@
     {if $image}
         <div class="{$component}-left">
             <a href="{$image[ 'url' ]}">
-                <img src="{$image[ 'path' ]}" alt="{$image[ 'alt' ]}" title="{$image[ 'title' ]}" class="{$component}-image {$image[ 'classes' ]}">
+                <img src="{$image[ 'path' ]}" alt="{$image[ 'alt' ]|default:''}" title="{$image[ 'title' ]|default:''}" class="{$component}-image {$image[ 'classes' ]|default:''}">
             </a>
         </div>
     {/if}

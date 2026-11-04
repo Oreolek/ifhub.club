@@ -8,7 +8,7 @@
 
     {foreach $tabs as $tab}
         {if $tab['is_enabled']|default:true}
-            {component 'tabs.tab' isActive=($tab['isActive'] || ($activeTab && $tab['name'] == $activeTab)) params=$tab}
+            {component 'tabs.tab' isActive=(($tab['isActive']|default:false) || ($activeTab && ($tab['name']|default:'') == $activeTab)) params=$tab}
         {/if}
     {/foreach}
 </ul>

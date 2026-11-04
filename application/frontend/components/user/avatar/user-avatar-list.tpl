@@ -19,4 +19,6 @@
 
 {component 'avatar' template='list' items=$items params=$params}
 
-{component 'pagination' total=+$pagination.iCountPage current=+$pagination.iCurrentPage url="{$pagination.sBaseUrl}/page__page__/"}
+{if $pagination}
+    {component 'pagination' total=+$pagination.iCountPage current=+$pagination.iCurrentPage url="{$pagination.sBaseUrl}/page__page__/"}
+{/if}

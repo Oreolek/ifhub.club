@@ -12,7 +12,7 @@
         {block 'nav_main'}
             {insert name='block' block='menu' params=[ 
                 "name" => "main",
-                "activeItem" => $sMenuHeadItemSelect, 
+                "activeItem" => $sMenuHeadItemSelect|default:'', 
                 "mods" => "main", 
                 "classes" => "ls-userbar-nav" ]}
         {/block}

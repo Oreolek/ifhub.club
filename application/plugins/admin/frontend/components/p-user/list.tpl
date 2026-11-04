@@ -62,7 +62,7 @@
                         <a href="{router page="admin/users/profile/{$user->getId()}"}" class="cell-user-avatar {if $user->isOnline()}user-is-online{/if}">
                             <img src="{$user->getProfileAvatarPath(48)}"
                                  alt="avatar"
-                                 title="{if $user->isOnline()}{$aLang.user_status_online}{else}{$aLang.user_status_offline}{/if}" />
+                                 title="{if $user->isOnline()}{$aLang.user_status_online|default:''}{else}{$aLang.user_status_offline|default:''}{/if}" />
                         </a>
 
                         <div class="cell-user-login word-wrap">

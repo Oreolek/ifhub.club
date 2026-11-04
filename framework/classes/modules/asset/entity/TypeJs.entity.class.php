@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * LiveStreet CMS
  * Copyright © 2013 OOO "ЛС-СОФТ"
@@ -46,6 +46,11 @@ class ModuleAsset_EntityTypeJs extends ModuleAsset_EntityType
     public function compress()
     {
         $this->setContent((new \MatthiasMullie\Minify\JS($this->getContent()))->minify());
+        /**
+         * Минификатор съедает ";" в конце файла, без которого при склейке
+         * скриптов получается синтаксическая ошибка (см. prepare())
+         */
+        $this->prepare();
     }
 
     /**
