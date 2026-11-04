@@ -18,7 +18,7 @@
 {$role = $role|default:'group'}
 
 {* Делаем группировку по умолчанию горизонтальной *}
-{if ! in_array( 'vertical', explode( ' ', $mods|default:'' ) )}
+{if ! in_array( 'vertical', split( $mods|default:'', ' ' ) )}
     {$mods = "$mods horizontal"}
 {/if}
 

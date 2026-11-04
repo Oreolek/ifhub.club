@@ -21,7 +21,7 @@
 {block 'button_toolbar_options'}{/block}
 
 {* Делаем группировку по умолчанию горизонтальной *}
-{if in_array( 'vertical', explode( ' ', $mods|default:'' ) )}
+{if in_array( 'vertical', split( $mods|default:'', ' ' ) )}
     {$groupMod = 'vertical'}
 {/if}
 

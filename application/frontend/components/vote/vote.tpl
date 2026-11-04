@@ -51,7 +51,7 @@
 {/if}
 
 {* Дополнительный мод-ор для иконок *}
-{$iconMod = ( in_array( 'small', explode(' ', $mods) ) ) ? 'white' : ''}
+{$iconMod = ( in_array( 'small', split($mods, ' ') ) ) ? 'white' : ''}
 
 {block 'vote_options'}{/block}
 
