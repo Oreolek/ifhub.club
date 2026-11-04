@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * LiveStreet CMS
  * Copyright © 2013 OOO "ЛС-СОФТ"
@@ -2014,7 +2014,7 @@ class ModuleTopic extends Module
         $this->Notify_Send(
             $oUserTo,
             'comment_reply.tpl',
-            $this->Lang_Get('emails.comment_reply.subject'),
+            $this->Lang_Get('emails.comment_reply.subject', array('topic_name' => $oTopic->getTitle())),
             array(
                 'oUserTo'      => $oUserTo,
                 'oTopic'       => $oTopic,

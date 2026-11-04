@@ -1341,7 +1341,7 @@ class ActionBlog extends Action
              * Отправка уведомления автору топика
              */
             $this->Subscribe_Send('topic_new_comment', $oTopic->getId(),
-                'comment_new.tpl', $this->Lang_Get('emails.comment_new.subject'),
+                'comment_new.tpl', $this->Lang_Get('emails.comment_new.subject', array('topic_name' => $oTopic->getTitle())),
                 array(
                     'oTopic'       => $oTopic,
                     'oComment'     => $oCommentNew,

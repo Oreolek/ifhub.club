@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /* -------------------------------------------------------
  *
@@ -628,7 +628,7 @@ return array(
         ),
         // Оповещение о новом комментарии в топике
         'comment_new'           => array(
-            'subject'     => 'New comment',
+            'subject'     => 'New comment on topic: %%topic_name%%',
             'text'        =>
                 'User <a href="%%user_url%%">%%user_name%%</a>
 				just added a new comment to the topic <b>%%topic_name%%</b>,
@@ -640,7 +640,7 @@ return array(
         ),
         // Оповещение об ответе на комментарий
         'comment_reply'         => array(
-            'subject' => 'You have got a reply',
+            'subject' => 'New reply on your comment in topic: %%topic_name%%',
             'text'    =>
                 'User <a href="%%user_url%%">%%user_name%%</a>
 				just replied on your comment in the topic <b>%%topic_name%%</b>,
