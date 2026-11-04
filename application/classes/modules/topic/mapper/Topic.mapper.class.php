@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 /*
  * LiveStreet CMS
  * Copyright © 2013 OOO "ЛС-СОФТ"
@@ -680,7 +680,7 @@ class ModuleTopic_MapperTopic extends Mapper
 				$sPublishIndex = " or topic_publish_index = 1 ) and ( topic_skip_index = 0 and b.blog_skip_index = 0 ";
 			}
 			if ($aFilter['topic_rating']['type'] == 'top') {
-				$sWhere .= " AND ( (t.topic_rating + coalesce(0, (`tg_posts`.`like_count` * 0.5))) >= " . (float)$aFilter['topic_rating']['value'] . " {$sPublishIndex} ) ";
+				$sWhere .= " AND ( (t.topic_rating + coalesce(`tg_posts`.`like_count`, 0) * 0.5) >= " . (float)$aFilter['topic_rating']['value'] . " {$sPublishIndex} ) ";
 			} else {
 				$sWhere .= " AND ( t.topic_rating < " . (float)$aFilter['topic_rating']['value'] . "  ) ";
 			}
